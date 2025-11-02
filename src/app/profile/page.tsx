@@ -5,6 +5,8 @@ import Header from '@/components/Header';
 import { User, Upload, TrendingUp, Calendar, Search } from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]/route';
 
 interface Campaign {
   name: string;
@@ -26,6 +28,10 @@ interface UserData {
 }
 
 export default function ProfilePage() {
+  const session = getServerSession(authOptions);
+  if (!session) {
+    return <div>Access denied. Please <a href="/auth/login">login</a>.</div>;
+  }
   const [searchTerm, setSearchTerm] = useState('');
   const [dateSearch, setDateSearch] = useState('');
   const [attachmentSearch, setAttachmentSearch] = useState('');
@@ -59,6 +65,8 @@ export default function ProfilePage() {
     noCampaignsAvailable: language === 'ru' ? 'Кампаний нет.' : 'No campaigns available.',
     noCampaignsMatch: language === 'ru' ? 'Кампании не найдены.' : 'No campaigns match your search criteria.',
   };
+
+  
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -137,6 +145,8 @@ export default function ProfilePage() {
   }
 
   return (
+
+    
     <div className={theme === 'dark' ? 'dark' : ''}>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
         <Header />

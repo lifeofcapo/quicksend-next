@@ -4,6 +4,7 @@ import './globals.css'
 
 import { ThemeProvider } from '@/contexts/theme-context';
 import { LanguageProvider } from '@/contexts/language-context';
+import { montserrat } from "@/lib/font";
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={montserrat.variable} suppressHydrationWarning>
       <body>
         <ThemeProvider>
           <LanguageProvider>          
