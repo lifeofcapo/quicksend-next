@@ -1,12 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Header from '@/components/Footer';
 import { User, Upload, TrendingUp, Calendar, Search } from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { useSession } from 'next-auth/react'; 
+import { useRouter } from 'next/navigation';
 
 interface Campaign {
   name: string;
@@ -28,10 +28,8 @@ interface UserData {
 }
 
 export default function ProfilePage() {
-  const session = getServerSession(authOptions);
-  if (!session) {
-    return <div>Access denied. Please <a href="/auth/login">login</a>.</div>;
-  }
+  const { data: session, status } = useSession();
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [dateSearch, setDateSearch] = useState('');
   const [attachmentSearch, setAttachmentSearch] = useState('');
@@ -43,6 +41,31 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
+
+  useEffect(() => {
+    if (status === 'loading') return; 
+    
+    if (!session) {
+      router.push('/auth/login'); 
+      return;
+    }
+  }, [session, status, router]);
+
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-xl text-gray-600 dark:text-gray-400">Загрузка...</div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-xl text-gray-600 dark:text-gray-400">Редирект...</div>
+      </div>
+    );
+  }
 
   // Переводы (немного сокращённый набор для этой страницы)
   const t = {
