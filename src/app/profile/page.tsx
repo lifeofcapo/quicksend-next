@@ -7,6 +7,7 @@ import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
 import { useSession } from 'next-auth/react'; 
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface Campaign {
   name: string;
@@ -196,9 +197,9 @@ export default function ProfilePage() {
                   <p className="text-2xl font-bold text-gray-900 dark:text-white">
                     {userData?.activePlan || (language === 'ru' ? 'Нет активного тарифа' : 'No active plan')}
                   </p>
-                  <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm">
+                  <Link href="/pricing" className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm inline-block text-center">
                     {t.upgradePlan}
-                  </button>
+                  </Link>
                 </div>
 
                 <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg">
@@ -330,10 +331,8 @@ export default function ProfilePage() {
                 )}
               </div>
             </div>
-
           </div>
         </main>
-
         <Footer />
       </div>
     </div>
