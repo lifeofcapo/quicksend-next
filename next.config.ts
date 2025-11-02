@@ -1,22 +1,19 @@
 import type { NextConfig } from "next";
-
 const nextConfig: NextConfig = {
-
   turbopack: {},
-  
-  // Настраиваем webpack для обработки серверных модулей
-  webpack: (config, { isServer }) => {
-    // Если это клиентская сборка, игнорируем серверные модули
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        path: false,
-        os: false,
-        crypto: false,
-        stream: false,
-      };
-    }
+  experimental: {
+    serverActions: {}, // Empty object instead of boolean
+  },
+  output: "standalone",
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      type: "asset/resource",
+      generator: {
+        filename: "static/fonts/[name][ext]",
+      },
+    });
+    config.externals = [...config.externals, "@prisma/client"];
     return config;
   },
 };
