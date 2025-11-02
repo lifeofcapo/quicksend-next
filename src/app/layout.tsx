@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 
 import { ThemeProvider } from '@/contexts/theme-context';
+import { LanguageProvider } from '@/contexts/language-context';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider>
-          {children}
+          <LanguageProvider>          
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

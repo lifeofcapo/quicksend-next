@@ -1,7 +1,9 @@
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/language-context';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { language, toggleLanguage } = useLanguage();
 
   return (
     <footer className="bg-gray-900 dark:bg-gray-800 text-white py-12 px-4 transition-colors">

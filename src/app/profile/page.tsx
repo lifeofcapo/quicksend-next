@@ -2,8 +2,9 @@
 import { useState, useEffect } from 'react';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import { User, Upload, TrendingUp, Calendar, Search, Moon, Sun } from 'lucide-react';
+import { User, Upload, TrendingUp, Calendar, Search } from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
+import { useLanguage } from '@/contexts/language-context';
 
 interface Campaign {
   name: string;
@@ -34,17 +35,35 @@ export default function ProfilePage() {
   });
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
-  const { theme, toggleTheme } = useTheme(); 
+  const { theme } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
+
+  // Переводы (немного сокращённый набор для этой страницы)
+  const t = {
+    loading: language === 'ru' ? 'Загрузка...' : 'Loading...',
+    userNameFallback: language === 'ru' ? 'Имя пользователя' : 'User Name',
+    emailFallback: language === 'ru' ? 'user@example.com' : 'user@example.com',
+    activePlanLabel: language === 'ru' ? 'Активный тариф' : 'Active Plan',
+    upgradePlan: language === 'ru' ? 'Обновить тариф' : 'Upgrade Plan',
+    subscriptionEndsLabel: language === 'ru' ? 'Подписка до' : 'Subscription ends',
+    noSubscription: language === 'ru' ? 'Нет подписки' : 'No subscription',
+    totalCampaignsLabel: language === 'ru' ? 'Всего кампаний' : 'Total campaigns',
+    totalRecipientsLabel: language === 'ru' ? 'Всего получателей' : 'Total recipients',
+    remainingCampaignsLabel: language === 'ru' ? 'Осталось кампаний' : 'Remaining campaigns',
+    remainingRecipientsLabel: language === 'ru' ? 'Осталось получателей' : 'Remaining recipients',
+    emailVerificationTitle: language === 'ru' ? 'Проверка Email' : 'Email Verification',
+    uploadHint: language === 'ru' ? 'Загрузите список email для проверки' : 'Upload your email list for verification',
+    chooseFile: language === 'ru' ? 'Выбрать файл' : 'Choose File',
+    searchPlaceholder: language === 'ru' ? 'Поиск по названию...' : 'Search by name...',
+    searchAttachmentsPlaceholder: language === 'ru' ? 'Поиск вложений...' : 'Search attachments...',
+    noCampaignsAvailable: language === 'ru' ? 'Кампаний нет.' : 'No campaigns available.',
+    noCampaignsMatch: language === 'ru' ? 'Кампании не найдены.' : 'No campaigns match your search criteria.',
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Здесь будет запрос к API
-        // const response = await fetch('/api/user/profile');
-        // const data = await response.json();
-        // setUserData(data);
-        
-        // Временная заглушка - пустые данные
+        // TODO: fetch('/api/user/profile')
         setUserData({
           name: '',
           email: '',
@@ -66,7 +85,6 @@ export default function ProfilePage() {
     fetchUserData();
   }, []);
 
-  // Анимация счетчиков
   useEffect(() => {
     if (!userData) return;
 
@@ -113,7 +131,7 @@ export default function ProfilePage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-xl text-gray-600 dark:text-gray-400">Loading...</div>
+        <div className="text-xl text-gray-600 dark:text-gray-400">{t.loading}</div>
       </div>
     );
   }
@@ -122,41 +140,41 @@ export default function ProfilePage() {
     <div className={theme === 'dark' ? 'dark' : ''}>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
         <Header />
-        
-      <main className="pt-24 pb-12 px-4">
-        <div className="container mx-auto max-w-6xl">
+
+        <main className="pt-24 pb-12 px-4">
+          <div className="container mx-auto max-w-6xl">
             
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
-            <div className="flex justify-between items-start mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
+              <div className="flex justify-between items-start mb-6">
                 <div>
                   <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                    {userData?.name || 'User Name'}
+                    {userData?.name || t.userNameFallback}
                   </h1>
-                  <p className="text-gray-600 dark:text-gray-400">{userData?.email || 'user@example.com'}</p>
+                  <p className="text-gray-600 dark:text-gray-400">{userData?.email || t.emailFallback}</p>
                 </div>
-            </div>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
                   <div className="flex items-center mb-2">
                     <User className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Активный тариф</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">{t.activePlanLabel}</span>
                   </div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                    {userData?.activePlan || 'No active plan'}
+                    {userData?.activePlan || (language === 'ru' ? 'Нет активного тарифа' : 'No active plan')}
                   </p>
                   <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm">
-                    Upgrade Plan
+                    {t.upgradePlan}
                   </button>
                 </div>
 
                 <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg">
                   <div className="flex items-center mb-2">
                     <Calendar className="w-5 h-5 text-green-600 dark:text-green-400 mr-2" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Подписка до</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">{t.subscriptionEndsLabel}</span>
                   </div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                    {userData?.subscriptionEnd || 'No subscription'}
+                    {userData?.subscriptionEnd || t.noSubscription}
                   </p>
                 </div>
               </div>
@@ -166,7 +184,7 @@ export default function ProfilePage() {
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
                 <div className="flex items-center mb-2">
                   <TrendingUp className="w-5 h-5 text-purple-600 mr-2" />
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Всего кампаний</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">{t.totalCampaignsLabel}</span>
                 </div>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white">{counters.totalCampaigns}</p>
               </div>
@@ -174,31 +192,27 @@ export default function ProfilePage() {
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
                 <div className="flex items-center mb-2">
                   <TrendingUp className="w-5 h-5 text-blue-600 mr-2" />
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Всего получателей</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">{t.totalRecipientsLabel}</span>
                 </div>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white">{counters.totalRecipients.toLocaleString()}</p>
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-                <div className="flex items-center mb-2">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Осталось кампаний</span>
-                </div>
+                <span className="text-sm text-gray-600 dark:text-gray-400">{t.remainingCampaignsLabel}</span>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white">{userData?.remainingCampaigns || 0}</p>
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-                <div className="flex items-center mb-2">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Осталось получателей</span>
-                </div>
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">{userData?.remainingRecipients.toLocaleString() || 0}</p>
+                <span className="text-sm text-gray-600 dark:text-gray-400">{t.remainingRecipientsLabel}</span>
+                <p className="text-3xl font-bold text-gray-900 dark:text-white">{(userData?.remainingRecipients || 0).toLocaleString()}</p>
               </div>
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Email Verification</h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t.emailVerificationTitle}</h2>
               <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
                 <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 dark:text-gray-400 mb-4">Upload your email list for verification</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-4">{t.uploadHint}</p>
                 <input
                   type="file"
                   id="email-file"
@@ -210,20 +224,21 @@ export default function ProfilePage() {
                   htmlFor="email-file"
                   className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer transition"
                 >
-                  Choose File
+                  {t.chooseFile}
                 </label>
               </div>
-              <div id="validation-result" className="mt-4 text-gray-700 dark:text-gray-300"></div>
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Campaign Management</h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                {language === 'ru' ? 'Управление кампаниями' : 'Campaign Management'}
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
                     type="text"
-                    placeholder="Search by name..."
+                    placeholder={t.searchPlaceholder}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -237,7 +252,7 @@ export default function ProfilePage() {
                 />
                 <input
                   type="text"
-                  placeholder="Search attachments..."
+                  placeholder={t.searchAttachmentsPlaceholder}
                   value={attachmentSearch}
                   onChange={(e) => setAttachmentSearch(e.target.value)}
                   className="px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -247,7 +262,7 @@ export default function ProfilePage() {
               <div className="space-y-4">
                 {filteredCampaigns.length === 0 ? (
                   <p className="text-gray-500 dark:text-gray-400 text-center py-8">
-                    {userData?.campaigns.length === 0 ? 'No campaigns available.' : 'No campaigns match your search criteria.'}
+                    {userData?.campaigns.length === 0 ? t.noCampaignsAvailable : t.noCampaignsMatch}
                   </p>
                 ) : (
                   filteredCampaigns.map((campaign, idx) => (
@@ -260,11 +275,11 @@ export default function ProfilePage() {
                         <span className="text-sm text-gray-500 dark:text-gray-400">{campaign.date}</span>
                       </div>
                       <p className="text-gray-600 dark:text-gray-400 mb-2">
-                        Recipients: {campaign.recipients.toLocaleString()}
+                        {language === 'ru' ? 'Получатели:' : 'Recipients:'} {campaign.recipients.toLocaleString()}
                       </p>
                       {campaign.attachments.length > 0 && (
                         <div className="mt-3">
-                          <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Attachments:</p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{language === 'ru' ? 'Вложения:' : 'Attachments:'}</p>
                           <div className="flex flex-wrap gap-2">
                             {campaign.attachments.map((att, aIdx) => (
                               <span 

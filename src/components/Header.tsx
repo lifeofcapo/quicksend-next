@@ -4,9 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Globe, UserCircle, Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
+import { useLanguage } from '@/contexts/language-context';
 
 export default function Header() {
-  const [language, setLanguage] = useState<'ru' | 'en'>('ru');
+  const { language, toggleLanguage } = useLanguage();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
@@ -17,10 +18,6 @@ export default function Header() {
     contact: language === 'ru' ? 'Контакты' : 'Contact us',
     signIn: language === 'ru' ? 'Войти' : 'Sign In',
     startFree: language === 'ru' ? 'Начать бесплатно' : 'Start for free',
-  };
-
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === 'ru' ? 'en' : 'ru');
   };
 
   const handleAuth = () => {
