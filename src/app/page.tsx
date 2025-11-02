@@ -141,72 +141,80 @@ export default function Home() {
     <>
       <div className="relative z-10">
         <Header />
-        <main>
-          {/* Hero Section - исправленная */}
-          <section id="hero-section" className="pt-32 pb-20 px-4 bg-white dark:bg-gray-900 transition-colors">
-            <div className="container mx-auto">
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-8 max-w-7xl mx-auto">
-                <div className="relative w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] flex-shrink-0 order-1 lg:order-1">
-                  <Image 
-                    src="/images/image.png" 
-                    alt="Hero Left" 
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-                
-                <div className="text-center max-w-xl flex-1 order-2 lg:order-2">
-                  <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">{t.title}</h1>
-                  <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">{t.description}</p>
-                  <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <Link href="#" className="px-8 py-4 bg-blue-600 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition text-lg font-semibold">{t.startFree}</Link>
-                    <Link href="#whyquicksend" className="px-8 py-4 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 border-2 border-blue-600 dark:border-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition text-lg font-semibold">{t.learnMore}</Link>
-                  </div>
-                </div>
-                
-                <div className="relative w-[200px] h-[200px] lg:w-[250px] lg:h-[250px] flex-shrink-0 order-3 lg:order-3">
-                  <Image 
-                    src="/images/image (1) (1).png" 
-                    alt="Hero Right" 
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
+    <main>
+      {/* Hero Section - исправленная */}
+<section id="hero-section" className="pt-24 pb-20 px-4 bg-white dark:bg-gray-900 transition-colors h-[600px]">
+  <div className="container mx-auto h-full">
+    <div className="flex flex-col lg:flex-row items-center justify-between gap-4 max-w-7xl mx-auto h-full">
+      <div className="relative w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] flex-shrink-0 order-1 lg:order-1">
+        <Image 
+          src="/images/image.png" 
+          alt="Hero Left" 
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
+      
+      <div className="text-center max-w-xl flex-1 order-2 lg:order-2 mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">{t.title}</h1>
+        <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">{t.description}</p>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <Link href="#" className="px-8 py-4 bg-blue-600 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition text-lg font-semibold">{t.startFree}</Link>
+          <Link href="#whyquicksend" className="px-8 py-4 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 border-2 border-blue-600 dark:border-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition text-lg font-semibold">{t.learnMore}</Link>
+        </div>
+      </div>
+      
+      <div className="relative w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] flex-shrink-0 order-3 lg:order-3">
+        <Image 
+          src="/images/image (1) (1).png" 
+          alt="Hero Right" 
+          fill
+          className="object-contain"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
-          {/* Why QuickSend Section - исправленная */}
-          <section id="whyquicksend" className="py-16 px-4 bg-gray-50 dark:bg-gray-800 transition-colors relative overflow-hidden">
-            <div className="absolute right-0 top-1/2 transform -translate-y-1/2 opacity-20 dark:opacity-10 w-64 h-64">
-              <Image 
-                src="/images/Group 1.png" 
-                alt="Background" 
-                fill
-                className="object-contain"
-                quality={75}
-              />
-            </div>
-            
-            <div className="container mx-auto relative z-10">
-              <h2 className="text-4xl font-bold text-center mb-4 dark:text-white">{t.whyTitle}</h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto mb-12">{t.whyDesc}</p>
+<section id="whyquicksend" className="py-20 px-4 bg-gray-50 dark:bg-gray-800 transition-colors relative overflow-hidden">
+  <div className="container mx-auto">
+    <div className="flex flex-col lg:flex-row items-start gap-12 max-w-7xl mx-auto">
+      {/* Левая часть - преимущества */}
+      <div className="flex-1">
+        <h2 className="text-4xl font-bold mb-4 dark:text-white">{t.whyTitle}</h2>
+        <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl">{t.whyDesc}</p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {advantages.map((a, i) => {
-                  const Icon = a.icon;
-                  return (
-                    <div key={i} className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
-                      <Icon className="w-10 h-10 text-blue-600 dark:text-blue-400 mb-3" />
-                      <h3 className="text-xl font-semibold mb-2 dark:text-white">{adv(a.title)}</h3>
-                      <p className="text-gray-600 dark:text-gray-300">{adv(a.desc)}</p>
-                    </div>
-                  );
-                })}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {advantages.map((a, i) => {
+            const Icon = a.icon;
+            return (
+              <div key={i} className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
+                <Icon className="w-10 h-10 text-blue-600 dark:text-blue-400 mb-3" />
+                <h3 className="text-xl font-semibold mb-2 dark:text-white">{adv(a.title)}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{adv(a.desc)}</p>
               </div>
-            </div>
-          </section>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Правая часть - изображение */}
+      <div className="flex-1 relative flex items-end">
+        <div className="relative w-full h-[500px]">
+          <Image 
+            src="/images/Group 1.png" 
+            alt="Why QuickSend" 
+            fill
+            className="object-contain"
+            quality={90}
+          />
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+
 
           {/* Products Section */}
           <section id="products" className="py-16 px-4 bg-white dark:bg-gray-900 transition-colors">
@@ -234,55 +242,61 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Stats Section - уменьшенная высота */}
-          <section className="py-12 px-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 text-white transition-colors">
-            <div className="container mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-                <div className="relative w-full h-[180px]">
-                  <Image 
-                    src="/images/Team goals-rafiki.png" 
-                    alt="Team Goals" 
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                
-                <div className="text-center space-y-4">
-                  <div>
-                    <p className="text-base mb-1 opacity-90">{t.statsEmails}</p>
-                    <span className="text-3xl md:text-4xl font-bold">{emailCount.toLocaleString()}</span>
-                  </div>
-                  <div>
-                    <p className="text-base mb-1 opacity-90">{t.statsCampaigns}</p>
-                    <span className="text-3xl md:text-4xl font-bold">{campaignCount.toLocaleString()}</span>
-                  </div>
-                </div>
-                
-                <div className="relative w-full h-[180px]">
-                  <Image 
-                    src="/images/Investment data-rafiki.png" 
-                    alt="Investment Data" 
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
+<section
+  className="relative py-2 md:py-2 flex items-center"
+  style={{
+    background: "linear-gradient(to top, #f8fafc, #bfdbfe)"
+  }}
+>
+  <div className="container mx-auto">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-center">
+      <div className="relative w-full h-[280px]">
+        <Image 
+          src="/images/Team goals-rafiki.png" 
+          alt="Team Goals" 
+          fill
+          className="object-contain"
+        />
+      </div>
+      
+      <div className="text-center space-y-3">
+        <div>
+          <p className="text-base mb-1 text-gray-700">{t.statsEmails}</p>
+          <span className="text-3xl md:text-4xl font-bold text-gray-900">{emailCount.toLocaleString()}</span>
+        </div>
+        <div>
+          <p className="text-base mb-1 text-gray-700">{t.statsCampaigns}</p>
+          <span className="text-3xl md:text-4xl font-bold text-gray-900">{campaignCount.toLocaleString()}</span>
+        </div>
+      </div>
+      
+      <div className="relative w-full h-[280px]">
+        <Image 
+          src="/images/Investment data-rafiki.png" 
+          alt="Investment Data" 
+          fill
+          className="object-contain"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
           {/* Pricing Section - исправленная */}
           <section id="pricing" className="py-16 px-4 bg-gray-50 dark:bg-gray-900 transition-colors relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center opacity-5 dark:opacity-3">
-              <div className="relative w-full h-full max-w-2xl max-h-2xl">
-                <Image 
-                  src="/images/businesswoman.svg" 
-                  alt="Background" 
-                  fill
-                  className="object-contain"
-                  quality={90}
+            <div className="absolute inset-x-0 bottom-[-25px] flex justify-center pointer-events-none">
+              <div className="relative w-full max-w-3xl opacity-80 dark:opacity-60 mix-blend-multiply dark:mix-blend-screen translate-x-[-300px]">
+                <Image
+                  src="/images/businesswoman.png"
+                  alt="Background"
+                  width={900}
+                  height={900}
+                  className="w-full h-auto object-contain"
+                  priority
                 />
               </div>
             </div>
+
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-4xl font-bold text-center mb-4 dark:text-white">{t.pricing}</h2>
@@ -306,11 +320,11 @@ export default function Home() {
                     : plan.price[language];
 
                   return (
-                    <div key={idx} className={`backdrop-blur-md rounded-xl p-6 transition-all border ${
-                      plan.popular 
-                        ? 'ring-2 ring-blue-600 dark:ring-blue-400 shadow-xl scale-105 bg-white/10 dark:bg-gray-800/10 border-blue-200 dark:border-blue-800' 
-                        : 'border-gray-300/50 dark:border-gray-600/50 shadow-lg bg-white/5 dark:bg-gray-800/5'
-                    }`}>
+                      <div key={idx} className={`rounded-xl p-6 transition-all border ${
+                        plan.popular 
+                          ? 'ring-2 ring-blue-600 dark:ring-blue-400 shadow-xl scale-105 bg-white/70 dark:bg-gray-800/60 border-blue-200 dark:border-blue-800' 
+                          : 'border-gray-300/40 dark:border-gray-600/40 shadow-lg bg-white/60 dark:bg-gray-800/50'
+                      }`}>
                       {plan.popular && <span className="bg-blue-600 dark:bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block">{t.popular}</span>}
 
                       <Icon className="w-10 h-10 text-blue-600 dark:text-blue-400 mb-3" />

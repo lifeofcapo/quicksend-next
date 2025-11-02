@@ -4,10 +4,6 @@
 
 @layer theme {
   :root {
-    --color-primary-dark: #7B4019;
-    --color-primary-main: #FF7D29;
-    --color-primary-light: #FFBF78;
-    --color-primary-lighter: #FFEEA9;
     
     /* Light mode colors */
     --color-bg-page: #ffffff;
