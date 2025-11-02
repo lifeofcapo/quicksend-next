@@ -4,7 +4,7 @@ import './globals.css'
 
 import { ThemeProvider } from '@/contexts/theme-context';
 import { LanguageProvider } from '@/contexts/language-context';
-import { SessionProvider } from 'next-auth/react';
+import { AuthProvider } from '@/components/AuthProvider';
 import { montserrat } from "@/lib/font";
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
@@ -22,13 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.variable} suppressHydrationWarning>
       <body>
-        <SessionProvider>
         <ThemeProvider>
-          <LanguageProvider>          
-            {children}
+          <LanguageProvider>
+            <AuthProvider> 
+              {children}
+            </AuthProvider>
           </LanguageProvider>
         </ThemeProvider>
-        </SessionProvider>
       </body>
     </html>
   );

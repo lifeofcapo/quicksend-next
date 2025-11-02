@@ -1,20 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    webpackBuildWorker: true,
-  },
   output: "standalone",
+  turbopack: {},
   
-  webpack: (config, { isServer }) => {
+  webpack: (config) => {
     config.module.rules.push({
       test: /\.(woff|woff2|eot|ttf|otf)$/i,
-      type: "asset/resource",
+      type: 'asset/resource',
       generator: {
-        filename: "static/fonts/[name][ext]",
+        filename: 'static/fonts/[name][ext]',
       },
     });
-    
     return config;
   },
 };
