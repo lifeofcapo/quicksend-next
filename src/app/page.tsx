@@ -21,8 +21,8 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const emailTarget = 1234567;
-    const campaignTarget = 45678;
+    const emailTarget = 100000;
+    const campaignTarget = 12000;
     const duration = 2000;
     const steps = 60;
     const emailIncrement = emailTarget / steps;
@@ -96,21 +96,21 @@ export default function Home() {
   const pl = (p: LangValue) => language === 'ru' ? p.ru : p.en;
 
   const advantages = [
-    { icon: Zap, title: {ru:'Скорость',en:'Speed'}, desc:{ru:'Отправка тысяч писем...',en:'Send thousands...'} },
-    { icon: Shield, title:{ru:'Безопасность',en:'Security'}, desc:{ru:'Защита данных...',en:'Top-level protection...'} },
-    { icon: Snowflake, title:{ru:'Холодные письма',en:'Cold Emails'}, desc:{ru:'Инструменты холодной...',en:'Cold emailing tools...'} },
-    { icon: DollarSign, title:{ru:'Низкая цена',en:'Low Price'}, desc:{ru:'Доступные тарифы...',en:'Affordable plans...'} },
-    { icon: TrendingUp, title:{ru:'Аналитика',en:'Analytics'}, desc:{ru:'Подробная статистика...',en:'Detailed stats...'} },
-    { icon: Settings, title:{ru:'Гибкая настройка',en:'Flexible Setup'}, desc:{ru:'Настройте под себя...',en:'Customize sending...'} },
+    { icon: Zap, title: {ru:'Скорость',en:'Speed'}, desc:{ru:'Отправка тысяч писем с молниеносной скоростью',en:'Send thousands of emails at lightning speed'} },
+    { icon: Shield, title:{ru:'Безопасность',en:'Security'}, desc:{ru:'Защита ваших данных на высшем уровне',en:'Top-level protection of your data'} },
+    { icon: Snowflake, title:{ru:'Холодные письма',en:'Cold Emails'}, desc:{ru:'Эффективные инструменты для холодной рассылки',en:'Effective tools for cold emailing'} },
+    { icon: DollarSign, title:{ru:'Низкая цена',en:'Low Price'}, desc:{ru:'Доступные тарифы для любого бюджета',en:'Affordable rates for any budget'} },
+    { icon: TrendingUp, title:{ru:'Аналитика',en:'Analytics'}, desc:{ru:'Подробная статистика по всем рассылкам',en:'Detailed statistics for all mailings'} },
+    { icon: Settings, title:{ru:'Гибкая настройка',en:'Flexible Setup'}, desc:{ru:'Настройте отправку писем под ваши потребности',en:'Configure email sending to your needs'} },
   ];
 
   const products = [
-    { icon: Send, title:{ru:'Массовая Рассылка',en:'Mass Emails'}, desc:{ru:'Обход лимитов Gmail...',en:'Break Gmail limits...'} },
-    { icon: FileSpreadsheet, title:{ru:'Google Таблицы',en:'Google Sheets'}, desc:{ru:'Чтение данных...',en:'Reads Sheets data...'} },
-    { icon: CheckCircle, title:{ru:'Проверка почт',en:'Email Verification'}, desc:{ru:'Проверка списка...',en:'Verify list...'} },
-    { icon: Calendar, title:{ru:'Планирование',en:'Scheduling'}, desc:{ru:'Планируйте отправку...',en:'Schedule campaigns...'} },
-    { icon: User, title:{ru:'Персонализация',en:'Personalization'}, desc:{ru:'Персонализация писем...',en:'Personalized emails...'} },
-    { icon: Bell, title:{ru:'Автодоводы',en:'Follow-ups'}, desc:{ru:'Автоматические follow-up...',en:'Automatic follow-ups...'} },
+    { icon: Send, title:{ru:'Массовая Рассылка в Gmail',en:'Mass Emails in Gmail'}, desc:{ru:'Наш сервис массовой рассылки писем позволяет обойти ограничения Gmail по отправке сообщений с помощью нашей технологии распространения.',en:'Our mass email service can break Gmail sending limits using our distribution technology.'} },
+    { icon: FileSpreadsheet, title:{ru:'Отправка писем с Google Таблиц',en:'Mail Merge with Google Sheets'}, desc:{ru:'Quicksend будет считывать данные в реальном времени из любой таблицы Google и даже отслеживать наличие новых строк, а затем автоматически отправлять электронные письма.',en:'Quicksend will read data live from any Google Sheet and even monitor for new rows and then send emails automatically.'} },
+    { icon: CheckCircle, title:{ru:'Валидация почт',en:'Email Verification'}, desc:{ru:'Проверьте свой список, протестируйте ссылки и устраните спам-триггеры и недействительные электронные почты перед отправкой',en:'Verify your list, test links, & fix spam triggers and invalid emails before you send'} },
+    { icon: Calendar, title:{ru:'Планирование массовых рассылок и писем',en:'Schedule Mass emails and Mail Merges'}, desc:{ru:'Запланируйте отправку писем на любое время в будущем или установите ее повторение ежедневно или ежечасно.',en:'Schedule a mail merge for any time in the future, or set it to repeat daily or hourly.'} },
+    { icon: User, title:{ru:'Персонализация',en:'Personalization'}, desc:{ru:'Подключитесь к Google Sheet и персонализируйте с помощью любого столбца или используйте базовую персонализацию имени и фамилии без электронной таблицы. Используйте резервные значения. Не знаете чье-то имя? Мы автоматически его определим.',en:'Connect to a Google Sheet and personalize with any column, or use basic first and last name personalization without a spreadsheet. Use fallback values. Do not know someones first name? We will auto-detect it.'} },
+    { icon: Bell, title:{ru:'Автоматические последующие письма',en:'Automatic Follow-up Emails'}, desc:{ru:'Установите автоматическую отправку последующих писем в последовательности, пока получатель не ответит. Лучший способ повысить показатели ответов.',en:'Sending cold email? Set automatic follow-up emails to send in a sequence until your recipient replies. The best way to boost response rates.'} },
   ];
 
   const plans = [
@@ -137,25 +137,14 @@ export default function Home() {
     },
   ];
 
-  return (
+return (
     <>
       <div className="relative z-10">
         <Header />
     <main>
-      {/* Hero Section - исправленная */}
 <section id="hero-section" className="pt-24 pb-20 px-4 bg-white dark:bg-gray-900 transition-colors h-[600px]">
   <div className="container mx-auto h-full">
     <div className="flex flex-col lg:flex-row items-center justify-between gap-4 max-w-7xl mx-auto h-full">
-      <div className="relative w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] flex-shrink-0 order-1 lg:order-1">
-        <Image 
-          src="/images/image.png" 
-          alt="Hero Left" 
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
-      
       <div className="text-center max-w-xl flex-1 order-2 lg:order-2 mb-4">
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">{t.title}</h1>
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">{t.description}</p>
@@ -165,7 +154,17 @@ export default function Home() {
         </div>
       </div>
       
-      <div className="relative w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] flex-shrink-0 order-3 lg:order-3">
+      <div className="relative w-[320px] h-[320px] lg:w-[370px] lg:h-[590px] flex-shrink-0 order-1 lg:order-1 mt-auto">
+        <Image 
+          src="/images/image.png" 
+          alt="Hero Left" 
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
+      
+      <div className="relative w-[380px] h-[420px] lg:w-[490px] lg:h-[600px] flex-shrink-0 order-3 lg:order-3 mt-auto lg:mr-[-120px]">
         <Image 
           src="/images/image (1) (1).png" 
           alt="Hero Right" 
@@ -177,20 +176,22 @@ export default function Home() {
   </div>
 </section>
 
-<section id="whyquicksend" className="py-20 px-4 bg-gray-50 dark:bg-gray-800 transition-colors relative overflow-hidden">
+<section id="whyquicksend" className="py-20 px-4 bg-gray-50 dark:bg-gray-800 transition-colors relative overflow-hidden h-[900px]">
   <div className="container mx-auto">
     <div className="flex flex-col lg:flex-row items-start gap-12 max-w-7xl mx-auto">
       {/* Левая часть - преимущества */}
       <div className="flex-1">
-        <h2 className="text-4xl font-bold mb-4 dark:text-white">{t.whyTitle}</h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl">{t.whyDesc}</p>
+        <h2 className="text-4xl font-bold mb-4 dark:text-white text-center lg:text-left">{t.whyTitle}</h2>
+        <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl text-center lg:text-left">{t.whyDesc}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {advantages.map((a, i) => {
             const Icon = a.icon;
             return (
-              <div key={i} className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
-                <Icon className="w-10 h-10 text-blue-600 dark:text-blue-400 mb-3" />
+              <div key={i} className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition text-center">
+                <div className="flex justify-center mb-3">
+                  <Icon className="w-10 h-10 text-blue-600 dark:text-blue-400" />
+                </div>
                 <h3 className="text-xl font-semibold mb-2 dark:text-white">{adv(a.title)}</h3>
                 <p className="text-gray-600 dark:text-gray-300">{adv(a.desc)}</p>
               </div>
@@ -198,10 +199,8 @@ export default function Home() {
           })}
         </div>
       </div>
-
-      {/* Правая часть - изображение */}
       <div className="flex-1 relative flex items-end">
-        <div className="relative w-full h-[500px]">
+        <div className="relative w-full h-[600px] lg:h-[1050px] lg:mr-[-290px]">
           <Image 
             src="/images/Group 1.png" 
             alt="Why QuickSend" 
@@ -214,33 +213,32 @@ export default function Home() {
     </div>
     </div>
 </section>
+<section id="products" className="py-16 px-4 bg-white dark:bg-gray-900 transition-colors">
+  <div className="container mx-auto">
+    <h2 className="text-4xl font-bold text-center mb-12 dark:text-white">{t.productsTitle}</h2>
 
-
-          {/* Products Section */}
-          <section id="products" className="py-16 px-4 bg-white dark:bg-gray-900 transition-colors">
-            <div className="container mx-auto">
-              <h2 className="text-4xl font-bold text-center mb-12 dark:text-white">{t.productsTitle}</h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {products.map((p, i) => {
-                  const Icon = p.icon;
-                  return (
-                    <div key={i} className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-400 hover:shadow-xl transition">
-                      <Icon className="w-10 h-10 text-blue-600 dark:text-blue-400 mb-3" />
-                      <h3 className="text-xl font-semibold mb-3 dark:text-white">{pl(p.title)}</h3>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">{pl(p.desc)}</p>
-                      <Link href="/faq" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">{t.moreDetails}</Link>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="text-center mt-8">
-                <button className="px-6 py-3 bg-blue-600 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition text-lg font-semibold">{t.addToGmail}</button>
-                <p className="text-gray-500 dark:text-gray-400 mt-3 text-sm">{t.chromeRequired}</p>
-              </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((p, i) => {
+        const Icon = p.icon;
+        return (
+          <div key={i} className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-400 hover:shadow-xl transition text-center">
+            <div className="flex justify-center mb-3">
+              <Icon className="w-10 h-10 text-blue-600 dark:text-blue-400" />
             </div>
-          </section>
+            <h3 className="text-xl font-semibold mb-3 dark:text-white">{pl(p.title)}</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">{pl(p.desc)}</p>
+            <Link href="/faq" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">{t.moreDetails}</Link>
+          </div>
+        );
+      })}
+    </div>
+
+    <div className="text-center mt-8">
+      <button className="px-6 py-3 bg-blue-600 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition text-lg font-semibold">{t.addToGmail}</button>
+      <p className="text-gray-500 dark:text-gray-400 mt-3 text-sm">{t.chromeRequired}</p>
+    </div>
+  </div>
+</section>
 
 <section
   className="relative py-2 md:py-2 flex items-center"
@@ -282,7 +280,6 @@ export default function Home() {
   </div>
 </section>
 
-          {/* Pricing Section - исправленная */}
           <section id="pricing" className="py-16 px-4 bg-gray-50 dark:bg-gray-900 transition-colors relative overflow-hidden">
             <div className="absolute inset-x-0 bottom-[-25px] flex justify-center pointer-events-none">
               <div className="relative w-full max-w-3xl opacity-80 dark:opacity-60 mix-blend-multiply dark:mix-blend-screen translate-x-[-300px]">

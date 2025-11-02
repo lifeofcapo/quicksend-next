@@ -30,7 +30,7 @@
 }
 
 body {
-  font-family: var(--font-quicksand);
+  font-family: var(--font-montserrat), sans-serif;
   background-color: var(--color-bg-page);
   color: var(--color-text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;

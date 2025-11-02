@@ -7,8 +7,6 @@ import { LanguageProvider } from '@/contexts/language-context';
 import { AuthProvider } from '@/components/AuthProvider';
 import { montserrat } from "@/lib/font";
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'] })
-
 export const metadata: Metadata = {
   title: 'QuickSend: чтобы отправлять письма',
   description: 'QuickSend - это современный почтовый сервис, которые помогает рассылать массовые кампании с минимальным процентом попадания писем в спам',
@@ -21,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={montserrat.variable} suppressHydrationWarning>
-      <body>
+      <body className={montserrat.className}>
         <ThemeProvider>
           <LanguageProvider>
             <AuthProvider> 
