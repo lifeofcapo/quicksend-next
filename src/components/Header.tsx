@@ -3,6 +3,7 @@ import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Globe, UserCircle, Moon, Sun } from 'lucide-react';
 
 export default function Header() {
@@ -24,7 +25,15 @@ export default function Header() {
     <header className="fixed top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">QuickSend</div>
+          <div className="relative w-40 h-10">
+            <Image 
+              src="/images/logo-no-background.png" 
+              alt="QuickSend Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
         </Link>
 
         <nav className="hidden md:flex space-x-8">
