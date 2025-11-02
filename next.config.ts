@@ -15,19 +15,6 @@ const nextConfig: NextConfig = {
       },
     });
     
-    config.externals = [...config.externals, "@prisma/client"];
-    
-    if (!isServer) {
-      config.resolve.fallback = {
-        fs: false,
-        path: false,
-        os: false,
-        crypto: false,
-        stream: false,
-        bcrypt: false,
-      };
-    }
-    
     return config;
   },
 };
