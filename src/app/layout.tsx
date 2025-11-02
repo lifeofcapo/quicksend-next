@@ -6,6 +6,8 @@ import { ThemeProvider } from '@/contexts/theme-context';
 import { LanguageProvider } from '@/contexts/language-context';
 import { AuthProvider } from '@/components/AuthProvider';
 import { montserrat } from "@/lib/font";
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'QuickSend: чтобы отправлять письма',
@@ -23,7 +25,9 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <AuthProvider> 
+              <Header />
               {children}
+                      <Footer />
             </AuthProvider>
           </LanguageProvider>
         </ThemeProvider>

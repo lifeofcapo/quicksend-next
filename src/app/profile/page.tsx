@@ -1,7 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react';
-import Footer from '@/components/Footer';
-import Header from '@/components/Footer';
 import { User, Upload, TrendingUp, Calendar, Search } from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
@@ -67,7 +65,6 @@ export default function ProfilePage() {
       </div>
     );
   }
-
   // Переводы (немного сокращённый набор для этой страницы)
   const t = {
     loading: language === 'ru' ? 'Загрузка...' : 'Loading...',
@@ -89,8 +86,6 @@ export default function ProfilePage() {
     noCampaignsAvailable: language === 'ru' ? 'Кампаний нет.' : 'No campaigns available.',
     noCampaignsMatch: language === 'ru' ? 'Кампании не найдены.' : 'No campaigns match your search criteria.',
   };
-
-  
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -169,12 +164,8 @@ export default function ProfilePage() {
   }
 
   return (
-
-    
     <div className={theme === 'dark' ? 'dark' : ''}>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
-        <Header />
-
         <main className="pt-24 pb-12 px-4">
           <div className="container mx-auto max-w-6xl">
             
@@ -184,7 +175,7 @@ export default function ProfilePage() {
                   <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                     {userData?.name || t.userNameFallback}
                   </h1>
-                  <p className="text-gray-600 dark:text-gray-400">{userData?.email || t.emailFallback}</p>
+                  <p className="text-gray-600 dark:text-gray-400">{session.user?.email || t.emailFallback}</p>
                 </div>
               </div>
 
@@ -333,7 +324,6 @@ export default function ProfilePage() {
             </div>
           </div>
         </main>
-        <Footer />
       </div>
     </div>
   );

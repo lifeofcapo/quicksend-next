@@ -1,7 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import { Rocket, Star, Crown, Check, X } from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
@@ -133,8 +131,6 @@ export default function PricingPage() {
   return (
     <div className={theme === 'dark' ? 'dark' : ''}>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
-        <Header />
-
         <main className="pt-24 pb-12 px-4">
           <div className="container mx-auto max-w-7xl">
             <div className="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl p-12 mb-8 text-center">
@@ -237,7 +233,6 @@ export default function PricingPage() {
             </div>
           </div>
         </main>
-        <Footer />
       </div>
     </div>
   );

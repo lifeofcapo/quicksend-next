@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Search } from 'lucide-react';
 import { useLanguage } from '@/contexts/language-context';
 
@@ -205,7 +203,6 @@ export default function FAQPage() {
 
   return (
     <>
-      <Header />
       <main className="pt-32 pb-20 px-4 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
         <div className="container mx-auto max-w-4xl">
           <section className="text-center mb-12">
@@ -313,7 +310,6 @@ export default function FAQPage() {
           )}
         </div>
       </main>
-      <Footer />
     </>
   );
 }

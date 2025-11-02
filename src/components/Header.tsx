@@ -37,16 +37,16 @@ export default function Header() {
         </Link>
 
         <nav className="hidden md:flex space-x-8">
-          <Link href="quicksend-next.vercel.app/#whyquicksend" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          <Link href="/#whyquicksend" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
             {t.aboutUs}
           </Link>
-          <Link href="quicksend-next.vercel.app/#products" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          <Link href="/#products" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
             {t.products}
           </Link>
           <Link href="/pricing" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
             {t.pricing}
           </Link>
-          <Link href="quicksend-next.vercel.app/#contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          <Link href="/#contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
             {t.contact}
           </Link>
         </nav>

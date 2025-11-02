@@ -2,8 +2,6 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { Send, Mail, FileSpreadsheet, CheckCircle, Calendar, User, Bell, Zap, Shield, Snowflake, DollarSign, TrendingUp, Settings, Rocket, Star, Crown } from 'lucide-react';
 import { useLanguage } from '@/contexts/language-context';
@@ -140,7 +138,6 @@ export default function Home() {
 return (
     <>
       <div className="relative z-10">
-        <Header />
     <main>
 <section id="hero-section" className="pt-24 pb-20 px-4 bg-white dark:bg-gray-900 transition-colors h-[600px]">
   <div className="container mx-auto h-full">
@@ -390,7 +387,6 @@ return (
 </section>
 
         </main>
-        <Footer />
       </div>
     </>
   );

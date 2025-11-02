@@ -22,6 +22,19 @@ export async function POST(req: NextRequest) {
       password: hashedPassword,
     });
 
+    const { data: existingUser } = await supabase
+      .from("users")
+      .select("email")
+      .eq("email", email)
+      .single();
+
+    if (existingUser) {
+      return NextResponse.json(
+        { error: "User already exists" },
+        { status: 400 }
+      );
+    }
+
     if (error) return NextResponse.json({ error: error.message }, { status: 400 });
 
     return NextResponse.json({ message: 'User registered successfully' });
