@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Отключаем Turbopack для продакшена
-  experimental: {
-  },
+
+  turbopack: {},
   
   // Настраиваем webpack для обработки серверных модулей
   webpack: (config, { isServer }) => {
