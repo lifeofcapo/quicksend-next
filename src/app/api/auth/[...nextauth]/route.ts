@@ -37,6 +37,11 @@ const handler = NextAuth({
     async session({ session }) {
       return session;
     },
+    async redirect({ url, baseUrl }) {
+    if (url.startsWith(baseUrl)) return url;
+
+    return `${baseUrl}/profile`;
+    },
   },
 
   pages: { signIn: "/auth/login" },
