@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { User, Upload, TrendingUp, Calendar, Search } from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
-import { useSession } from 'next-auth/react'; 
+import { useSession, signOut } from 'next-auth/react'; 
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -17,6 +17,7 @@ interface Campaign {
 interface UserData {
   name: string;
   email: string;
+  avatar?: string;
   activePlan: string;
   totalCampaigns: number;
   totalRecipients: number;
@@ -42,12 +43,8 @@ export default function ProfilePage() {
   const { language, toggleLanguage } = useLanguage();
 
   useEffect(() => {
-    if (status === 'loading') return; 
-    
-    if (!session) {
-      router.push('/auth/login'); 
-      return;
-    }
+    if (status === 'loading') return;
+    if (!session) router.push('/auth/login');
   }, [session, status, router]);
 
   if (status === 'loading') {
@@ -88,29 +85,26 @@ export default function ProfilePage() {
   };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        // TODO: fetch('/api/user/profile')
-        setUserData({
-          name: '',
-          email: '',
-          activePlan: '',
-          totalCampaigns: 0,
-          totalRecipients: 0,
-          remainingCampaigns: 0,
-          remainingRecipients: 0,
-          subscriptionEnd: '',
-          campaigns: []
-        });
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      } finally {
-        setLoading(false);
-      }
+    const load = async () => {
+      if (!session?.user?.email) return;
+      setUserData({
+        name: session.user?.name ?? "",
+        email: session.user?.email ?? "",
+        avatar: session.user?.image ?? undefined,
+        activePlan: "Free",
+        totalCampaigns: 0,
+        totalRecipients: 0,
+        remainingCampaigns: 0,
+        remainingRecipients: 0,
+        subscriptionEnd: "---",
+        campaigns: []
+      });
+
+      setLoading(false);
     };
 
-    fetchUserData();
-  }, []);
+    load();
+  }, [session]);
 
   useEffect(() => {
     if (!userData) return;
@@ -170,14 +164,28 @@ export default function ProfilePage() {
           <div className="container mx-auto max-w-6xl">
             
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-8">
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex items-center gap-6 mb-6">
+                <img
+                  src={userData?.avatar ?? "/default-avatar.png"}
+                  className="w-20 h-20 rounded-full border"
+                  alt="avatar"
+                />
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                    {userData?.name || t.userNameFallback}
-                  </h1>
-                  <p className="text-gray-600 dark:text-gray-400">{session.user?.email || t.emailFallback}</p>
-                </div>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                  {userData?.name ?? "Без имени"}
+                </h1>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {userData?.email ?? "—"}
+                </p>
               </div>
+              </div>
+
+            <button
+              onClick={() => signOut()}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-red-700 transition text-sm"
+            >
+              Выйти из аккаунта
+            </button>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
@@ -325,6 +333,19 @@ export default function ProfilePage() {
           </div>
         </main>
       </div>
+    </div>
+  );
+}
+
+
+function StatCard({ icon, label, value }: any) {
+  return (
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+      <div className="flex items-center mb-2">
+        {icon && <div className="w-5 h-5 text-blue-600 mr-2">{icon}</div>}
+        <span className="text-sm text-gray-600 dark:text-gray-400">{label}</span>
+      </div>
+      <p className="text-3xl font-bold text-gray-900 dark:text-white">{value}</p>
     </div>
   );
 }
