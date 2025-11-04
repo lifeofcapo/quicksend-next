@@ -30,10 +30,10 @@ export default function Footer() {
             <p>© {currentYear} QuickSend, inc. All rights reserved.</p>
           </div>
           <div className="flex flex-col space-y-2 md:items-end">
-            <Link href="/privacy_policy" className="hover:text-blue-400 transition">
+            <Link href="/privacy" className="hover:text-blue-400 transition">
               Privacy Policy
             </Link>
-            <Link href="/terms_of_use" className="hover:text-blue-400 transition">
+            <Link href="/terms" className="hover:text-blue-400 transition">
               Terms of Use
             </Link>
             <Link href="/faq" className="hover:text-blue-400 transition">

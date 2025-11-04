@@ -1,6 +1,7 @@
+// contexts/language-context.tsx
 'use client';
-
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 
 type Language = 'ru' | 'en';
 
@@ -10,44 +11,36 @@ interface LanguageContextType {
   setLanguage: (lang: Language) => void;
 }
 
-const LanguageContext = createContext<LanguageContextType>({
-  language: 'ru',
-  toggleLanguage: () => {},
-  setLanguage: () => {},
-});
+interface LanguageProviderProps {
+  children: ReactNode;
+  initialLanguage: Language;
+}
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('ru');
-  const [mounted, setMounted] = useState(false);
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-  useEffect(() => {
-    setMounted(true);
-    
-    const savedLanguage = localStorage.getItem('language') as Language | null;
-    const initialLanguage = savedLanguage || 'ru';
-    
-    setLanguageState(initialLanguage);
-  }, []);
+export function LanguageProvider({ children, initialLanguage }: LanguageProviderProps) {
+  const router = useRouter();
+  const pathname = usePathname();
 
   const toggleLanguage = () => {
-    setLanguageState((prevLang) => {
-      const newLang = prevLang === 'ru' ? 'en' : 'ru';
-      localStorage.setItem('language', newLang);
-      return newLang;
-    });
+    const newLang = initialLanguage === 'ru' ? 'en' : 'ru';
+    const newPathname = pathname.replace(`/${initialLanguage}`, `/${newLang}`);
+    router.push(newPathname);
   };
 
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('language', lang);
+    if (lang !== initialLanguage) {
+      const newPathname = pathname.replace(`/${initialLanguage}`, `/${lang}`);
+      router.push(newPathname);
+    }
   };
 
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, setLanguage }}>
+    <LanguageContext.Provider value={{ 
+      language: initialLanguage, 
+      toggleLanguage, 
+      setLanguage 
+    }}>
       {children}
     </LanguageContext.Provider>
   );

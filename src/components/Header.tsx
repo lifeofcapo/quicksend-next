@@ -24,7 +24,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
+        <Link href={`/${language}`} className="flex items-center">
           <div className="relative w-40 h-10">
             <Image 
               src="/images/logo-no-background.png" 
@@ -37,16 +37,16 @@ export default function Header() {
         </Link>
 
         <nav className="hidden md:flex space-x-8">
-          <Link href="/#whyquicksend" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          <Link href={`/${language}#whyquicksend`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
             {t.aboutUs}
           </Link>
-          <Link href="/#products" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          <Link href={`/${language}#products`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
             {t.products}
           </Link>
-          <Link href="/pricing" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          <Link href={`/${language}/pricing`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
             {t.pricing}
           </Link>
-          <Link href="/#contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+          <Link href={`/${language}#contact`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
             {t.contact}
           </Link>
         </nav>
@@ -71,13 +71,13 @@ export default function Header() {
           {!session ? (
             <div className="flex space-x-2">
               <Link
-                href="/auth/login"
+                href={`/${language}/auth/login`}
                 className="px-4 py-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition"
               >
                 {t.signIn}
               </Link>
               <Link
-                href="/auth/register"
+                href={`/${language}/auth/register`}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
               >
                 {t.startFree}
@@ -85,11 +85,11 @@ export default function Header() {
             </div>
           ) : (
             <div className="flex items-center space-x-2">
-              <Link href="/profile" className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition">
+              <Link href={`/${language}/profile`} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition">
                 <UserCircle className="w-6 h-6 text-gray-700 dark:text-gray-300" />
               </Link>
               <button
-                onClick={() => signOut({ callbackUrl: '/' })}
+                onClick={() => signOut({ callbackUrl: `/${language}` })}
                 className="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm"
               >
                 {t.logout}
