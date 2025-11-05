@@ -44,10 +44,18 @@ interface RootLayoutProps {
   params: { lang: Language };
 }
 
-export default async function RootLayout({ children, params }: RootLayoutProps) {
+export default function RootLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { lang: "ru" | "en" };
+}) {
   const { lang } = params;
 
-  if (!languages.includes(lang)) notFound();
+  if (!["en", "ru"].includes(lang)) {
+    notFound();
+  }
 
   return (
     <html lang={lang} className={montserrat.variable} suppressHydrationWarning>
