@@ -6,25 +6,22 @@ import { StatsSection } from './_components/StatsSection';
 import { PricingSection } from './_components/PricingSection';
 import { ContactSection } from './_components/ContactSection';
 
-const languages = ['en', 'ru'] as const;
-type Language = typeof languages[number];
-
-export default function Home({
+export default async function Home({
   params
 }: {
-  params: { lang: Language };
+  params: Promise<{ lang: string }>;
 }) {
-  const { lang } = params;
-
+  const { lang } = await params;
+  
   return (
     <div className="relative z-10">
       <main>
-        <HeroSection/>
-        <AdvantagesSection/>
-        <ProductsSection/>
-        <StatsSection/>
-        <PricingSection/>
-        <ContactSection/>
+        <HeroSection />
+        <AdvantagesSection />
+        <ProductsSection />
+        <StatsSection />
+        <PricingSection />
+        <ContactSection />
       </main>
     </div>
   );

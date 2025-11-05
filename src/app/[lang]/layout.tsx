@@ -12,56 +12,53 @@ import { notFound } from 'next/navigation';
 const languages = ['en', 'ru'] as const;
 type Language = typeof languages[number];
 
-export async function generateMetadata({
-  params
-}: {
-  params: { lang: Language }
+// Для dynamic metadata
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<{ lang: string }> 
 }): Promise<Metadata> {
-  const { lang } = params;
-
+  const { lang } = await params;
+  
   const titles = {
     ru: 'QuickSend: чтобы отправлять письма',
-    en: 'QuickSend: to send emails',
+    en: 'QuickSend: to send emails'
   };
-
+  
   const descriptions = {
-    ru: 'QuickSend - это современный почтовый сервис...',
-    en: 'QuickSend is a modern email service...',
+    ru: 'QuickSend - это современный почтовый сервис, который помогает рассылать массовые кампании с минимальным процентом попадания писем в спам',
+    en: 'QuickSend is a modern email service that helps send mass campaigns with minimal spam rate'
   };
-
+  
   return {
-    title: titles[lang],
-    description: descriptions[lang],
+    title: titles[lang as Language],
+    description: descriptions[lang as Language],
   };
 }
 
+// Генерируем статические пути для языков
 export function generateStaticParams() {
   return languages.map((lang) => ({ lang }));
 }
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: { lang: Language };
+  params: Promise<{ lang: string }>;
 }
 
-export default function RootLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { lang: "ru" | "en" };
-}) {
-  const { lang } = params;
-
-  if (!["en", "ru"].includes(lang)) {
+export default async function RootLayout({ children, params }: RootLayoutProps) {
+  const { lang } = await params;
+  
+  // Проверяем валидность языка
+  if (!languages.includes(lang as Language)) {
     notFound();
   }
-
+  
   return (
     <html lang={lang} className={montserrat.variable} suppressHydrationWarning>
       <body className={montserrat.className}>
         <ThemeProvider>
-          <LanguageProvider initialLanguage={lang}>
+          <LanguageProvider initialLanguage={lang as Language}>
             <AuthProvider>
               <Header />
               {children}
