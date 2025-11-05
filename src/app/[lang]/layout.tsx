@@ -12,22 +12,21 @@ import { notFound } from 'next/navigation';
 const languages = ['en', 'ru'] as const;
 type Language = typeof languages[number];
 
-// Для dynamic metadata
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: Promise<{ lang: Language }> 
+export async function generateMetadata({
+  params
+}: {
+  params: { lang: Language }
 }): Promise<Metadata> {
-  const { lang } = await params;
-  
+  const { lang } = params;
+
   const titles = {
     ru: 'QuickSend: чтобы отправлять письма',
-    en: 'QuickSend: to send emails'
+    en: 'QuickSend: to send emails',
   };
-  
+
   const descriptions = {
-    ru: 'QuickSend - это современный почтовый сервис, который помогает рассылать массовые кампании с минимальным процентом попадания писем в спам',
-    en: 'QuickSend is a modern email service that helps send mass campaigns with minimal spam rate'
+    ru: 'QuickSend - это современный почтовый сервис...',
+    en: 'QuickSend is a modern email service...',
   };
 
   return {
@@ -36,24 +35,20 @@ export async function generateMetadata({
   };
 }
 
-// Генерируем статические пути для языков
 export function generateStaticParams() {
   return languages.map((lang) => ({ lang }));
 }
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: Promise<{ lang: Language }>;
+  params: { lang: Language };
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
-  const { lang } = await params;
-  
-  // Проверяем валидность языка
-  if (!languages.includes(lang)) {
-    notFound();
-  }
-  
+  const { lang } = params;
+
+  if (!languages.includes(lang)) notFound();
+
   return (
     <html lang={lang} className={montserrat.variable} suppressHydrationWarning>
       <body className={montserrat.className}>
