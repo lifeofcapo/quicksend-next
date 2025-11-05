@@ -1,5 +1,6 @@
 'use client';
 import { useLanguage } from '@/contexts/language-context';
+import { useTranslation } from '@/hooks/useTranslation';
 import Image from 'next/image';
 import { Zap, Shield, Snowflake, DollarSign, TrendingUp, Settings } from 'lucide-react';
 
