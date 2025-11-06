@@ -12,8 +12,7 @@ import { notFound } from 'next/navigation';
 const languages = ['en', 'ru'] as const;
 type Language = typeof languages[number];
 
-// Для dynamic metadata
-export async function generateMetadata({ 
+export async function generateMetadata({  // dynamic metadata
   params 
 }: { 
   params: Promise<{ lang: string }> 
@@ -56,7 +55,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   
   return (
     <html lang={lang} className={montserrat.variable} suppressHydrationWarning>
-      <body className={montserrat.className}>
+      <body className={`$montserrat.className} flex flex-col min-h-screen`}>
         <ThemeProvider>
           <LanguageProvider initialLanguage={lang as Language}>
             <AuthProvider>

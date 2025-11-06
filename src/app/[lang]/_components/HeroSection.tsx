@@ -20,7 +20,7 @@ export function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link 
-                href={`/${language}/auth/register`}
+                href={`/${language}/login`}
                 className="px-8 py-4 bg-blue-600 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition text-lg font-semibold"
               >
                 {t('startFree')}

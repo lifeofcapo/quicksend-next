@@ -1,3 +1,4 @@
+//@/copmponents/header.tsx
 'use client';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
@@ -5,21 +6,13 @@ import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Globe, UserCircle, Moon, Sun } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Header() {
   const { language, toggleLanguage } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const { data: session } = useSession();
-
-  const t = {
-    aboutUs: language === 'ru' ? 'О нас' : 'About us',
-    products: language === 'ru' ? 'Продукты' : 'Products',
-    pricing: language === 'ru' ? 'Цены' : 'Pricing',
-    contact: language === 'ru' ? 'Контакты' : 'Contact us',
-    signIn: language === 'ru' ? 'Войти' : 'Sign In',
-    startFree: language === 'ru' ? 'Начать бесплатно' : 'Start for free',
-    logout: language === 'ru' ? 'Выйти' : 'Logout',
-  };
+  const { t } = useTranslation();
 
   return (
     <header className="fixed top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm z-50">
@@ -38,16 +31,16 @@ export default function Header() {
 
         <nav className="hidden md:flex space-x-8">
           <Link href={`/${language}#whyquicksend`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
-            {t.aboutUs}
+            {t('header.aboutUs')}
           </Link>
           <Link href={`/${language}#products`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
-            {t.products}
+            {t('header.products')}
           </Link>
           <Link href={`/${language}/pricing`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
-            {t.pricing}
+            {t('header.pricing')}
           </Link>
           <Link href={`/${language}#contact`} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
-            {t.contact}
+            {t('header.contact')}
           </Link>
         </nav>
 
@@ -71,16 +64,16 @@ export default function Header() {
           {!session ? (
             <div className="flex space-x-2">
               <Link
-                href={`/${language}/auth/login`}
+                href={`/${language}/login`}
                 className="px-4 py-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition"
               >
-                {t.signIn}
+                {t('header.signIn')}
               </Link>
               <Link
                 href={`/${language}/auth/register`}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
               >
-                {t.startFree}
+                {t('startFree')}
               </Link>
             </div>
           ) : (
@@ -92,7 +85,7 @@ export default function Header() {
                 onClick={() => signOut({ callbackUrl: `/${language}` })}
                 className="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm"
               >
-                {t.logout}
+                {t('header.logout')}
               </button>
             </div>
           )}

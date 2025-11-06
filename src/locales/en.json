@@ -63,5 +63,23 @@
       "standard": ["500 emails/day", "Advanced features", "Priority support"],
       "premium": ["Unlimited emails", "All features", "Priority support"]
     }
-  }
+  },
+  "header": {
+    "aboutUs": "About us",
+    "products": "Products",
+    "pricing": "Pricing",
+    "contact": "Contact us",
+    "signIn": "Sign In",
+    "logout": "Logout"
+  },
+    "login": {
+    "welcome": "Welcome back!",
+    "joinCommunity": "Join our community and discover beneficial services.",
+    "continueWithGoogle": "Continue with Google", 
+    "securityNote": "Secure login · Privacy protected"
+  },
+  "copyright": " QuickSend, inc. All rights reserved.",
+    "privacy": "Privacy Policy",
+  "terms": "Terms of Use",
+  "faq": "FAQ"
 }

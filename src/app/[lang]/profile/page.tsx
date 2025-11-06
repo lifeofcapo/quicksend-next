@@ -337,7 +337,6 @@ export default function ProfilePage() {
   );
 }
 
-
 function StatCard({ icon, label, value }: any) {
   return (
     <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">

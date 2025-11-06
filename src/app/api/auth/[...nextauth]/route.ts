@@ -1,19 +1,17 @@
+// @/app/api/auth/[...nextauth]/route.ts
 export const runtime = "nodejs";
-
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
-
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
-
   callbacks: {
     async signIn({ user, account }) {
       if (account?.provider === "google") {
@@ -22,7 +20,6 @@ const handler = NextAuth({
           .select("*")
           .eq("email", user.email)
           .single();
-
         if (!existingUser) {
           await supabaseAdmin.from("users").insert({
             email: user.email,
@@ -33,19 +30,19 @@ const handler = NextAuth({
       }
       return true;
     },
-
     async session({ session }) {
       return session;
     },
+    
     async redirect({ url, baseUrl }) {
-    if (url.startsWith(baseUrl)) return url;
-
-    return `${baseUrl}/profile`;
+      return `${baseUrl}/profile`;
     },
   },
-
-  pages: { signIn: "/auth/login" },
+  pages: { 
+    signIn: "/auth/login", 
+  },
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

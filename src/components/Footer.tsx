@@ -1,19 +1,12 @@
 'use client'
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/language-context';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = "@ " + new Date().getFullYear();
   const { language } = useLanguage();
-
-  const t = {
-    copyright: language === 'ru' 
-      ? `© ${currentYear} QuickSend, inc. Все права защищены.`
-      : `© ${currentYear} QuickSend, inc. All rights reserved.`,
-    privacy: language === 'ru' ? 'Политика конфиденциальности' : 'Privacy Policy',
-    terms: language === 'ru' ? 'Правила использования' : 'Terms of Use',
-    faq: language === 'ru' ? 'FAQ' : 'FAQ',
-  };
+  const { t } = useTranslation();
 
   return (
     <footer className="bg-gray-900 dark:bg-gray-800 text-white py-12 px-4 transition-colors">
@@ -36,18 +29,18 @@ export default function Footer() {
           </div>
           
           <div className="text-center flex items-center justify-center">
-            <p className="text-gray-300">{t.copyright}</p>
+            <p className="text-gray-300">{currentYear}{t('copyright')}</p>
           </div>
           
           <div className="flex flex-col space-y-2 md:items-end">
             <Link href={`/${language}/privacy`} className="hover:text-blue-400 transition">
-              {t.privacy}
+              {t('privacy')}
             </Link>
             <Link href={`/${language}/terms`} className="hover:text-blue-400 transition">
-              {t.terms}
+              {t('terms')}
             </Link>
             <Link href={`/${language}/faq`} className="hover:text-blue-400 transition">
-              {t.faq}
+              {t('faq')}
             </Link>
           </div>
         </div>
