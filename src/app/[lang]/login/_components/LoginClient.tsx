@@ -6,11 +6,7 @@ import { useLanguage } from '@/contexts/language-context';
 import { useTranslation } from '@/hooks/useTranslation';
 import BirdAnimation from "./BirdAnimation";
 
-export default async function LoginClient ({
-  params
-}: {
-  params: Promise<{ lang: string }>;
-}) {
+export default async function LoginClient () {
   const [isHovered, setIsHovered] = useState(false);
   const { language } = useLanguage();
   const { t } = useTranslation();
