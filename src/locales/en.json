@@ -79,7 +79,27 @@
     "securityNote": "Secure login · Privacy protected"
   },
   "copyright": " QuickSend, inc. All rights reserved.",
-    "privacy": "Privacy Policy",
+  "privacy": "Privacy Policy",
   "terms": "Terms of Use",
-  "faq": "FAQ"
+  "faq": "FAQ",
+  "profile": {
+    "loading": "Loading...",
+    "userNameFallback": "User Name", 
+    "emailFallback": "user@example.com",
+    "activePlanLabel": "Active Plan",
+    "upgradePlan": "Upgrade Plan",
+    "subscriptionEndsLabel": "Subscription ends",
+    "noSubscription": "No subscription",
+    "totalCampaignsLabel": "Total campaigns",
+    "totalRecipientsLabel": "Total recipients",
+    "remainingCampaignsLabel": "Remaining campaigns",
+    "remainingRecipientsLabel": "Remaining recipients",
+    "emailVerificationTitle": "Email Verification",
+    "uploadHint": "Upload your email list for verification",
+    "chooseFile": "Choose File",
+    "searchPlaceholder": "Search by name...",
+    "searchAttachmentsPlaceholder": "Search attachments...",
+    "noCampaignsAvailable": "No campaigns available.",
+    "noCampaignsMatch": "No campaigns match your search criteria."
+  }
 }

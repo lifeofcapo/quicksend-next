@@ -78,8 +78,28 @@
     "signIn": "Войти",
     "logout": "Выйти"
   },
-  "copyright": "QuickSend, inc. Все права защищены.",
-    "privacy": "Политика конфиденциальности",
-    "terms": "Правила использования",
-    "faq": "FAQ"
+  "copyright": " QuickSend, inc. Все права защищены.",
+  "privacy": "Политика конфиденциальности",
+  "terms": "Правила использования",
+  "faq": "FAQ",
+    "profile": {
+    "loading": "Загрузка...",
+    "userNameFallback": "Имя пользователя",
+    "emailFallback": "user@example.com",
+    "activePlanLabel": "Активный тариф",
+    "upgradePlan": "Обновить тариф", 
+    "subscriptionEndsLabel": "Подписка до",
+    "noSubscription": "Нет подписки",
+    "totalCampaignsLabel": "Всего кампаний",
+    "totalRecipientsLabel": "Всего получателей",
+    "remainingCampaignsLabel": "Осталось кампаний",
+    "remainingRecipientsLabel": "Осталось получателей",
+    "emailVerificationTitle": "Проверка Email",
+    "uploadHint": "Загрузите список email для проверки",
+    "chooseFile": "Выбрать файл",
+    "searchPlaceholder": "Поиск по названию...",
+    "searchAttachmentsPlaceholder": "Поиск вложений...",
+    "noCampaignsAvailable": "Кампаний нет.",
+    "noCampaignsMatch": "Кампании не найдены."
+  }
 }
