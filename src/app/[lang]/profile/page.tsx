@@ -44,17 +44,8 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (status === 'loading') return;
-    if (!session) router.push('/auth/login');
+    if (!session) router.push(`/${language}/login`);
   }, [session, status, router]);
-
-  if (status === 'loading') {
-    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-xl text-gray-600 dark:text-gray-400">Загрузка...</div>
-      </div>
-    );
-  }
-
   if (!session) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">

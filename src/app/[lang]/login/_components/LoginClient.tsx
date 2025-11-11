@@ -6,11 +6,14 @@ import { useLanguage } from '@/contexts/language-context';
 import { useTranslation } from '@/hooks/useTranslation';
 import BirdAnimation from "./BirdAnimation";
 
-export default function LoginClient() {
+export default async function LoginClient ({
+  params
+}: {
+  params: Promise<{ lang: string }>;
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const { language } = useLanguage();
   const { t } = useTranslation();
-
   return (
     <div className="min-h-screen flex flex-col justify-center items-center gap-8 bg-gradient-to-br from-sky-50 to-indigo-100 dark:from-slate-900 dark:to-sky-800 relative overflow-hidden transition-colors duration-300 pt-45 pb-16">
 
@@ -36,7 +39,7 @@ export default function LoginClient() {
 
         <button
           onClick={() => signIn("google", { 
-            callbackUrl: `/${language}/profile` 
+            callbackUrl: `/${language}/profile`
           })}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

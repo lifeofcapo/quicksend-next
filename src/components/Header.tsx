@@ -81,12 +81,6 @@ export default function Header() {
               <Link href={`/${language}/profile`} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition">
                 <UserCircle className="w-6 h-6 text-gray-700 dark:text-gray-300" />
               </Link>
-              <button
-                onClick={() => signOut({ callbackUrl: `/${language}` })}
-                className="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-sm"
-              >
-                {t('header.logout')}
-              </button>
             </div>
           )}
         </div>
