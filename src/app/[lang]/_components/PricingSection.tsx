@@ -1,3 +1,4 @@
+//src/app/[lang]/_components/pricingsection.tsx
 'use client';
 import { useLanguage } from '@/contexts/language-context';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -113,13 +114,15 @@ export function PricingSection() {
                   ) : (
                     <>
                       <span className="text-3xl font-bold dark:text-white">
-                        {language === 'ru' ? '₽' : '$'}{price}
+                        {language === 'ru' ? '₽' : '$'}
+                        {isAnnual ? (plan.price[language] * 0.8).toFixed(2) : plan.price[language]}
                       </span>
                       <span className="text-gray-600 dark:text-gray-400">{t('perMonth')}</span>
 
                       {isAnnual && (
                         <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                          {t('payYear')} {language === 'ru' ? '₽' : '$'}{price} {t('perYear')}
+                          {t('payYear')} {language === 'ru' ? '₽' : '$'}
+                          {(plan.price[language] * 12 * 0.8).toFixed(0)} {t('perYear')}
                         </p>
                       )}
                     </>

@@ -26,7 +26,7 @@ function AuthErrorContent() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-8">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900">Ошибка входа</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Error Singing In</h2>
           <p className="mt-2 text-red-600">{getErrorMessage(error)}</p>
           <div className="mt-6 space-y-4">
             <Link
@@ -48,7 +48,7 @@ export default function AuthErrorPage() {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="max-w-md w-full space-y-8 p-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900">Загрузка...</h2>
+            <h2 className="text-2xl font-bold text-gray-900">Loading...</h2>
           </div>
         </div>
       </div>

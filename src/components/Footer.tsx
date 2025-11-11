@@ -34,10 +34,10 @@ export default function Footer() {
           
           <div className="flex flex-col space-y-2 md:items-end">
             <Link href={`/${language}/privacy`} className="hover:text-blue-400 transition">
-              {t('privacy')}
+              {t('privacyFooterTitle')}
             </Link>
             <Link href={`/${language}/terms`} className="hover:text-blue-400 transition">
-              {t('terms')}
+              {t('termsFooterTitle')}
             </Link>
             <Link href={`/${language}/faq`} className="hover:text-blue-400 transition">
               {t('faq')}

@@ -2,7 +2,7 @@
 'use client';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Globe, UserCircle, Moon, Sun } from 'lucide-react';
@@ -78,9 +78,9 @@ export default function Header() {
             </div>
           ) : (
             <div className="flex items-center space-x-2">
-              <Link href={`/${language}/profile`} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition">
-                <UserCircle className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-              </Link>
+            <Link href={`/${language ?? 'en'}/profile`} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition">
+              <UserCircle className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            </Link>
             </div>
           )}
         </div>
