@@ -4,9 +4,11 @@ import TabProfileInfo from './TabProfileInfo';
 import TabTenty from './TabTenty';
 import TabEmailValidation from './TabEmailValidation';
 import TabDangerZone from './TabDangerZone';
+import TabNotifications from './TabNotifications';
 
 const tabs = [
   { id: 'profile', label: 'Profile Info' },
+  { id: 'notifications', label: 'Notifications' },
   { id: 'tenty', label: 'Tenty' },
   { id: 'email', label: 'Email Validation' },
   { id: 'danger', label: 'Danger Zone' },
@@ -34,6 +36,7 @@ export default function ProfileTabs({ sessionUser, userData }: any) {
       </div>
 
       {activeTab === 'profile' && <TabProfileInfo user={sessionUser} userData={userData} />}
+      {activeTab === 'notifications' && <TabNotifications />}
       {activeTab === 'tenty' && <TabTenty userData={userData} />}
       {activeTab === 'email' && <TabEmailValidation email={sessionUser.email} />}
       {activeTab === 'danger' && <TabDangerZone email={sessionUser.email} />}
