@@ -12,34 +12,33 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ account, profile }) {
       if (account?.provider === "google" && (profile as any)?.email_verified) {
-        const email = (profile as any).email;
-        const name = (profile as any).name;
-        const avatar = (profile as any).picture;
+        try {
+          const email = (profile as any).email;
+          const name = (profile as any).name;
+          const avatar = (profile as any).picture;
 
-        // Проверяем — есть ли такой пользователь
-        const { data: existingUser, error: fetchError } = await supabaseAdmin
-          .from("users")
-          .select("id")
-          .eq("email", email)
-          .single();
+          // Проверяем, есть ли уже пользователь
+          const { data: existingUser } = await supabaseAdmin
+            .from("users")
+            .select("id")
+            .eq("email", email)
+            .maybeSingle();
 
-        // Если его нет — создаем
-        if (!existingUser && !fetchError) {
-          const { error: insertError } = await supabaseAdmin.from("users").insert([
-            {
-              email,
-              name,
-              avatar_url: avatar,
-              provider: "google",
-            },
-          ]);
+          // Если нет — создаём
+          if (!existingUser) {
+            const { error: insertError } = await supabaseAdmin.from("users").insert([
+              {
+                email,
+                name,
+                avatar_url: avatar,
+              },
+            ]);
 
-          if (insertError) {
-            console.error("Supabase insert error:", insertError);
-            return false;
+            if (insertError) console.error("Supabase insert error:", insertError);
           }
+        } catch (err) {
+          console.error("Error syncing user with Supabase:", err);
         }
-
         return true;
       }
       return false;
