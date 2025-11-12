@@ -54,30 +54,42 @@ create policy "Allow insert for new users"
   on public.users for insert
   with check (true);
 
+-- Добавим недостающие столбцы, если их нет
 
-create table if not exists public.notifications (
-  id uuid primary key default uuid_generate_v4(),
-  user_id uuid references auth.users (id) on delete cascade,
-  title text not null,
-  message text not null,
-  created_at timestamptz default now(),
-  read boolean default false
-);
+alter table public.notifications
+add column if not exists user_id uuid references public.users(id) on delete cascade;
 
-create index if not exists idx_notifications_user_id
+alter table public.notifications
+add column if not exists read boolean default false;
+
+alter table public.notifications
+add column if not exists created_at timestamp with time zone default timezone('utc'::text, now());
+
+alter table public.notifications
+alter column title type text using title::text;
+
+alter table public.notifications
+alter column message type text using message::text;
+
+create index if not exists notifications_user_id_idx
   on public.notifications (user_id);
 
 alter table public.notifications enable row level security;
+drop policy if exists "User can read own notifications" on public.notifications;
+drop policy if exists "Admin can insert notifications" on public.notifications;
 
-create policy "Users can view only their notifications"
+create policy "User can read own notifications"
   on public.notifications
   for select
   using (auth.uid() = user_id);
 
-create policy "Users can update only their notifications"
+create policy "Admin can insert notifications"
+  on public.notifications
+  for insert
+  with check (true);
+
+create policy "User can update own notifications"
   on public.notifications
   for update
   using (auth.uid() = user_id);
 
--- Optional: Trigger for auto-notify via logs (optional feature)
--- Можно добавить webhooks или realtime notifications позже

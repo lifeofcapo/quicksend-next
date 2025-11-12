@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { Bell } from 'lucide-react';
 
 interface Notification {
@@ -18,12 +17,15 @@ export default function TabNotifications() {
   useEffect(() => {
     const fetchNotifications = async () => {
       setLoading(true);
-      const { data, error } = await supabaseAdmin
-        .from('notifications')
-        .select('*')
-        .order('created_at', { ascending: false });
-      if (!error && data) setNotifications(data);
-      setLoading(false);
+      try {
+        const res = await fetch('/api/notifications');
+        const json = await res.json();
+        if (json.notifications) setNotifications(json.notifications);
+      } catch (err) {
+        console.error('Error loading notifications:', err);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchNotifications();
