@@ -81,7 +81,7 @@
   "copyright": " QuickSend, inc. All rights reserved.",
   "privacyFooterTitle": "Privacy Policy",
   "termsFooterTitle": "Terms of Use",
-  "faq": "FAQ",
+  "faqFooter": "FAQ",
   "profile": {
     "loading": "Loading...",
     "userNameFallback": "User Name", 
@@ -159,5 +159,70 @@
     "dataDeletionSuffix": "from the QuickSend account you wish to have deleted.",
     "emailWarmup": "Email Warmup",
     "emailWarmupText": "QuickSend does not provide email warming services for email accounts."
+  },
+    "faq": {
+    "title": "FAQ",
+    "lastUpdated": "Last Time Updated: February, 2025",
+    "searchPlaceholder": "Search...",
+    "noResults": "No matching questions found",
+    "topics": {
+      "basics": "Basics",
+      "sending": "Sending", 
+      "reports": "Reports",
+      "pricing": "Pricing",
+      "support": "Support"
+    },
+    "questions": {
+      "basics": {
+        "whatNeed": "What do I need in order to use QuickSend?",
+        "changes": "What changes will installing QuickSend make to my email account?",
+        "sendAsReplies": "What's the big deal about the 'Send as replies' feature?",
+        "createDrafts": "I noticed an option to 'Just create Drafts' instead of send a campaign. Why would I want to do this?",
+        "autoFollowups": "What are auto follow-ups?",
+        "replaceSystem": "Is QuickSend meant to replace my existing email marketing system like Constant Contact or MailChimp?"
+      },
+      "sending": {
+        "testEmail": "How do I send a simple test email with QuickSend?",
+        "attachments": "Can I send attachments? What about inline images?",
+        "server": "From what server are my emails sent?",
+        "limits": "How many emails can I send at a time?"
+      },
+      "reports": {
+        "access": "How do I access my reports?"
+      },
+      "pricing": {
+        "free": "Is QuickSend subscription for free?"
+      },
+      "support": {
+        "otherProducts": "I noticed that QuickSend isn't the only product you offer. What are the other products?",
+        "getSupport": "How do I get support?"
+      }
+    },
+    "answers": {
+      "basics": {
+        "whatNeed": "You need a Gmail or G Suite account and the Chrome browser.",
+        "changes": "QuickSend is lightweight and unobtrusive. After you install QuickSend, you will notice four extra buttons within your Gmail interface. Three of these buttons are small square buttons to the right of the search field: the 'Build Email List' button, the 'Google Sheets Connect' button and the 'Follow-up Campaigns' button.",
+        "sendAsReplies": "Most mass email campaigns are sent as new messages, and therefore new conversations, with each recipient. The ability to send a mass email and have each individual email sent as a reply to the last conversation with each recipient, creates a more familiar experience for the recipient.",
+        "createDrafts": "This option is useful if you want to test QuickSend's functionality but don't want to actually send anyone emails. For example, if you want to ensure personalization is working, this option comes in handy.",
+        "autoFollowups": "Auto follow-ups are the best thing to happen to email marketers since well...email marketing. Auto follow-ups allow you to send follow-up emails automatically to recipients of your email campaign that have not replied.",
+        "replaceSystem": "Maybe. It's up to you. Some users use QuickSend alongside their primary email marketing system, using QuickSend for lower-volume campaigns."
+      },
+      "sending": {
+        "testEmail": "Click Compose in Gmail. Enter a few email addresses in the To field. Put in a Subject and Message, and hit the QuickSend button.",
+        "attachments": "Yes. You compose your email just as you would any other email message in Gmail. Any feature of an email that Gmail supports you can assume that QuickSend also supports.",
+        "server": "With the standard setup, your emails are sent from Gmail's servers from your Gmail or G Suite account. You'll see all sent messages in your 'Sent Mail' folder.",
+        "limits": "Under the standard setup, Google imposes a limit of 2,000 sent emails/day for trusted G Suite users, and 500 emails/day for regular Gmail users."
+      },
+      "reports": {
+        "access": "You can access your open-tracking, click-tracking, and unsubscribe reports by clicking on the QuickSend Reports Label on the left of the Gmail interface."
+      },
+      "pricing": {
+        "free": "QuickSend offers a free trial for 7 days, during which you can send 50 emails per day. After the 7 days, please subscribe to a paid plan."
+      },
+      "support": {
+        "otherProducts": "The QuickSend Chrome extension is our main product, and is what adds the buttons to your Gmail account so you can send mass email campaigns.",
+        "getSupport": "Contact the support team: quicksendcontact@gmail.com"
+      }
+    }
   }
 }

@@ -93,3 +93,28 @@ create policy "User can update own notifications"
   for update
   using (auth.uid() = user_id);
 
+-- Функция, создающая приветственное уведомление новому пользователю
+create or replace function public.send_welcome_notification()
+returns trigger
+language plpgsql
+security definer
+as $$
+begin
+  insert into public.notifications (user_id, title, message)
+  values (
+    new.id,
+    'Welcome to QuickSend 🎉',
+    'Мы рады видеть вас! При добавлении расширения через Chrome ваша подписка активируется и будет длиться 10 дней.'
+  );
+  return new;
+end;
+$$;
+
+-- Удалим старый триггер, если он уже был
+drop trigger if exists trigger_send_welcome_notification on public.users;
+
+-- Теперь создаём новый триггер
+create trigger trigger_send_welcome_notification
+after insert on public.users
+for each row
+execute function public.send_welcome_notification();

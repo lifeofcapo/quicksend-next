@@ -40,7 +40,7 @@ export default function Footer() {
               {t('termsFooterTitle')}
             </Link>
             <Link href={`/${language}/faq`} className="hover:text-blue-400 transition">
-              {t('faq')}
+              {t('faqFooter')}
             </Link>
           </div>
         </div>
