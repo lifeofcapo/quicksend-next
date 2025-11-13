@@ -224,5 +224,10 @@
         "getSupport": "Contact the support team: quicksendcontact@gmail.com"
       }
     }
+  },
+  "notFound": {
+    "title": "Oops! This page doesn't exist.",
+    "description": "It may have been moved or deleted. If you believe this is an error, please contact support.",
+    "backHome": "Return to home page"
   }
 }
