@@ -7,17 +7,17 @@ import { AuthProvider } from '@/components/AuthProvider';
 import { montserrat } from "@/lib/font";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 
 const languages = ['en', 'ru'] as const;
 type Language = typeof languages[number];
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { lang: string };
+export async function generateMetadata({  // dynamic metadata
+  params 
+}: { 
+  params: Promise<{ lang: string }> 
 }): Promise<Metadata> {
-  const { lang } = params;
+  const { lang } = await params;
   
   const titles = {
     ru: 'QuickSend: чтобы отправлять письма',
@@ -42,14 +42,15 @@ export function generateStaticParams() {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
-  const { lang } = params;
-
+  const { lang } = await params;
+  
+  // Проверяем валидность языка
   if (!languages.includes(lang as Language)) {
-    redirect('/en/not-found');
+    notFound();
   }
   
   return (

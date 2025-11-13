@@ -1,12 +1,12 @@
-// app/not-found.tsx
+// app/[lang]/not-found.tsx
 import Link from 'next/link';
-import { headers } from 'next/headers';
 import NotFoundAnimation from '@/components/LottieAnimation';
+import { headers } from 'next/headers';
 
-export default async function GlobalNotFound() {
-  const headersList = await headers();
-  const acceptLanguage = headersList.get('accept-language') || '';
-  const preferredLang = acceptLanguage.toLowerCase().includes('ru') ? 'ru' : 'en';
+async function NotFoundContent() {
+    const headersList = await headers();
+    const acceptLanguage = headersList.get('accept-language') || '';
+    const preferredLang = acceptLanguage.toLowerCase().includes('ru') ? 'ru' : 'en';
 
   const translations = {
     ru: {
@@ -23,7 +23,6 @@ export default async function GlobalNotFound() {
 
   const t = translations[preferredLang];
   return (
-    <html lang={preferredLang} className="h-full">
       <body className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-900 px-4 py-8 transition-colors duration-300">
         <NotFoundAnimation />
 
@@ -43,6 +42,10 @@ export default async function GlobalNotFound() {
           </Link>
         </div>
       </body>
-    </html>
   );
+}
+
+// Серверный компонент-обёртка
+export default function NotFound() {
+  return <NotFoundContent />;
 }

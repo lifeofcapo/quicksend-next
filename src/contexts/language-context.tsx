@@ -24,13 +24,13 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
 
   const toggleLanguage = () => {
     const newLang = initialLanguage === 'ru' ? 'en' : 'ru';
-    const newPathname = pathname.replace(`/${initialLanguage}`, `/${newLang}`);
+    const newPathname = pathname?.replace(`/${initialLanguage}`, `/${newLang}`) || `/${newLang}`;
     router.push(newPathname);
   };
 
   const setLanguage = (lang: Language) => {
     if (lang !== initialLanguage) {
-      const newPathname = pathname.replace(`/${initialLanguage}`, `/${lang}`);
+      const newPathname = pathname?.replace(`/${initialLanguage}`, `/${lang}`) || `/${lang}`;
       router.push(newPathname);
     }
   };
@@ -48,8 +48,13 @@ export function LanguageProvider({ children, initialLanguage }: LanguageProvider
 
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within LanguageProvider');
+  if (context === undefined) {
+    // Возвращаем значения по умолчанию, если контекст недоступен
+    return {
+      language: 'en' as Language,
+      toggleLanguage: () => {},
+      setLanguage: () => {}
+    };
   }
   return context;
 }
