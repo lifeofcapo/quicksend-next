@@ -7,17 +7,17 @@ import { AuthProvider } from '@/components/AuthProvider';
 import { montserrat } from "@/lib/font";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 const languages = ['en', 'ru'] as const;
 type Language = typeof languages[number];
 
-export async function generateMetadata({  // dynamic metadata
-  params 
-}: { 
-  params: Promise<{ lang: string }> 
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
 }): Promise<Metadata> {
-  const { lang } = await params;
+  const { lang } = params;
   
   const titles = {
     ru: 'QuickSend: чтобы отправлять письма',
@@ -42,20 +42,19 @@ export function generateStaticParams() {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  params: { lang: string };
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
-  const { lang } = await params;
-  
-  // Проверяем валидность языка
+  const { lang } = params;
+
   if (!languages.includes(lang as Language)) {
-    notFound();
+    redirect('/en/not-found');
   }
   
   return (
     <html lang={lang} className={montserrat.variable} suppressHydrationWarning>
-      <body className={`$montserrat.className} flex flex-col min-h-screen`}>
+      <body className={`${montserrat.className} flex flex-col min-h-screen`}>
         <ThemeProvider>
           <LanguageProvider initialLanguage={lang as Language}>
             <AuthProvider>
