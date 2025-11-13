@@ -32,7 +32,7 @@ export function PricingSection() {
     {
       icon: Crown,
       nameKey: 'plans.premium',
-      price: { ru: 1990, en: 19.99 },
+      price: { ru: 1990, en: 21 },
       featuresKey: 'plans.features.premium',
       buttonKey: 'plans.premiumButton',
       popular: false

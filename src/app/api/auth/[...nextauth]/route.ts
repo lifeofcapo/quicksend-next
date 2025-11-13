@@ -11,37 +11,62 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ account, profile }) {
-      if (account?.provider === "google" && (profile as any)?.email_verified) {
+      console.log("🟢 signIn profile:", profile);
+      if (account?.provider === "google" && profile?.email) {
         try {
-          const email = (profile as any).email;
-          const name = (profile as any).name;
+          const email = profile.email;
+          const name = profile.name;
           const avatar = (profile as any).picture;
 
-          // Проверяем, есть ли уже пользователь
-          const { data: existingUser } = await supabaseAdmin
+          const { data: existingUser, error: selectError } = await supabaseAdmin
             .from("users")
             .select("id")
             .eq("email", email)
             .maybeSingle();
 
-          // Если нет — создаём
-          if (!existingUser) {
-            const { error: insertError } = await supabaseAdmin.from("users").insert([
-              {
-                email,
-                name,
-                avatar_url: avatar,
-              },
-            ]);
+          if (selectError) throw selectError;
 
-            if (insertError) console.error("Supabase insert error:", insertError);
+          if (!existingUser) {
+            const { data: newUser, error: insertError } = await supabaseAdmin
+              .from("users")
+              .insert([{ email, name, avatar_url: avatar }])
+              .select("id")
+              .single();
+
+            if (insertError && insertError.code !== "23505") {
+              console.error("Supabase insert error:", insertError);
+              return false;
+            }
+
+            console.log("✅ User created:", newUser);
+          } else {
+            console.log("ℹ️ Existing user:", existingUser);
           }
         } catch (err) {
           console.error("Error syncing user with Supabase:", err);
+          return false;
         }
         return true;
       }
       return false;
+    },
+    async jwt({ token, user }) {
+      if (user?.email) {
+        const { data: dbUser } = await supabaseAdmin
+          .from("users")
+          .select("id")
+          .eq("email", user.email)
+          .maybeSingle();
+
+        if (dbUser?.id) token.id = dbUser.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user && token.id) {
+        session.user.id = token.id;
+      }
+      return session;
     },
   },
   pages: {

@@ -6,28 +6,16 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    const email = session?.user?.email;
 
-    if (!email) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Найдём пользователя
-    const { data: user } = await supabaseAdmin
-      .from("users")
-      .select("id")
-      .eq("email", email)
-      .single();
-
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-
-    // Получаем уведомления по user_id
+    // Получаем уведомления по user_id (теперь он в сессии!)
     const { data: notifications, error } = await supabaseAdmin
       .from("notifications")
       .select("*")
-      .eq("user_id", user.id)
+      .eq("user_id", session.user.id)
       .order("created_at", { ascending: false });
 
     if (error) throw error;

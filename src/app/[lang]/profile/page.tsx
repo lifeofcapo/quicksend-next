@@ -14,8 +14,8 @@ export default async function ProfilePage() {
     .eq('email', session.user.email)
     .single();
 
-  if (error) {
-    console.error('Error fetching user:', error);
+  if (error || !userData) {
+    console.error('Error fetching user or user not found:', error);
     redirect('/en/login');
   }
 
