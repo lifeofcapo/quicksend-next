@@ -70,7 +70,6 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
         </div>
       </div>
 
-      {/* Дополнительная информация */}
       <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
         <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
           Account Details

@@ -17,7 +17,7 @@ export default async function GlobalNotFound() {
     en: {
       title: "Page Not Found", 
       description: "We can't seem to find the page you're looking for.",
-      backHome: "Return to Safety"
+      backHome: "Return to Home"
     }
   };
 

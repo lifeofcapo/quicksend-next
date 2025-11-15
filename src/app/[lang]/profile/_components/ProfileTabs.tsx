@@ -1,12 +1,20 @@
 'use client';
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import TabProfileInfo from './TabProfileInfo';
 import TabTenty from './TabTenty';
 import TabEmailValidation from './TabEmailValidation';
 import TabDangerZone from './TabDangerZone';
 import TabNotifications from './TabNotifications';
 
-const tabs = [
+// Manager tabs (отдельный набор)
+const managerTabs = [
+  { id: 'manager_dashboard', label: 'Manager Dashboard' },
+  { id: 'manager_requests', label: 'Tenty Requests' },
+];
+
+// User tabs (как у тебя)
+const userTabs = [
   { id: 'profile', label: 'Profile Info' },
   { id: 'notifications', label: 'Notifications' },
   { id: 'tenty', label: 'Tenty' },
@@ -14,11 +22,23 @@ const tabs = [
   { id: 'danger', label: 'Danger Zone' },
 ];
 
-export default function ProfileTabs({ sessionUser, userData }: any) {
-  const [activeTab, setActiveTab] = useState('profile');
+export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
+  const tabs = isManager ? managerTabs : userTabs;
+
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    if (isManager && activeTab === 'manager_requests') {
+      fetch('/api/manager/tenty')
+        .then(res => res.json())
+        .then(data => setRequests(data.requests || []));
+    }
+  }, [isManager, activeTab]);
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+      {/* TABS */}
       <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-gray-700 pb-2">
         {tabs.map(tab => (
           <button
@@ -35,11 +55,106 @@ export default function ProfileTabs({ sessionUser, userData }: any) {
         ))}
       </div>
 
-      {activeTab === 'profile' && <TabProfileInfo user={sessionUser} userData={userData} />}
-      {activeTab === 'notifications' && <TabNotifications />}
-      {activeTab === 'tenty' && <TabTenty userData={userData} />}
-      {activeTab === 'email' && <TabEmailValidation email={sessionUser.email} />}
-      {activeTab === 'danger' && <TabDangerZone email={sessionUser.email} />}
+      {/* ======================= */}
+      {/* 🌍 USER PROFILE MODE */}
+      {/* ======================= */}
+      {!isManager && (
+        <>
+          {activeTab === 'profile' && (
+            <TabProfileInfo user={sessionUser} userData={userData} />
+          )}
+
+          {activeTab === 'notifications' && <TabNotifications />}
+
+          {activeTab === 'tenty' && <TabTenty userData={userData} />}
+
+          {activeTab === 'email' && (
+            <TabEmailValidation email={sessionUser.email} />
+          )}
+
+          {activeTab === 'danger' && (
+            <TabDangerZone email={sessionUser.email} />
+          )}
+        </>
+      )}
+
+      {/* ======================= */}
+      {/* 👨‍💼 MANAGER MODE */}
+      {/* ======================= */}
+      {isManager && (
+        <>
+          {/* DASHBOARD */}
+          {activeTab === 'manager_dashboard' && (
+            <ManagerDashboard sessionUser={sessionUser} />
+          )}
+
+          {/* LIST OF REQUESTS */}
+          {activeTab === 'manager_requests' && (
+            <ManagerRequestList requests={requests} />
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ======================================================
+   MANAGER DASHBOARD COMPONENT
+====================================================== */
+
+function ManagerDashboard({ sessionUser }: any) {
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">Manager Dashboard</h2>
+
+      <div className="p-5 bg-gray-50 dark:bg-gray-700/30 rounded-lg shadow">
+        <p><b>Name:</b> {sessionUser.name}</p>
+        <p><b>Email:</b> {sessionUser.email}</p>
+        <p className="text-gray-500 mt-3">
+          You are logged in as the official Tenty Manager.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ======================================================
+   MANAGER REQUEST LIST
+====================================================== */
+
+function ManagerRequestList({ requests }: any) {
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">All Tenty Requests</h2>
+
+      <div className="space-y-4">
+        {requests.map((req: any) => (
+          <a
+            key={req.id}
+            href={`/manager/tenty/${req.id}`}
+            className="block p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+          >
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="font-semibold">{req.track_name}</h3>
+                <p className="text-gray-500 text-sm">
+                  {req.artist_nickname}
+                </p>
+              </div>
+
+              <span
+                className="px-2 py-1 text-sm rounded bg-gray-200 dark:bg-gray-800"
+              >
+                {req.status}
+              </span>
+            </div>
+          </a>
+        ))}
+
+        {requests.length === 0 && (
+          <p className="text-gray-500">No requests yet.</p>
+        )}
+      </div>
     </div>
   );
 }
