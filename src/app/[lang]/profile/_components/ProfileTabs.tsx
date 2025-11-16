@@ -7,13 +7,11 @@ import TabEmailValidation from './TabEmailValidation';
 import TabDangerZone from './TabDangerZone';
 import TabNotifications from './TabNotifications';
 
-// Manager tabs (отдельный набор)
 const managerTabs = [
   { id: 'manager_dashboard', label: 'Manager Dashboard' },
   { id: 'manager_requests', label: 'Tenty Requests' },
 ];
 
-// User tabs (как у тебя)
 const userTabs = [
   { id: 'profile', label: 'Profile Info' },
   { id: 'notifications', label: 'Notifications' },
@@ -38,7 +36,6 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-      {/* TABS */}
       <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-gray-700 pb-2">
         {tabs.map(tab => (
           <button
@@ -55,9 +52,6 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
         ))}
       </div>
 
-      {/* ======================= */}
-      {/* 🌍 USER PROFILE MODE */}
-      {/* ======================= */}
       {!isManager && (
         <>
           {activeTab === 'profile' && (
@@ -78,17 +72,11 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
         </>
       )}
 
-      {/* ======================= */}
-      {/* 👨‍💼 MANAGER MODE */}
-      {/* ======================= */}
       {isManager && (
         <>
-          {/* DASHBOARD */}
           {activeTab === 'manager_dashboard' && (
             <ManagerDashboard sessionUser={sessionUser} />
           )}
-
-          {/* LIST OF REQUESTS */}
           {activeTab === 'manager_requests' && (
             <ManagerRequestList requests={requests} />
           )}
@@ -97,10 +85,6 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
     </div>
   );
 }
-
-/* ======================================================
-   MANAGER DASHBOARD COMPONENT
-====================================================== */
 
 function ManagerDashboard({ sessionUser }: any) {
   return (
@@ -117,10 +101,6 @@ function ManagerDashboard({ sessionUser }: any) {
     </div>
   );
 }
-
-/* ======================================================
-   MANAGER REQUEST LIST
-====================================================== */
 
 function ManagerRequestList({ requests }: any) {
   return (

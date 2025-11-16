@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/language-context';
 import Image from 'next/image';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Zap, Shield, Snowflake, DollarSign, TrendingUp, Settings } from 'lucide-react';
+import HeroLottieAnimation from '@/components/HeroLottieAnimation';
 
 type LangValue = {
   ru: string;
@@ -45,9 +46,9 @@ export function AdvantagesSection() {
       descKey: 'advantages.flexibleSetupDesc'
     },
   ];
-
   return (
     <section id="whyquicksend" className="py-20 px-4 bg-gray-50 dark:bg-gray-800 transition-colors relative overflow-hidden h-[900px]">
+      <HeroLottieAnimation /> 
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row items-start gap-12 max-w-7xl mx-auto">
           {/* Левая часть - преимущества */}
@@ -79,14 +80,7 @@ export function AdvantagesSection() {
             </div>
           </div>
         <div className="flex-1 relative flex items-end">
-            <div className="relative w-full h-[600px] lg:h-[1050px] lg:mr-[-290px]">
-            <Image 
-                src="/images/Group 1.png" 
-                alt="Why QuickSend" 
-                fill
-                className="object-contain"
-                quality={90}
-            />
+            <div className="relative w-full">
             </div>
         </div>
         </div>

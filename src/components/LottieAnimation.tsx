@@ -1,4 +1,4 @@
-// components/ClientLottieAnimation.tsx
+// components/LottieAnimation.tsx
 'use client';
 
 import dynamic from 'next/dynamic';

@@ -1,13 +1,14 @@
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 export default async function ManagerTentyRequest({ params }: any) {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user?.email || session.user.email !== process.env.MANAGER_EMAIL)
-    redirect("/");
+  if (!session?.user?.email || session.user.email !== process.env.MANAGER_EMAIL) 
+    notFound();
+
 
   const { data: req, error } = await supabaseAdmin
     .from("tenty_requests")

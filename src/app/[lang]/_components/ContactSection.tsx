@@ -39,7 +39,7 @@ export function ContactSection() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/images/5.webm" type="video/webm" />
+            <source src="/animations/5.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
         </div>

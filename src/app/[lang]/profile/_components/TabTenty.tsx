@@ -86,21 +86,19 @@ export default function TabTenty({ userData }: TabTentyProps) {
   return (
     <div className="p-6 space-y-10">
 
-      {/* ---------- SECTION 1 — INTRO ---------- */}
       <section className="space-y-4">
         <h3 className="text-2xl font-bold">Track Blocking / Tenty Service</h3>
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
           We help producers, musicians and rights holders protect their work from
-          unauthorized use. Our team processes DMCA / Tenty complaints and manages
+          unauthorized use. Our team processes DSP / Tenty complaints and manages
           takedowns on all major platforms, ensuring your music stays under your control.
         </p>
       </section>
 
-      {/* ---------- SECTION 2 — MANAGER CARD ---------- */}
       <section className="flex items-center gap-6 p-6 border rounded-2xl shadow-sm dark:border-gray-700 dark:bg-gray-800/50">
         <div>
           <Image
-            src="/manager.jpg" // замените на свой путь
+            src="/manager.jpg"
             width={120}
             height={120}
             alt="Manager"
@@ -121,14 +119,13 @@ export default function TabTenty({ userData }: TabTentyProps) {
         <h4 className="text-xl font-semibold">Jordan Tennant</h4>
         <p className="text-gray-600 dark:text-gray-400">
           Jordan Tennant is a 10-year experienced professional specializing in
-          DMCA takedowns, copyright protection and content rights management.
+          DSP takedowns, copyright protection and content rights management.
         </p>
       </div>
       </section>
 
-      {/* ---------- SECTION 3 — FORM ---------- */}
       <section>
-        <h4 className="text-xl font-semibold mb-4">Submit a Tenty / DMCA Request</h4>
+        <h4 className="text-xl font-semibold mb-4">Submit a Tenty / DSP Request</h4>
 
         <form onSubmit={handleSubmit} className="space-y-4">
 

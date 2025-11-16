@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     const data = await req.json();
 
-    // --- 1. получаем менеджера по email ---
+    // получаем менеджера по email
     const managerEmail = process.env.MANAGER_EMAIL!;
     const { data: manager, error: mError } = await supabaseAdmin
       .from("users")
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       { status: 500 }
     );
 
-    // --- 2. создаём заявку ---
+    // создаём заявку 
     const { error: insertError } = await supabaseAdmin
       .from("tenty_requests")
       .insert({
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
     if (insertError) throw insertError;
 
-    // --- 3. создаём уведомление менеджеру ---
+    // уведомление менеджеру 
     await supabaseAdmin.from("notifications").insert({
       user_id: manager.id,
       title: "🆕 New Tenty Request",
