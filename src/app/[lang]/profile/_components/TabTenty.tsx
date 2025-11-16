@@ -118,8 +118,7 @@ export default function TabTenty({ userData }: TabTentyProps) {
       <div>
         <h4 className="text-xl font-semibold">Jordan Tennant</h4>
         <p className="text-gray-600 dark:text-gray-400">
-          Jordan Tennant is a 10-year experienced professional specializing in
-          DSP takedowns, copyright protection and content rights management.
+          Jordan Tennant is a Music Entrepreneur who is the Co Founder of Tenty. He helps producers and songwriters with DSP takedowns. 3 years experience in Music Industry
         </p>
       </div>
       </section>

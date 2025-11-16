@@ -5,6 +5,8 @@ import { ProductsSection } from './_components/ProductsSection';
 import { StatsSection } from './_components/StatsSection';
 import { PricingSection } from './_components/PricingSection';
 import { ContactSection } from './_components/ContactSection';
+import DspTakedownSection from './_components/DspTakedownSection';
+
 
 export default async function Home({
   params
@@ -19,6 +21,7 @@ export default async function Home({
         <HeroSection />
         <AdvantagesSection />
         <ProductsSection />
+        <DspTakedownSection />
         <StatsSection />
         <PricingSection />
         <ContactSection />

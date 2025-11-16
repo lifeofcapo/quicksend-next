@@ -229,5 +229,18 @@
     "title": "Oops! This page doesn't exist.",
     "description": "It may have been moved or deleted. If you believe this is an error, please contact support.",
     "backHome": "Return to home page"
+  },
+    "dsp": {
+    "title": "DSP Takedowns — Protect Your Music Worldwide",
+    "description": "Our team of industry professionals handles complete removal of stolen beats, illegal samples, or unauthorized uploads from all major DSP platforms such as Spotify, Apple Music, YouTube Music, TikTok, and more.",
+    "protection": "Secure Rights Protection",
+    "protectionDesc": "We ensure your work is taken down quickly and legally from all platforms.",
+    "originality": "Producers & Artists Focused",
+    "originalityDesc": "Made by people who understand the music industry from the inside.",
+    "removal": "Fast Track Removal",
+    "removalDesc": "Speedy takedowns with accurate DMCA processing.",
+    "legal": "Legal Accuracy",
+    "legalDesc": "Every case is reviewed by a specialist with experience in copyright law.",
+    "cta": "Submit a Takedown Request"
   }
 }
