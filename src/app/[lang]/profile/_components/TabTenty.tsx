@@ -90,7 +90,7 @@ export default function TabTenty({ userData }: TabTentyProps) {
         <h3 className="text-2xl font-bold">Track Blocking / Tenty Service</h3>
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
           We help producers, musicians and rights holders protect their work from
-          unauthorized use. Our team processes DSP / Tenty complaints and manages
+          unauthorized use. Our team processes DSP complaints and manages
           takedowns on all major platforms, ensuring your music stays under your control.
         </p>
       </section>
@@ -98,7 +98,7 @@ export default function TabTenty({ userData }: TabTentyProps) {
       <section className="flex items-center gap-6 p-6 border rounded-2xl shadow-sm dark:border-gray-700 dark:bg-gray-800/50">
         <div>
           <Image
-            src="/manager.jpg"
+            src="/Jordan.jpg"
             width={120}
             height={120}
             alt="Manager"
@@ -109,7 +109,7 @@ export default function TabTenty({ userData }: TabTentyProps) {
             <a href="https://twitter.com" target="_blank">
               <Twitter className="w-5 h-5 hover:text-blue-500 transition" />
             </a>
-            <a href="https://instagram.com" target="_blank">
+            <a href="https://instagram.co/freshprincej_astro" target="_blank">
               <Instagram className="w-5 h-5 hover:text-pink-500 transition" />
             </a>
           </div>
