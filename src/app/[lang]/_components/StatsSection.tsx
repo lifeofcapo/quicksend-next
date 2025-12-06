@@ -5,32 +5,6 @@ import Image from 'next/image';
 
 export function StatsSection() {
   const { t } = useTranslation();
-  const [emailCount, setEmailCount] = useState(0);
-  const [campaignCount, setCampaignCount] = useState(0);
-
-  useEffect(() => {
-    const emailTarget = 100000;
-    const campaignTarget = 12000;
-    const duration = 2000;
-    const steps = 60;
-    const emailIncrement = emailTarget / steps;
-    const campaignIncrement = campaignTarget / steps;
-    let currentStep = 0;
-
-    const timer = setInterval(() => {
-      currentStep++;
-      setEmailCount(Math.floor(emailIncrement * currentStep));
-      setCampaignCount(Math.floor(campaignIncrement * currentStep));
-
-      if (currentStep >= steps) {
-        clearInterval(timer);
-        setEmailCount(emailTarget);
-        setCampaignCount(campaignTarget);
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <section
@@ -54,13 +28,19 @@ export function StatsSection() {
             <div>
               <p className="text-base mb-1 text-gray-700">{t('statsEmails')}</p>
               <span className="text-3xl md:text-4xl font-bold text-gray-900">
-                {emailCount.toLocaleString()}
+                100,000
               </span>
             </div>
             <div>
               <p className="text-base mb-1 text-gray-700">{t('statsCampaigns')}</p>
               <span className="text-3xl md:text-4xl font-bold text-gray-900">
-                {campaignCount.toLocaleString()}
+                12,000
+              </span>
+            </div>
+            <div>
+              <p className="text-base mb-1 text-gray-700">{t('statsCopyrights')}</p>
+              <span className="text-3xl md:text-4xl font-bold text-gray-900">
+                500
               </span>
             </div>
           </div>
