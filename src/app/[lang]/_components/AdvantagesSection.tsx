@@ -47,29 +47,50 @@ export function AdvantagesSection() {
     },
   ]; 
   return (
-    <section id="whyquicksend" className="py-20 px-4 bg-gray-50 dark:bg-gray-800 transition-colors relative overflow-hidden h-[900px]">
-      <HeroLottieAnimation /> 
-      <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row items-start gap-12 max-w-7xl mx-auto">
+    <section
+      id="whyquicksend"
+      className="
+        py-16 px-4 
+        bg-gray-50 dark:bg-gray-800 
+        transition-colors 
+        relative overflow-hidden
+      "
+    >
+      <div className="absolute inset-0 pointer-events-none opacity-40 md:opacity-100">
+        <HeroLottieAnimation />
+      </div>
+
+      <div className="container mx-auto relative z-10 max-w-6xl">
+        <div className="flex flex-col lg:flex-row items-start gap-12">
           <div className="flex-1"> 
-            <h2 className="text-4xl font-bold mb-4 dark:text-white text-center lg:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white text-center lg:text-left">
               {t('whyTitle')}
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl text-center lg:text-left">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl text-center lg:text-left">
               {t('whyDesc')}
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {advantages.map((a, i) => {
                 const Icon = a.icon;
                 return (
-                  <div key={i} className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition text-center">
+                  <div
+                    key={i}
+                    className="
+                      bg-white dark:bg-gray-700 
+                      p-5 sm:p-6 
+                      rounded-xl shadow-md 
+                      hover:shadow-xl 
+                      transition 
+                      text-center
+                    "
+                  >
                     <div className="flex justify-center mb-3">
-                      <Icon className="w-10 h-10 text-blue-600 dark:text-blue-400" />
+                      <Icon className="w-9 h-9 text-blue-600 dark:text-blue-400" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 dark:text-white">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2 dark:text-white">
                       {t(a.titleKey)}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
                       {t(a.descKey)}
                     </p>
                   </div>
@@ -77,7 +98,7 @@ export function AdvantagesSection() {
               })}
             </div>
           </div>
-        <div className="flex-1 relative flex items-end">
+        <div className="flex-1 relative lg:flex items-end">
             <div className="relative w-full">
             </div>
         </div>

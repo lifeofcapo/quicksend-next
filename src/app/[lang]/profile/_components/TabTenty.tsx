@@ -98,7 +98,7 @@ export default function TabTenty({ userData }: TabTentyProps) {
       <section className="flex items-center gap-6 p-6 border rounded-2xl shadow-sm dark:border-gray-700 dark:bg-gray-800/50">
         <div>
           <Image
-            src="/Jordan.jpg"
+            src="images/Jordan.png"
             width={120}
             height={120}
             alt="Manager"
