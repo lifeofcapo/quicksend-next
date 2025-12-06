@@ -1,6 +1,5 @@
 'use client';
 import { useLanguage } from '@/contexts/language-context';
-import Image from 'next/image';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Zap, Shield, Snowflake, DollarSign, TrendingUp, Settings } from 'lucide-react';
 import HeroLottieAnimation from '@/components/HeroLottieAnimation';
@@ -46,8 +45,8 @@ export function AdvantagesSection() {
       descKey: 'advantages.flexibleSetupDesc'
     },
   ]; 
-  return (
-    <section
+      return (
+   <section
       id="whyquicksend"
       className="
         py-16 px-4 
@@ -61,14 +60,17 @@ export function AdvantagesSection() {
       </div>
 
       <div className="container mx-auto relative z-10 max-w-6xl">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">
+            {t('whyTitle')}
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            {t('whyDesc')}
+          </p>
+        </div>
+
         <div className="flex flex-col lg:flex-row items-start gap-12">
-          <div className="flex-1"> 
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white text-center lg:text-left">
-              {t('whyTitle')}
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl text-center lg:text-left">
-              {t('whyDesc')}
-            </p>
+          <div className="flex-1 w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {advantages.map((a, i) => {
                 const Icon = a.icon;
@@ -98,12 +100,12 @@ export function AdvantagesSection() {
               })}
             </div>
           </div>
-        <div className="flex-1 relative lg:flex items-end">
+          <div className="flex-1 relative lg:flex items-end">
             <div className="relative w-full">
             </div>
+          </div>
         </div>
-        </div>
-        </div>
+      </div>
     </section>
   );
 }

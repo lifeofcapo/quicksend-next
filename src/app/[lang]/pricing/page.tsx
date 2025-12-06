@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Rocket, Star, Crown, Check, X } from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
+import Image from 'next/image';
 
 interface PlanFeature {
   textRu: string;
@@ -133,6 +134,18 @@ export default function PricingPage() {
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
         <main className="pt-24 pb-12 px-4">
           <div className="container mx-auto max-w-7xl">
+                  <div className="absolute inset-x-0 bottom-[-25px] flex justify-center pointer-events-none">
+                    <div className="relative w-full max-w-3xl opacity-80 dark:opacity-60 mix-blend-multiply dark:mix-blend-screen translate-x-[-300px]">
+                      <Image
+                        src="/images/businesswoman.png"
+                        alt="Background"
+                        width={900}
+                        height={900}
+                        className="w-full h-auto object-contain"
+                        priority
+                      />
+                    </div>
+                  </div>
             <div className="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl p-12 mb-8 text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 {t.title}

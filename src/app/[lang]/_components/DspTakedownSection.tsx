@@ -56,8 +56,8 @@ export default function DspTakedownSection() {
             loop
             src="/animations/Man-playing-guitar.json"
             style={{
-              width: '1000px',
-              height: '1000px',
+              width: '800px',
+              height: '800px',
               transform: 'translate(20px, 0px)'
             }}
           />

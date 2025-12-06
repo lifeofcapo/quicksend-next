@@ -1,33 +1,66 @@
 @import "tailwindcss";
+@tailwind utilities;
 
 @variant dark (&:where(.dark, .dark *));
 
 @layer theme {
   :root {
-    
-    /* Light mode colors */
+    /* Light mode colors (soft green + apricot) */
     --color-bg-page: #ffffff;
     --color-bg-card: #ffffff;
     --color-bg-header: #ffffff;
-    --color-bg-footer: #1f2937;
-    --color-text-primary: #1f2937;
-    --color-text-secondary: #6b7280;
+    --color-bg-footer: #2f3b31;
+
+    --color-text-primary: #2b2b2b;
+    --color-text-secondary: #4a4a4a;
     --color-text-footer: #ffffff;
+
     --color-border: #e5e7eb;
+
+    /* Soft-Fresh Theme */
+    --color-primary-main: #8ED8A8;      /* мягкий зелёный */
+    --color-primary-light: #AEE5C2;     /* светлый мятный */
+    --color-primary-dark: #6FCF97;      /* акцент зелёный */
+    --color-primary-lighter: #DFF7EA;   /* пастельный фон */
+
+    --color-accent-main: #FFB87A;       /* мягкий абрикос */
+    --color-accent-light: #FFD1A6;      /* персик */
+    --color-accent-dark: #FFA65B;       /* акцент оранжевый */
+
+    --gradient-soft-green-orange: linear-gradient(
+      135deg,
+      #AEE5C2,
+      #8ED8A8,
+      #FFB87A,
+      #FFA65B
+    );
   }
-  
+
+  /* Dark Mode */
   .dark {
-    /* Dark mode colors */
     --color-bg-page: #111827;
-    --color-bg-card: #1f2937;
+    --color-bg-card: #1a2421;
     --color-bg-header: #1f2937;
     --color-bg-footer: #111827;
+
     --color-text-primary: #f9fafb;
     --color-text-secondary: #d1d5db;
     --color-text-footer: #f9fafb;
+
     --color-border: #374151;
+
+    /* Dark, but still soft pastel */
+    --color-primary-main: #6FCF97;
+    --color-primary-light: #8ED8A8;
+    --color-primary-dark: #57b780;
+    --color-primary-lighter: #214133;
+
+    --color-accent-main: #FFB87A;
+    --color-accent-light: #FFD1A6;
+    --color-accent-dark: #E98E4E;
   }
 }
+
 
 html {
   overflow-x: hidden;
@@ -73,4 +106,99 @@ body {
 
 .animate-fade-in {
   animation: fade-in 0.8s ease-out;
+}
+
+/* Добавьте эти анимации в ваш globals.css */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 8s infinite ease-in-out;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Плавные переходы для кнопок */
+@layer utilities {
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* Эффект мерцания для декоративных элементов */
+@keyframes shimmer {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Анимации для облаков */
+@keyframes cloud1 {
+  0%, 100% {
+    transform: translateX(0px) scale(1);
+  }
+  50% {
+    transform: translateX(30px) scale(1.05);
+  }
+}
+
+@keyframes cloud2 {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(-20px) translateY(10px);
+  }
+}
+
+@keyframes cloud3 {
+  0%, 100% {
+    transform: translateX(0px) scale(1);
+  }
+  50% {
+    transform: translateX(15px) scale(0.95);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
 }

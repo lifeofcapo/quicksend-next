@@ -16,11 +16,16 @@ export default function HeroLottieAnimation() {
 
   return (
     <div 
-      className="pointer-events-none absolute inset-0 flex items-center justify-center"
+      className="
+        pointer-events-none 
+        absolute inset-0 
+        flex items-center justify-center
+        hidden md:flex  {/* Скрыто на мобильных */}
+      "
       style={{
         zIndex: 0,     
         overflow: 'hidden',
-        transform: 'translate(350px, 100px)'
+        transform: 'translate(400px, 100px) scale(1.2)'
       }}
     >
       <Player
@@ -30,6 +35,7 @@ export default function HeroLottieAnimation() {
         style={{
           width: '1200px',  
           height: '1200px',
+          opacity: 0.8
         }}
       />
     </div>
