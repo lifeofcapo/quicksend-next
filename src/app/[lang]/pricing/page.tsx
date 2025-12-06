@@ -131,115 +131,163 @@ export default function PricingPage() {
 
   return (
     <div className={theme === 'dark' ? 'dark' : ''}>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
-        <main className="pt-24 pb-12 px-4">
-          <div className="container mx-auto max-w-7xl">
-                  <div className="absolute inset-x-0 bottom-[-25px] flex justify-center pointer-events-none">
-                    <div className="relative w-full max-w-3xl opacity-80 dark:opacity-60 mix-blend-multiply dark:mix-blend-screen translate-x-[-300px]">
-                      <Image
-                        src="/images/businesswoman.png"
-                        alt="Background"
-                        width={900}
-                        height={900}
-                        className="w-full h-auto object-contain"
-                        priority
-                      />
-                    </div>
-                  </div>
-            <div className="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl p-12 mb-8 text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors">
+        <main className="pt-24 pb-32 px-4 relative">
+          {/* Фоновое изображение привязанное к низу - уменьшено размытие */}
+          <div className="absolute inset-x-0 bottom-0 h-[600px] pointer-events-none overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent to-transparent dark:from-gray-900 dark:via-transparent z-10 opacity-70"></div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full opacity-40 dark:opacity-30">
+              <Image
+                src="/images/businesswoman.png"
+                alt="Background"
+                fill
+                className="object-contain object-bottom"
+                priority
+              />
+            </div>
+          </div>
+
+          <div className="container mx-auto max-w-7xl relative z-20">
+            {/* Заголовок */}
+            <div className="relative bg-gradient-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] dark:from-blue-600 dark:via-cyan-500 dark:to-[#8ED8A8] rounded-2xl p-8 md:p-12 mb-12 text-center overflow-hidden">
+              {/* Декоративный фон заголовка */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-cyan-300/20 to-[#AEE5C2]/20"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+              
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
                 {t.title}
               </h1>
-              <p className="text-xl text-white/90">
+              <p className="text-xl text-white/90 relative z-10">
                 {t.subtitle}
               </p>
             </div>
 
+            {/* Текст под заголовком */}
             <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
               {t.pricingAdjusted}
             </p>
+
+            {/* Переключатель тарификации */}
             <div className="flex items-center justify-center gap-4 mb-12">
               <span className={`font-medium ${!isAnnual ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
                 {t.monthly}
               </span>
               <button
                 onClick={() => setIsAnnual(!isAnnual)}
-                className={`relative w-14 h-7 rounded-full transition-colors ${
-                  isAnnual ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'
-                }`}
+                className="group relative w-14 h-7 rounded-full bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 overflow-hidden transition-all duration-300 hover:shadow-lg"
               >
+                <div className={`absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-opacity duration-300 ${isAnnual ? 'opacity-100' : 'opacity-0'}`}></div>
                 <span
-                  className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform ${
+                  className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform duration-300 shadow-md ${
                     isAnnual ? 'translate-x-7' : 'translate-x-0'
                   }`}
                 />
               </button>
-              <span className={`font-medium ${isAnnual ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
-                {t.annually}
-                <span className="ml-2 px-2 py-1 bg-blue-600 text-white text-xs rounded-full">
+              <div className="flex items-center gap-2">
+                <span className={`font-medium ${isAnnual ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
+                  {t.annually}
+                </span>
+                <span className="px-2 py-1 bg-gradient-to-r from-blue-500 to-cyan-400 text-white text-xs rounded-full font-semibold">
                   {t.save}
                 </span>
-              </span>
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 relative">
               {plans.map((plan) => {
                 const Icon = plan.icon;
                 return (
                   <div
                     key={plan.id}
-                    className={`relative bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transition-transform hover:-translate-y-2 ${
-                      plan.isPopular ? 'border-2 border-blue-500' : ''
+                    className={`relative rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl ${
+                      plan.isPopular 
+                        ? 'border-2 border-blue-400/50' 
+                        : 'border border-gray-200/30 dark:border-gray-700/30'
                     }`}
                   >
+                    {/* Прозрачный фон карточки - уменьшено размытие */}
+                    <div className="absolute inset-0 bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm rounded-2xl"></div>
+                    
                     {plan.isPopular && (
-                      <div className="absolute -top-4 right-6 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                        {t.mostPopular}
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-30">
+                        <div className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap">
+                          {t.mostPopular}
+                        </div>
                       </div>
                     )}
-                    <div className="mb-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                          {getPlanName(plan)}
-                        </h2>
-                      </div>
-                      <div className="text-center py-4">
-                        <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                          {getPrice(plan)}
-                        </div>
-                        {isAnnual && plan.id !== 'trial' && (
-                          <div className="text-sm text-gray-500 dark:text-gray-400">
-                            {t.billedAnnually}
+
+                    {plan.isPopular && (
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-cyan-400/10 to-[#AEE5C2]/10 rounded-2xl"></div>
+                    )}
+
+
+                    <div className="relative z-10">
+                      {/* Заголовок тарифа */}
+                      <div className="mb-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-400 blur-md opacity-30"></div>
+                            <Icon className="w-8 h-8 text-blue-600 dark:text-blue-400 relative" />
                           </div>
-                        )}
-                      </div>
-                    </div>
-                    <ul className="space-y-3 mb-8">
-                      {plan.features.map((feature, idx) => (
-                        <li
-                          key={idx}
-                          className={`flex items-start gap-3 ${
-                            feature.included ? 'text-gray-700 dark:text-gray-300' : 'text-gray-400 dark:text-gray-500'
-                          }`}
-                        >
-                          {feature.included ? (
-                            <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                          ) : (
-                            <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            {getPlanName(plan)}
+                          </h2>
+                        </div>
+                        
+                        {/* Цена */}
+                        <div className="text-center py-4">
+                          <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                            {getPrice(plan)}
+                          </div>
+                          {isAnnual && plan.id !== 'trial' && (
+                            <div className="text-sm text-gray-600 dark:text-gray-400">
+                              {t.billedAnnually}
+                            </div>
                           )}
-                          <span className="text-sm">{getFeatureText(feature)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <button
-                      className={`w-full py-3 rounded-lg font-semibold transition ${
-                        plan.isPopular
-                          ? 'bg-blue-600 text-white hover:bg-blue-700'
-                          : 'bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-800 dark:hover:bg-gray-600'
-                      }`}
-                    >
-                      {plan.id === 'trial' ? t.startFree : `${t.choosePlan} ${getPlanName(plan)}`}
-                    </button>
+                        </div>
+                      </div>
+
+                      {/* Список возможностей */}
+                      <ul className="space-y-3 mb-8">
+                        {plan.features.map((feature, idx) => (
+                          <li
+                            key={idx}
+                            className={`flex items-start gap-3 ${
+                              feature.included ? 'text-gray-800 dark:text-gray-200' : 'text-gray-500 dark:text-gray-500'
+                            }`}
+                          >
+                            {feature.included ? (
+                              <div className="relative flex-shrink-0 mt-0.5">
+                                <Check className="w-5 h-5 text-green-500 relative z-10" />
+                                <div className="absolute inset-0 bg-green-500 blur-sm opacity-20"></div>
+                              </div>
+                            ) : (
+                              <div className="relative flex-shrink-0 mt-0.5">
+                                <X className="w-5 h-5 text-red-500 relative z-10" />
+                                <div className="absolute inset-0 bg-red-500 blur-sm opacity-20"></div>
+                              </div>
+                            )}
+                            <span className="text-sm">{getFeatureText(feature)}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* Кнопка выбора */}
+                      <button
+                        className={`group relative w-full py-3 rounded-lg font-semibold transition-all duration-300 overflow-hidden ${
+                          plan.isPopular
+                            ? 'bg-gradient-to-r from-blue-500 to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-500'
+                            : 'bg-gradient-to-r from-gray-800 to-gray-700 dark:from-gray-700 dark:to-gray-600 text-white hover:from-gray-900 hover:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-500'
+                        }`}
+                      >
+                        {/* Анимированная полоска света */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                        
+                        <span className="relative">
+                          {plan.id === 'trial' ? t.startFree : `${t.choosePlan} ${getPlanName(plan)}`}
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 );
               })}

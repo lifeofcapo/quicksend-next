@@ -242,6 +242,15 @@
     "removalDesc": "Speedy takedowns with accurate DMCA processing.",
     "legal": "Legal Accuracy",
     "legalDesc": "Every case is reviewed by a specialist with experience in copyright law.",
-    "cta": "Submit Now"
+    "cta": "Submit Now",
+    "guarantee": "24/7 support • Fast removal • Guaranteed results"
+  },
+  "isMobile": {
+    "title": "Unavailable on Mobile",
+    "desc": "Extension requires a computer"
+  },
+  "isChrome": {
+    "title": "Requires Chrome",
+    "desc": "Extension works only in Chrome Browser"
   }
 }

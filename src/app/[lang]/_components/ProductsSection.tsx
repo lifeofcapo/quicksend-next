@@ -120,7 +120,7 @@ export function ProductsSection() {
 
                 <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
                   <Link 
-                    href={`/${language}/features#${product.titleKey.toLowerCase().replace(/\s+/g, '-')}`}
+                    href={`/${language}/faq`}
                     className="group/link relative inline-flex items-center justify-between w-full px-4 py-3 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-md"
                   >
                     <div className={`absolute inset-0 bg-gradient-to-r ${product.gradient} opacity-5 group-hover/link:opacity-10 transition-opacity duration-300`}></div>
@@ -152,7 +152,7 @@ export function ProductsSection() {
 
           {canInstall ? (
             <Link 
-              href={`/${language}/install`}
+              href={`/${language}/profile`}
               className="group relative inline-flex items-center justify-center px-8 py-4 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] group-hover:from-blue-600 group-hover:via-cyan-500 group-hover:to-[#8ED8A8] transition-all duration-500"></div>

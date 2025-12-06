@@ -14,7 +14,10 @@ export function ContactSection() {
   }, []);
 
   return (
-    <section id="contact" className="py-20 px-4 bg-white dark:bg-gray-900 transition-colors">
+    <section 
+      id="contact" 
+      className="py-20 px-4 bg-gradient-to-b from-[#f8fafc] to-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 transition-colors"
+    >
       <div className="container mx-auto text-center max-w-4xl">
         <h2 className="text-4xl font-bold mb-8 dark:text-white">
           {t('contactUs')}
