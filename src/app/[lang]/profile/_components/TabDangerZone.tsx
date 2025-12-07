@@ -1,9 +1,12 @@
 'use client';
 import { signOut } from 'next-auth/react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function TabDangerZone({ email }: { email: string }) {
+  const { t } = useTranslation();
+
   const handleSignOut = async () => {
-    if (!confirm('Are you sure you want to sign out? You will need to sign in again with your Google account to access your data.')) return;
+    if (!confirm(t('profile.signOutConfirm'))) return;
 
     // Полный выход с очисткой сессии
     await signOut({ 
@@ -13,7 +16,7 @@ export default function TabDangerZone({ email }: { email: string }) {
   };
 
   const handleClearCache = async () => {
-    if (!confirm('This will clear all locally stored data and cache. This may help resolve some issues but will require you to sign in again. Continue?')) return;
+    if (!confirm(t('profile.clearCacheConfirm'))) return;
     
     // Очистка localStorage и sessionStorage
     if (typeof window !== 'undefined') {
@@ -48,12 +51,12 @@ export default function TabDangerZone({ email }: { email: string }) {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        alert('Data exported successfully!');
+        alert(t('profile.exportSuccess'));
       } else {
-        alert('Failed to export data');
+        alert(t('profile.exportFailed'));
       }
     } catch (error) {
-      alert('Error exporting data');
+      alert(t('profile.exportError'));
     }
   };
 
@@ -62,10 +65,10 @@ export default function TabDangerZone({ email }: { email: string }) {
       {/* Export Data Section */}
       <div className="p-4 border border-blue-300 dark:border-blue-700 rounded-lg bg-blue-50 dark:bg-blue-900/20">
         <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">
-          Export Your Data
+          {t('profile.exportDataTitle')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Download a copy of your campaign data, settings, and account information.
+          {t('profile.exportDataDescription')}
         </p>
         <button
           onClick={exportData}
@@ -74,17 +77,17 @@ export default function TabDangerZone({ email }: { email: string }) {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          Export My Data
+          {t('profile.exportDataButton')}
         </button>
       </div>
 
       {/* Clear Cache Section */}
       <div className="p-4 border border-orange-300 dark:border-orange-700 rounded-lg bg-orange-50 dark:bg-orange-900/20">
         <h3 className="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-2">
-          Clear Cache & Reset
+          {t('profile.clearCacheTitle')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Clear all locally stored data and cache. Useful if you're experiencing technical issues. You'll need to sign in again.
+          {t('profile.clearCacheDescription')}
         </p>
         <button
           onClick={handleClearCache}
@@ -93,17 +96,17 @@ export default function TabDangerZone({ email }: { email: string }) {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
-          Clear Cache & Sign Out
+          {t('profile.clearCacheButton')}
         </button>
       </div>
 
       {/* Sign Out Section */}
       <div className="p-4 border border-red-300 dark:border-red-700 rounded-lg bg-red-50 dark:bg-red-900/20">
         <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 mb-2">
-          Sign Out
+          {t('profile.signOutTitle')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Securely sign out of your account. You'll need to sign in again with your Google account to access your data.
+          {t('profile.signOutDescription')}
         </p>
         <button
           onClick={handleSignOut}
@@ -112,7 +115,7 @@ export default function TabDangerZone({ email }: { email: string }) {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
-          Sign Out
+          {t('profile.signOutButton')}
         </button>
       </div>
     </div>

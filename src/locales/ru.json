@@ -96,13 +96,37 @@
     "totalRecipientsLabel": "Всего получателей",
     "remainingCampaignsLabel": "Осталось кампаний",
     "remainingRecipientsLabel": "Осталось получателей",
-    "emailVerificationTitle": "Проверка Email",
-    "uploadHint": "Загрузите список email для проверки",
-    "chooseFile": "Выбрать файл",
     "searchPlaceholder": "Поиск по названию...",
     "searchAttachmentsPlaceholder": "Поиск вложений...",
     "noCampaignsAvailable": "Кампаний нет.",
-    "noCampaignsMatch": "Кампании не найдены."
+    "noCampaignsMatch": "Кампании не найдены.",
+    "managerRoleDescription": "Вы вошли как Менеджер",
+    "allTentyRequests": "Все запросы Tenty",
+    "noRequestsYet": "Запросов пока нет.",
+    "exportDataTitle": "Экспорт ваших данных",
+    "exportDataDescription": "Скачайте копию данных кампаний, настроек и информации об аккаунте.",
+    "exportDataButton": "Экспортировать мои данные",
+    "clearCacheTitle": "Очистить кэш и сбросить",
+    "clearCacheDescription": "Очистить все локально сохраненные данные и кэш. Полезно при возникновении технических проблем. Вам нужно будет войти снова.",
+    "clearCacheButton": "Очистить кэш и выйти",
+    "signOutTitle": "Выйти из аккаунта",
+    "signOutDescription": "Безопасный выход из вашего аккаунта. Вам нужно будет снова войти с вашим аккаунтом Google для доступа к данным.",
+    "signOutButton": "Выйти",
+    "signOutConfirm": "Вы уверены, что хотите выйти? Вам нужно будет снова войти с вашим аккаунтом Google для доступа к данным.",
+    "clearCacheConfirm": "Это очистит все локально сохраненные данные и кэш. Это может помочь решить некоторые проблемы, но потребует повторного входа. Продолжить?",
+    "exportSuccess": "Данные успешно экспортированы!",
+    "exportFailed": "Не удалось экспортировать данные",
+    "exportError": "Ошибка при экспорте данных",
+    "emailValidationTitle": "Проверка email через загрузку файла",
+    "emailValidationDescription": "Загрузите текстовый или CSV файл — мы извлечём и проверим email адреса.",
+    "validateFileButton": "Проверить файл",
+    "processing": "Обработка...",
+    "validEmailsFound": "✅ Найдены валидные email",
+    "noValidEmails": "❌ В файле не обнаружено валидных email адресов.",
+    "emailValidationReport": "отчет_проверки_email.txt",
+    "processingError": "Ошибка при обработке файла.",
+    "uploadHint": "Загрузите ваш список email для проверки",
+    "chooseFile": "Выбрать файл"
   },
 "terms": {
   "title": "Условия использования Quicksend и политика борьбы со спамом",
@@ -254,5 +278,4 @@
     "title": "Требуется Chrome",
     "desc": "Расширение работает только в браузере Chrome"
   }
-  
 }

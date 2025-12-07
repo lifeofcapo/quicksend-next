@@ -6,6 +6,7 @@ import TabTenty from './TabTenty';
 import TabEmailValidation from './TabEmailValidation';
 import TabDangerZone from './TabDangerZone';
 import TabNotifications from './TabNotifications';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const managerTabs = [
   { id: 'manager_dashboard', label: 'Manager Dashboard' },
@@ -87,15 +88,16 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
 }
 
 function ManagerDashboard({ sessionUser }: any) {
+  const { t } = useTranslation();
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Manager Dashboard</h2>
+      <h2 className="text-2xl font-bold mb-4">{t('managerDashboard')}</h2>
 
       <div className="p-5 bg-gray-50 dark:bg-gray-700/30 rounded-lg shadow">
         <p><b>Name:</b> {sessionUser.name}</p>
         <p><b>Email:</b> {sessionUser.email}</p>
         <p className="text-gray-500 mt-3">
-          You are logged in as the official Tenty Manager.
+          {t('profile.managerRoleDescription')}
         </p>
       </div>
     </div>
@@ -103,9 +105,10 @@ function ManagerDashboard({ sessionUser }: any) {
 }
 
 function ManagerRequestList({ requests }: any) {
+  const { t } = useTranslation();
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">All Tenty Requests</h2>
+      <h2 className="text-2xl font-bold mb-4">{t('profile.allTentyRequests')}</h2>
 
       <div className="space-y-4">
         {requests.map((req: any) => (
@@ -132,7 +135,7 @@ function ManagerRequestList({ requests }: any) {
         ))}
 
         {requests.length === 0 && (
-          <p className="text-gray-500">No requests yet.</p>
+          <p className="text-gray-500">{t('profile.noRequestsYet')}</p>
         )}
       </div>
     </div>
