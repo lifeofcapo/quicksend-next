@@ -131,8 +131,6 @@ export default function TabEmailValidation({ email }: TabEmailValidationProps) {
           {t('profile.emailValidationDescription')}
         </p>
       </div>
-
-      {/* Drag & Drop Area */}
       <div
         className={`border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200 ${
           isDragging
@@ -184,7 +182,6 @@ export default function TabEmailValidation({ email }: TabEmailValidationProps) {
         />
       </div>
 
-      {/* File Info Section */}
       {file && (
         <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl">
           <div className="flex items-center justify-between">
@@ -222,7 +219,6 @@ export default function TabEmailValidation({ email }: TabEmailValidationProps) {
         </div>
       )}
 
-      {/* Statistics Section */}
       {stats && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl p-4 text-center">
@@ -263,7 +259,6 @@ export default function TabEmailValidation({ email }: TabEmailValidationProps) {
         </div>
       )}
 
-      {/* Action Button */}
       <div className="flex justify-center">
         <button
           onClick={handleValidation}
@@ -289,7 +284,6 @@ export default function TabEmailValidation({ email }: TabEmailValidationProps) {
         </button>
       </div>
 
-      {/* Report Preview */}
       {status === 'done' && report && (
         <div className="mt-6 space-y-3">
           <div className="flex items-center justify-between">
@@ -307,7 +301,6 @@ export default function TabEmailValidation({ email }: TabEmailValidationProps) {
         </div>
       )}
 
-      {/* Error State */}
       {status === 'error' && (
         <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl">
           <div className="flex items-center gap-3">

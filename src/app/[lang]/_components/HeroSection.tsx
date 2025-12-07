@@ -43,7 +43,6 @@ export function HeroSection() {
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/40 rounded-xl transition-all duration-300"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </Link>
-              
               <Link 
                 href={`/${language}#whyquicksend`}
                 className="group relative px-8 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
@@ -60,7 +59,6 @@ export function HeroSection() {
             </Link>
             </div>
             
-            {/* Декоративные элементы в персиково-мятной палитре */}
             <div className="mt-12 flex justify-center space-x-4">
               <div className="w-3 h-3 rounded-full bg-[#FFD1A6] animate-pulse shadow-lg shadow-[#FFD1A6]/40"></div>
               <div className="w-3 h-3 rounded-full bg-[#AEE5C2] animate-pulse delay-75 shadow-lg shadow-[#AEE5C2]/40"></div>
@@ -68,7 +66,6 @@ export function HeroSection() {
             </div>
           </div>
           
-          {/* Левое изображение с мятным свечением */}
 <div className="relative w-[320px] h-[320px] lg:w-[370px] lg:h-[590px] flex-shrink-0 order-1 lg:order-1 mt-auto">
   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 to-transparent rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute -inset-4 bg-gradient-to-r from-[#AEE5C2]/20 to-transparent rounded-full blur-lg"></div>

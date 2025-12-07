@@ -64,14 +64,12 @@ export function ProductsSection() {
 
   return (
     <section id="products" className="py-16 px-4 bg-white dark:bg-gray-900 transition-colors">
-      {/* Декоративные фоны */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-cyan-400/10 rounded-full mix-blend-multiply filter blur-3xl dark:opacity-20"></div>
         <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-gradient-to-tr from-[#AEE5C2]/10 to-[#FFD1A6]/10 rounded-full mix-blend-multiply filter blur-3xl dark:opacity-20"></div>
       </div>
 
       <div className="container mx-auto relative z-10">
-        {/* Заголовок с градиентом */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] dark:from-blue-400 dark:via-cyan-300 dark:to-[#8ED8A8]">
@@ -82,8 +80,6 @@ export function ProductsSection() {
             {t('productsSubtitle') || 'Мощные инструменты для эффективной email-рассылки'}
           </p>
         </div>
-
-        {/* Карточки продуктов */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {products.map((product, i) => {
             const Icon = product.icon;

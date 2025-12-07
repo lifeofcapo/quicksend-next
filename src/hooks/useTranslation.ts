@@ -3,40 +3,50 @@ import { useLanguage } from '@/contexts/language-context';
 import en from '@/locales/en.json';
 import ru from '@/locales/ru.json';
 
-type TranslationKey = keyof typeof en;
+type Translations = {
+  en: typeof en;
+  ru: typeof ru;
+};
 
-const translations = {
+const translations: Translations = {
   en,
   ru,
 };
 
+type Language = keyof Translations;
+
 export function useTranslation() {
-  const { language } = useLanguage();
+  const { language = 'en' } = useLanguage(); 
+  
+  const currentLanguage = (language in translations ? language : 'en') as Language;
   
   const t = (key: string, params?: Record<string, any>): string => {
+    console.log(`Translating key: "${key}" for language: "${currentLanguage}"`);
+    
     const keys = key.split('.');
-    let value: any = translations[language];
+    let value: any = translations[currentLanguage];
     
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
         value = value[k];
       } else {
-        console.warn(`Translation not found for key: ${key}`);
-        return key;
+        console.warn(`Translation not found for key: "${key}" at segment: "${k}" in language: "${currentLanguage}"`);
+        console.warn('Available keys at this level:', Object.keys(value || {}));
+        return key; 
       }
     }
     
-    let result = typeof value === 'string' ? value : JSON.stringify(value);
+    if (typeof value !== 'string') {
+      console.warn(`Translation value is not a string for key: "${key}", got:`, typeof value, value);
+      return key;
+    }
+    
+    let result = value;
     
     if (params) {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
-        result = result.replace(new RegExp(`{{${paramKey}}}`, 'g'), String(paramValue));
-      
-        if (paramKey === 'count' && typeof paramValue === 'number') {
-          if (paramValue === 1 && `${key}_singular` in translations[language]) {
-          } else if (paramValue !== 1 && `${key}_plural` in translations[language]) {
-          }
-        }
+        const regex = new RegExp(`{{${paramKey}}}`, 'g');
+        result = result.replace(regex, String(paramValue));
       });
     }
     
