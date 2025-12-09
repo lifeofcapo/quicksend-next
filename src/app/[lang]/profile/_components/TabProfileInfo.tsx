@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { useTranslation } from '@/hooks/useTranslation';
+import Link from 'next/link';
+import { useLanguage } from '@/contexts/language-context';
 
 interface TabProfileInfoProps {
   user: any;
@@ -19,26 +21,24 @@ interface TabProfileInfoProps {
 
 export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) {
   const { t } = useTranslation();
+  const { language } = useLanguage();
   
   const avatarSrc =
     userData?.avatar_url ||
     user?.image ||
     '/default-avatar.png';
 
-  // Форматирование даты с учетом локали
   const formatDate = (dateString?: string) => {
     if (!dateString) return '—';
     
     try {
       const date = new Date(dateString);
-      // Используем локализованный формат
-      return format(date, 'PPP'); // например: "MMM d, yyyy"
+      return format(date, 'PPP');
     } catch (error) {
       return '—';
     }
   };
 
-  // Статус аккаунта с переводами
   const getTranslatedStatus = (status?: string) => {
     if (!status) return t('profile.active');
     
@@ -53,7 +53,6 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
     return statusMap[status.toLowerCase()] || status;
   };
 
-  // План с переводами
   const getTranslatedPlan = (plan?: string) => {
     if (!plan) return t('profile.freePlan');
     
@@ -70,7 +69,6 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
 
   return (
     <div className="space-y-6">
-      {/* Основная информация */}
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-6">
         <div className="relative w-24 h-24 sm:w-28 sm:h-28">
           <Image
@@ -81,8 +79,7 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
             unoptimized // важно для внешних URL (Google, Supabase)
             sizes="(max-width: 768px) 96px, 112px"
           />
-          
-          {/* Бейдж статуса */}
+        
           {userData?.status && (
             <div className={`absolute bottom-0 right-0 w-6 h-6 rounded-full border-2 border-white dark:border-gray-800 ${
               userData.status === 'active' || userData.status === 'trial'
@@ -115,28 +112,30 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
         </div>
       </div>
 
-      {/* Карточки с основной статистикой */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div className="p-5 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-900/10 rounded-xl border border-blue-100 dark:border-blue-800">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-100 dark:bg-blue-800/50 rounded-lg">
-              <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
-              {t('profile.activePlanLabel')}
-            </p>
-          </div>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">
-            {getTranslatedPlan(userData?.active_plan)}
-          </p>
-          {(!userData?.active_plan || userData.active_plan.toLowerCase() === 'free') && (
-            <button className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
-              {t('profile.upgradePlan')} →
-            </button>
-          )}
-        </div>
+<div className="p-5 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-900/10 rounded-xl border border-blue-100 dark:border-blue-800">
+    <div className="flex items-center gap-3 mb-2">
+      <div className="p-2 bg-blue-100 dark:bg-blue-800/50 rounded-lg">
+        <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+        {t('profile.activePlanLabel')}
+      </p>
+    </div>
+    <p className="text-xl font-bold text-gray-900 dark:text-white">
+      {getTranslatedPlan(userData?.active_plan)}
+    </p>
+    {(!userData?.active_plan || userData.active_plan.toLowerCase() === 'free') && (
+      <Link 
+        href={`/${language}/pricing`}
+        className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium inline-block"
+      >
+        {t('profile.upgradePlan')} →
+      </Link>
+    )}
+    </div>
 
         <div className="p-5 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-900/10 rounded-xl border border-green-100 dark:border-green-800">
           <div className="flex items-center gap-3 mb-2">
@@ -204,19 +203,14 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
         </div>
       </div>
 
-      {/* Детали аккаунта */}
       <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
             {t('profile.accountDetails')}
           </h2>
-          <button className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
-            {t('profile.editProfile')} →
-          </button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Левая колонка */}
           <div className="space-y-5">
             <div>
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
@@ -236,7 +230,7 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
 
             <div>
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
-                {t('profile.email')}
+                Email
               </p>
               <p className="text-gray-900 dark:text-white text-lg">
                 {user?.email ?? t('profile.emailFallback')}
@@ -253,7 +247,6 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
             </div>
           </div>
 
-          {/* Правая колонка */}
           <div className="space-y-5">
             <div>
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
@@ -282,7 +275,7 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
                   {userData?.emails_sent?.toLocaleString() ?? '0'}
                 </p>
                 <span className="text-sm text-green-600 dark:text-green-400">
-                  +12% {t('profile.fromLastMonth')}
+                  +0% {t('profile.fromLastMonth')}
                 </span>
               </div>
             </div>
