@@ -2,31 +2,12 @@
 
 import { useState } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
-import { ArrowRight, ArrowLeft, Check, AlertCircle } from 'lucide-react';
-
-
-interface ReportData {
-  firstName: string;
-  lastName: string;
-  companyName: string;
-  mailingAddress: string;
-  phoneNumber: string;
-  email: string;
-  additionalContacts: string;
-  
-  reportingPlatform: string;
-  reportType: string;
-  contentType: string;
-  reportingReason: string;
-  
-  evidenceUrl: string;
-  ownershipType: string;
-  ownershipExplanation: string;
-  
-  agreeTerms: boolean;
-  agreeAccuracy: boolean;
-  agreePenalties: boolean;
-}
+import { ArrowRight, ArrowLeft, Check} from 'lucide-react';
+import { 
+  FORM_CONSTANTS, 
+  ReportData 
+} from '@/lib/constants/tenty-form';
+import TentyInfo from '@/components/TentyInfo';
 
 export default function TentyReportForm() {
   const { t } = useTranslation();
@@ -55,75 +36,6 @@ export default function TentyReportForm() {
   const [errors, setErrors] = useState<Partial<Record<keyof ReportData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const platforms = [
-    'TikTok',
-    'YouTube',
-    'Spotify',
-    'SoundCloud',
-    'Apple Music',
-    'iTunes',
-    'Deezer',
-    'Amazon Music',
-    'Bandcamp',
-    'Beatport',
-    'Mixcloud',
-    'Pandora',
-    'Tidal',
-    'Google Play Music',
-    'Yandex Music',
-    'VK Music',
-    'Audiomack',
-    'ReverbNation',
-    'DistroKid',
-    'CD Baby',
-  ];
-
-  // Report types
-  const reportTypes = [
-    'Copyright Infringement',
-    'Trademark Violation',
-    'Right of Publicity/Likeness',
-    'Defamation',
-    'Privacy Violation',
-    'Counterfeit/Impersonation',
-    'Unauthorized Sampling',
-    'Plagiarism',
-  ];
-
-  // Content types
-  const contentTypes = [
-    'Music Composition',
-    'Sound Recording',
-    'Music Video',
-    'Podcast',
-    'Cover Song',
-    'Remix',
-    'Mashup',
-    'Lyrics',
-    'Album Artwork',
-    'Artist Biography',
-    'Playlist',
-    'Live Performance',
-    'DJ Set',
-    'Beat/Instrumental',
-    'Sound Effect',
-    'Audio Book',
-    'Jingle',
-    'Film Score',
-  ];
-
-  // Ownership types
-  const ownershipTypes = [
-    'I own the composition',
-    'I own the sound recording',
-    'I own the video content',
-    'I own the lyrics/text',
-    'I own the artwork/visuals',
-    'I represent the rights holder',
-    'I am the authorized agent',
-    'I have exclusive license',
-  ];
-
   const steps = [
     { number: 1, title: t('tenty.personalInfo') },
     { number: 2, title: t('tenty.reportDetails') },
@@ -131,9 +43,11 @@ export default function TentyReportForm() {
     { number: 4, title: t('tenty.reviewSubmit') },
   ];
 
-  const handleChange = (field: keyof ReportData, value: any) => {
+  const handleChange = <K extends keyof ReportData>(
+    field: K, 
+    value: ReportData[K]
+  ) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
     }
@@ -207,7 +121,6 @@ export default function TentyReportForm() {
     setIsSubmitting(true);
     
     try {
-      // Здесь будет API запрос для отправки формы
       const response = await fetch('/api/tenty/report', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -216,7 +129,6 @@ export default function TentyReportForm() {
 
       if (response.ok) {
         alert(t('tenty.submitSuccess'));
-        // Сброс формы или перенаправление
         setFormData({
           firstName: '',
           lastName: '',
@@ -247,27 +159,13 @@ export default function TentyReportForm() {
     }
   };
 
-  // Progress bar percentage
   const progressPercentage = ((currentStep - 1) / 3) * 100;
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      {/* Header with warning */}
-      <div className="mb-8 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl">
-        <div className="flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5" />
-          <div>
-            <h3 className="font-semibold text-yellow-800 dark:text-yellow-300 mb-2">
-              {t('tenty.importantNotice')}
-            </h3>
-            <p className="text-sm text-yellow-700 dark:text-yellow-400">
-              {t('tenty.legalWarning')}
-            </p>
-          </div>
-        </div>
-      </div>
 
-      {/* Progress Bar */}
+      <TentyInfo/>
+
       <div className="mb-8">
         <div className="flex justify-between mb-2">
           {steps.map(step => (
@@ -303,9 +201,7 @@ export default function TentyReportForm() {
         </div>
       </div>
 
-      {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Step 1: Personal Information */}
         {currentStep === 1 && (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -418,7 +314,6 @@ export default function TentyReportForm() {
           </div>
         )}
 
-        {/* Step 2: Report Details */}
         {currentStep === 2 && (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -438,9 +333,9 @@ export default function TentyReportForm() {
                   }`}
                 >
                   <option value="">{t('tenty.selectPlatform')}</option>
-                  {platforms.map(platform => (
-                    <option key={platform} value={platform}>{platform}</option>
-                  ))}
+                {FORM_CONSTANTS.platforms.map(platform => (
+                  <option key={platform} value={platform}>{platform}</option>
+                ))}
                 </select>
                 {errors.reportingPlatform && (
                   <p className="mt-1 text-sm text-red-600">{errors.reportingPlatform}</p>
@@ -459,9 +354,9 @@ export default function TentyReportForm() {
                   }`}
                 >
                   <option value="">{t('tenty.selectReportType')}</option>
-                  {reportTypes.map(type => (
-                    <option key={type} value={type}>{type}</option>
-                  ))}
+                {FORM_CONSTANTS.reportTypes.map(type => (
+                  <option key={type} value={type}>{type}</option>
+                ))}
                 </select>
                 {errors.reportType && (
                   <p className="mt-1 text-sm text-red-600">{errors.reportType}</p>
@@ -481,9 +376,9 @@ export default function TentyReportForm() {
                 }`}
               >
                 <option value="">{t('tenty.selectContentType')}</option>
-                {contentTypes.map(type => (
-                  <option key={type} value={type}>{type}</option>
-                ))}
+              {FORM_CONSTANTS.contentTypes.map(type => (
+                <option key={type} value={type}>{type}</option>
+              ))}
               </select>
               {errors.contentType && (
                 <p className="mt-1 text-sm text-red-600">{errors.contentType}</p>
@@ -514,7 +409,6 @@ export default function TentyReportForm() {
           </div>
         )}
 
-        {/* Step 3: Ownership Proof */}
         {currentStep === 3 && (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -554,9 +448,9 @@ export default function TentyReportForm() {
                 }`}
               >
                 <option value="">{t('tenty.selectOwnershipType')}</option>
-                {ownershipTypes.map(type => (
-                  <option key={type} value={type}>{type}</option>
-                ))}
+              {FORM_CONSTANTS.ownershipTypes.map(type => (
+                <option key={type} value={type}>{type}</option>
+              ))}
               </select>
               {errors.ownershipType && (
                 <p className="mt-1 text-sm text-red-600">{errors.ownershipType}</p>
@@ -587,7 +481,6 @@ export default function TentyReportForm() {
           </div>
         )}
 
-        {/* Step 4: Review and Submit */}
         {currentStep === 4 && (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
