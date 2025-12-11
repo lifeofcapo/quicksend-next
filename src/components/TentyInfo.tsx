@@ -9,16 +9,28 @@ export default function TentyInfo() {
     return (
         <>
             <section className="space-y-4">
-                <h3 className="text-2xl font-bold">Track Blocking / Tenty Service</h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                    We help producers, musicians and rights holders protect their work from
+                <h3 className="text-3xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    Content Protection & Takedown Service
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg font-medium">
+                    We help producers, musicians, and rights holders protect their creative work from
                     unauthorized use. Our team processes DSP complaints and manages
-                    takedowns on all major platforms, ensuring your music stays under your control.
+                    takedowns across all major platforms for <span className="font-semibold text-purple-600 dark:text-purple-400">tracks, cover art, podcasts, videos, and written content</span> — 
+                    ensuring your intellectual property stays under your control.
                 </p>
             </section>
             
-            <section className="flex items-start gap-6 p-6 border rounded-2xl shadow-sm dark:border-gray-700 dark:bg-gray-800/50">
-                <div className="flex-shrink-0">
+            <section className="relative flex items-start gap-6 p-6 my-8 border rounded-2xl shadow-sm dark:border-gray-700 dark:bg-gray-800/50">
+                <a 
+                    href="https://instagram.com/freshprincej_astro" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-pink-400 transition-colors duration-200"
+                >
+                    <Instagram className="w-6 h-6" />
+                </a>
+                
+                <div className="shrink-0">
                     <Image
                         src="/images/Jordan.png"
                         width={120}
@@ -26,15 +38,10 @@ export default function TentyInfo() {
                         alt="Manager"
                         className="rounded-xl object-cover"
                     />
-                    <div className="flex gap-3 mt-3 text-gray-600 dark:text-gray-300">
-                        <a href="https://instagram.com/freshprincej_astro" target="_blank" rel="noopener noreferrer">
-                            <Instagram className="w-5 h-5 hover:text-pink-500 transition" />
-                        </a>
-                    </div>
                 </div>
                 <div>
-                    <h4 className="text-xl font-semibold">Jordan Tennant</h4>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <h4 className="text-xl font-semibold mb-2">Jordan Tennant</h4>
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                         Jordan Tennant is a Music Entrepreneur who is the Co Founder of Tenty. 
                         He helps producers and songwriters with DSP takedowns. 3 years experience in Music Industry
                     </p>
