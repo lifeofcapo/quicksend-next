@@ -184,7 +184,15 @@
     "inactive": "Неактивный",
     "pending": "Ожидает",
     "suspended": "Приостановлен",
-    "trial": "Пробный период"
+    "trial": "Пробный период",
+    "managerDashboard": "Панель управления менеджера",
+    "tentyRequests": "Запросы Tenty",
+    "profileInfo": "Информация профиля",
+    "tenty": "Tenty",
+    "emailValidation": "Проверка email",
+    "dangerZone": "Опасная зона",
+    "name": "Имя",
+    "email": "Email"
   },
 "terms": {
   "title": "Условия использования Quicksend и политика борьбы со спамом",

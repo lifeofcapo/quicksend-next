@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { ArrowRight, ArrowLeft, Check, AlertCircle } from 'lucide-react';
 
+
 interface ReportData {
-  // Step 1: Personal Information
   firstName: string;
   lastName: string;
   companyName: string;
@@ -14,18 +14,15 @@ interface ReportData {
   email: string;
   additionalContacts: string;
   
-  // Step 2: Report Details
   reportingPlatform: string;
   reportType: string;
   contentType: string;
   reportingReason: string;
   
-  // Step 3: Ownership Proof
   evidenceUrl: string;
   ownershipType: string;
   ownershipExplanation: string;
   
-  // Step 4: Agreements
   agreeTerms: boolean;
   agreeAccuracy: boolean;
   agreePenalties: boolean;
@@ -58,7 +55,6 @@ export default function TentyReportForm() {
   const [errors, setErrors] = useState<Partial<Record<keyof ReportData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Platforms for selection
   const platforms = [
     'TikTok',
     'YouTube',
@@ -722,7 +718,6 @@ export default function TentyReportForm() {
           </div>
         )}
 
-        {/* Navigation Buttons */}
         <div className="flex justify-between pt-6 border-t border-gray-200 dark:border-gray-700">
           <button
             type="button"

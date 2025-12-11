@@ -9,19 +9,20 @@ import TabNotifications from './TabNotifications';
 import { useTranslation } from '@/hooks/useTranslation';
 
 const managerTabs = [
-  { id: 'manager_dashboard', label: 'Manager Dashboard' },
-  { id: 'manager_requests', label: 'Tenty Requests' },
+  { id: 'manager_dashboard', label: 'managerDashboard' },
+  { id: 'manager_requests', label: 'tentyRequests' },
 ];
 
 const userTabs = [
-  { id: 'profile', label: 'Profile Info' },
-  { id: 'notifications', label: 'Notifications' },
-  { id: 'tenty', label: 'Tenty' },
-  { id: 'email', label: 'Email Validation' },
-  { id: 'danger', label: 'Danger Zone' },
+  { id: 'profile', label: 'profileInfo' },
+  { id: 'notifications', label: 'notifications' },
+  { id: 'tenty', label: 'tenty' },
+  { id: 'email', label: 'emailValidation' },
+  { id: 'danger', label: 'dangerZone' },
 ];
 
 export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
+  const { t } = useTranslation(); 
   const tabs = isManager ? managerTabs : userTabs;
 
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -48,7 +49,7 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
             }`}
             onClick={() => setActiveTab(tab.id)}
           >
-            {tab.label}
+            {t(`profile.${tab.label}`)}
           </button>
         ))}
       </div>
@@ -61,7 +62,7 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
 
           {activeTab === 'notifications' && <TabNotifications />}
 
-          {activeTab === 'tenty' && <TabTenty userData={userData} />}
+          {activeTab === 'tenty' && <TabTenty/>}
 
           {activeTab === 'email' && (
             <TabEmailValidation email={sessionUser.email} />
@@ -91,11 +92,11 @@ function ManagerDashboard({ sessionUser }: any) {
   const { t } = useTranslation();
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">{t('managerDashboard')}</h2>
+      <h2 className="text-2xl font-bold mb-4">{t('profile.managerDashboard')}</h2> 
 
       <div className="p-5 bg-gray-50 dark:bg-gray-700/30 rounded-lg shadow">
-        <p><b>Name:</b> {sessionUser.name}</p>
-        <p><b>Email:</b> {sessionUser.email}</p>
+        <p><b>{t('profile.name')}:</b> {sessionUser.name}</p> 
+        <p><b>{t('profile.email')}:</b> {sessionUser.email}</p> 
         <p className="text-gray-500 mt-3">
           {t('profile.managerRoleDescription')}
         </p>

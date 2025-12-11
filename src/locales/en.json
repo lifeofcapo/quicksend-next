@@ -186,7 +186,14 @@
     "inactive": "Inactive",
     "pending": "Pending",
     "suspended": "Suspended",
-    "trial": "Trial"
+    "trial": "Trial",
+    "tentyRequests": "Tenty Requests",
+    "profileInfo": "Profile Info",
+    "tenty": "Tenty",
+    "emailValidation": "Email Validation",
+    "dangerZone": "Danger Zone",
+    "name": "Name",
+    "email": "Email"
   },
 "terms": {
     "title": "Quicksend Terms of Use and Anti-Spam Policy",
