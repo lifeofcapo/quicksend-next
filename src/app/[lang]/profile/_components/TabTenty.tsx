@@ -6,11 +6,23 @@ import { ArrowRight, ArrowLeft, Check} from 'lucide-react';
 import { 
   FORM_CONSTANTS, 
   ReportData 
-} from '@/lib/constants/tenty-form';
+} from '@/lib/tenty-form';
 import TentyInfo from '@/components/TentyInfo';
+import { useSession } from 'next-auth/react';
+import { validateStep } from '@/lib/reportValidation';
 
 export default function TentyReportForm() {
   const { t } = useTranslation();
+
+  const { data: session, status } = useSession();
+  
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+  
+  if (status === 'unauthenticated') {
+    return <div>Please sign in to submit a report</div>;
+  }
   
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<ReportData>({

@@ -9,13 +9,13 @@ export default function TentyInfo() {
     return (
         <>
             <section className="space-y-4">
-                <h3 className="text-3xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <h3 className="text-3xl font-bold bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] dark:from-blue-400 dark:via-cyan-300 dark:to-[#8ED8A8] bg-clip-text text-transparent">
                     Content Protection & Takedown Service
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg font-medium">
                     We help producers, musicians, and rights holders protect their creative work from
                     unauthorized use. Our team processes DSP complaints and manages
-                    takedowns across all major platforms for <span className="font-semibold text-purple-600 dark:text-purple-400">tracks, cover art, podcasts, videos, and written content</span> — 
+                    takedowns across all major platforms for <span className="font-semibold text-blue-500 dark:text-cyan-300">tracks, cover art, podcasts, videos, and written content</span> — 
                     ensuring your intellectual property stays under your control.
                 </p>
             </section>

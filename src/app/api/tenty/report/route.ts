@@ -13,6 +13,15 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
+
+    if (!body.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
+      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+    }
+    
+    if (!body.evidenceUrl || !/^https?:\/\//.test(body.evidenceUrl)) {
+      return NextResponse.json({ error: "Invalid evidence URL" }, { status: 400 });
+    }
+    
     const { data, error } = await supabaseAdmin
       .from("tenty_reports")
       .insert([

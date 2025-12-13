@@ -10,7 +10,6 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // проверяем что это менеджер
   if (session.user.email !== process.env.MANAGER_EMAIL) {
     return NextResponse.json({ error: "Not manager" }, { status: 403 });
   }
