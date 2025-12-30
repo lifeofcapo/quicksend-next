@@ -225,12 +225,12 @@ export default function TabNotifications() {
               >
                 <div className="flex gap-3">
                   {/* Notification Icon */}
-                  <div className="flex-shrink-0 pt-1 text-lg">
+                  <div className="shrink-0 pt-1 text-lg">
                     {getNotificationIcon(n.type)}
                   </div>
 
                   {/* Content */}
-                  <div className="flex-grow">
+                  <div className="grow">
                     <div className="flex justify-between items-start mb-2">
                       <h4 className={`font-medium ${
                         n.read 

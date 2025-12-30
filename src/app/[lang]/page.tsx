@@ -16,7 +16,7 @@ export default async function Home({
   
   return (
     <div className="relative z-10">
-      <main className="flex-grow">
+      <main className="grow">
         <HeroSection />
         <AdvantagesSection />
         <ProductsSection />
