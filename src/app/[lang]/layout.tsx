@@ -32,6 +32,37 @@ export async function generateMetadata({  // dynamic metadata
   return {
     title: titles[lang as Language],
     description: descriptions[lang as Language],
+    keywords: ['email marketing', 'mass email', 'cold emails', 'email campaigns', 'QuickSend'],
+    authors: [{ name: 'QuickSend Team' }],
+    openGraph: {
+      type: 'website',
+      locale: lang === 'ru' ? 'ru_RU' : 'en_US',
+      url: `https://quicksend-next.vercel.app/${lang}`,
+      siteName: 'QuickSend',
+      title: titles[lang as Language],
+      description: descriptions[lang as Language],
+      images: [
+        {
+          url: '/logo-color.png', // создайте это изображение 1200x630
+          width: 1200,
+          height: 630,
+          alt: 'QuickSend',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titles[lang as Language],
+      description: descriptions[lang as Language],
+      images: ['/logo-color.png'],
+    },
+    alternates: {
+      canonical: `https://quicksend-next.vercel.app/${lang}`,
+      languages: {
+        'en': 'https://quicksend-next.vercel.app/en',
+        'ru': 'https://quicksend-next.vercel.app/ru',
+      },
+    },
   };
 }
 
@@ -48,7 +79,7 @@ interface RootLayoutProps {
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { lang } = await params;
   
-  // Проверяем валидность языка
+  // Checking validity of language
   if (!languages.includes(lang as Language)) {
     notFound();
   }

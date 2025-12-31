@@ -125,7 +125,6 @@ export default function PricingContent({ lang }: PricingContentProps) {
     <div className={theme === 'dark' ? 'dark' : ''}>
       <div className="min-h-screen bg-linear-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors">
         <main className="pt-24 pb-32 px-4 relative">
-          {/* Фоновое изображение */}
           <div className="absolute inset-x-0 bottom-0 h-[600px] pointer-events-none overflow-hidden">
             <div className="absolute inset-0 bg-linear-to-t from-gray-50 via-transparent to-transparent dark:from-gray-900 dark:via-transparent z-10 opacity-70"></div>
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full opacity-40 dark:opacity-30">
@@ -140,24 +139,19 @@ export default function PricingContent({ lang }: PricingContentProps) {
           </div>
 
           <div className="container mx-auto max-w-7xl relative z-20">
-            {/* Заголовок */}
             <div className="relative bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] dark:from-blue-600 dark:via-cyan-500 dark:to-[#8ED8A8] rounded-2xl p-8 md:p-12 mb-12 text-center overflow-hidden">
               <div className="absolute inset-0 bg-linear-to-r from-blue-400/20 via-cyan-300/20 to-[#AEE5C2]/20"></div>
               <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
               
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
-                {t('title')}
+                {t('pricing')}
               </h1>
-              <p className="text-xl text-white/90 relative z-10">
-                {t('subtitle')}
-              </p>
             </div>
 
             <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
-              {t('pricingAdjusted')}
+              {t('pricingSub')}
             </p>
 
-            {/* Переключатель тарификации */}
             <div className="flex items-center justify-center gap-4 mb-12">
               <span className={`font-medium ${!isAnnual ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
                 {t('monthly')}
