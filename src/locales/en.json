@@ -58,8 +58,7 @@
     "standard": "Standard", 
     "premium": "Premium",
     "trialButton": "Start",
-    "standardButton": "Choose Standard",
-    "premiumButton": "Choose Premium",
+    "choose": "Choose",
     "features": {
       "trial": ["50 emails/day", "Basic features", "Email support"],
       "standard": ["500 emails/day", "Advanced features", "Priority support"],

@@ -11,7 +11,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ account, profile }) {
-      console.log("🟢 signIn profile:", profile);
+      console.log("signIn profile:", profile);
       if (account?.provider === "google" && profile?.email) {
         try {
           const email = profile.email;
@@ -38,9 +38,9 @@ export const authOptions: NextAuthOptions = {
               return false;
             }
 
-            console.log("✅ User created:", newUser);
+            console.log("User created");
           } else {
-            console.log("ℹ️ Existing user:", existingUser);
+            console.log("Existing user");
           }
         } catch (err) {
           console.error("Error syncing user with Supabase:", err);

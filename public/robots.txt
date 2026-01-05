@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://quicksend-next.vercel.app/sitemap.xml
+Sitemap: https://quicksend.vercel.app/sitemap.xml
