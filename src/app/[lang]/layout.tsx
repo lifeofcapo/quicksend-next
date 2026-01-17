@@ -43,7 +43,7 @@ export async function generateMetadata({  // dynamic metadata
       description: descriptions[lang as Language],
       images: [
         {
-          url: '/logo-color.png', // создайте это изображение 1200x630
+          url: '/logo-color.png',
           width: 1200,
           height: 630,
           alt: 'QuickSend',
@@ -66,7 +66,6 @@ export async function generateMetadata({  // dynamic metadata
   };
 }
 
-// Генерируем статические пути для языков
 export function generateStaticParams() {
   return languages.map((lang) => ({ lang }));
 }
