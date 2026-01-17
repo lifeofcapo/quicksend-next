@@ -1,5 +1,6 @@
 // src/app/[lang]/pricing/page.tsx
 import PricingContent from './_components/PricingContent';
+import PaypalSection from './_components/PaypalSection';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -23,5 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function PricingPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   
-  return <PricingContent lang={lang} />;
+  return (
+    <>
+      <PricingContent lang={lang} />
+      <PaypalSection/>
+    </>
+  );
 }

@@ -10,8 +10,7 @@ export async function POST() {
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
-    // Обновляем все непрочитанные уведомления пользователя
+    
     const { error: updateError } = await supabaseAdmin
       .from("notifications")
       .update({ read: true, updated_at: new Date().toISOString() })

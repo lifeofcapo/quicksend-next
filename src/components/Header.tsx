@@ -19,7 +19,6 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Проверка устройства и браузера
     const userAgent = navigator.userAgent;
     const isChromeBrowser = /chrome|chromium|crios/i.test(userAgent) && !/edg/i.test(userAgent);
     const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
@@ -32,7 +31,6 @@ export default function Header() {
     <header className="fixed top-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm z-50 border-b border-gray-200/50 dark:border-gray-800/50">
       <div className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
 
-        {/* LOGO */}
         <Link href={`/${language}`} className="flex items-center z-50">
           <div className="relative w-32 h-8 md:w-40 md:h-10">
             <Image
@@ -44,15 +42,13 @@ export default function Header() {
             />
           </div>
         </Link>
-
-        {/* NAV — Desktop */}
         <nav className="hidden md:flex space-x-6 lg:space-x-8 font-medium">
           <Link 
             href={`/${language}#whyquicksend`} 
             className="relative text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 group"
           >
             {t('header.aboutUs')}
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
 
           <Link 
@@ -60,7 +56,7 @@ export default function Header() {
             className="relative text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 group"
           >
             {t('header.products')}
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-[#AEE5C2] group-hover:w-full transition-all duration-300"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-cyan-400 to-[#AEE5C2] group-hover:w-full transition-all duration-300"></span>
           </Link>
 
           <Link 
@@ -68,7 +64,7 @@ export default function Header() {
             className="relative text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 group"
           >
             {t('header.pricing')}
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#AEE5C2] to-[#FFD1A6] group-hover:w-full transition-all duration-300"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-[#AEE5C2] to-[#FFD1A6] group-hover:w-full transition-all duration-300"></span>
           </Link>
 
           <Link 
@@ -76,13 +72,11 @@ export default function Header() {
             className="relative text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 group"
           >
             {t('header.contact')}
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#FFD1A6] to-blue-500 group-hover:w-full transition-all duration-300"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-[#FFD1A6] to-blue-500 group-hover:w-full transition-all duration-300"></span>
           </Link>
         </nav>
 
-        {/* RIGHT SIDE — Desktop */}
         <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
-          {/* Theme toggle */}
           <button
             onClick={toggleTheme}
             className="p-2 rounded-xl bg-gray-100/50 dark:bg-gray-800/50 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-300"
@@ -93,7 +87,6 @@ export default function Header() {
               : <Sun className="w-5 h-5 text-yellow-400" />}
           </button>
 
-          {/* Language toggle */}
           <button
             onClick={toggleLanguage}
             className="flex items-center space-x-2 px-3 py-2 rounded-xl hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-all duration-300 group"
@@ -104,7 +97,6 @@ export default function Header() {
             </span>
           </button>
 
-          {/* Auth */}
           {!session ? (
             <div className="flex items-center space-x-3">
               <Link
@@ -119,11 +111,9 @@ export default function Header() {
                   href={`/${language}/auth/register`}
                   className="group relative px-5 py-2.5 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20"
                 >
-                  {/* Основной градиент */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] group-hover:from-blue-600 group-hover:via-cyan-500 group-hover:to-[#8ED8A8] transition-all duration-500"></div>
-                  
-                  {/* Анимированная полоска света */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                  <div className="absolute inset-0 bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] group-hover:from-blue-600 group-hover:via-cyan-500 group-hover:to-[#8ED8A8] transition-all duration-500"></div>
+                
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   
                   <span className="relative flex items-center text-white font-semibold text-sm">
                     {t('startFree')}
@@ -134,14 +124,14 @@ export default function Header() {
                 <div className="relative group">
                   <button
                     disabled
-                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-gray-400 via-gray-300 to-gray-400 text-white font-semibold text-sm opacity-70 cursor-not-allowed"
+                    className="px-5 py-2.5 rounded-xl bg-linear-to-r from-gray-400 via-gray-300 to-gray-400 text-white font-semibold text-sm opacity-70 cursor-not-allowed"
                   >
                     {t('startFree')}
                   </button>
                   
                   <div className="absolute top-full right-0 mt-2 w-64 p-3 bg-white dark:bg-gray-800 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-gray-200 dark:border-gray-700">
                     <div className="flex items-start gap-2">
-                      <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                      <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400 mt-0.5 shrink-0" />
                       <div>
                         <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-1">
                           {isMobile ? t('isMobile.title') : t('isChrome.title')}
@@ -166,7 +156,6 @@ export default function Header() {
           )}
         </div>
 
-        {/* MOBILE BURGER */}
         <button
           className="md:hidden p-2 relative z-50 rounded-xl hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -184,8 +173,7 @@ export default function Header() {
       {/* MOBILE MENU */}
       <div className={`md:hidden fixed inset-0 bg-white dark:bg-gray-900 transition-all duration-300 ease-in-out ${mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
         <div className="container mx-auto px-6 pt-20 pb-8 h-full flex flex-col">
-          
-          {/* Закрывающая кнопка */}
+      
           <button
             className="absolute top-5 right-4 p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800"
             onClick={() => setMobileOpen(false)}
@@ -194,7 +182,6 @@ export default function Header() {
             <X className="w-6 h-6 text-gray-700 dark:text-gray-300" />
           </button>
 
-          {/* Меню навигации */}
           <nav className="flex-1 space-y-6 font-medium">
             <Link 
               href={`/${language}#whyquicksend`} 
@@ -231,7 +218,7 @@ export default function Header() {
           {!canInstall && (
             <div className="mb-6 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30">
               <div className="flex items-center gap-3">
-                <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400 flex-shrink-0" />
+                <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400 shrink-0" />
                 <div>
                   <p className="text-sm font-semibold text-red-700 dark:text-red-300">
                     {isMobile ? t('isMobile.title') : t('isChrome.title')}
@@ -244,11 +231,9 @@ export default function Header() {
             </div>
           )}
 
-          {/* Управление и авторизация */}
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                {/* Theme toggle */}
                 <button
                   onClick={toggleTheme}
                   className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -259,7 +244,6 @@ export default function Header() {
                     : <Sun className="w-6 h-6 text-yellow-400" />}
                 </button>
 
-                {/* Language toggle */}
                 <button
                   onClick={toggleLanguage}
                   className="flex items-center gap-2 px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -286,7 +270,7 @@ export default function Header() {
                     className="group relative block px-6 py-4 text-center rounded-xl overflow-hidden transition-all duration-300"
                     onClick={() => setMobileOpen(false)}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] group-hover:from-blue-600 group-hover:via-cyan-500 group-hover:to-[#8ED8A8] transition-all duration-500"></div>
+                    <div className="absolute inset-0 bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] group-hover:from-blue-600 group-hover:via-cyan-500 group-hover:to-[#8ED8A8] transition-all duration-500"></div>
                     
                     <span className="relative flex items-center justify-center text-white font-semibold text-lg">
                       {t('startFree')}
@@ -296,7 +280,7 @@ export default function Header() {
                 ) : (
                   <button
                     disabled
-                    className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-gray-400 via-gray-300 to-gray-400 text-white font-semibold text-lg opacity-70 cursor-not-allowed"
+                    className="w-full px-6 py-4 rounded-xl bg-linear-to-r from-gray-400 via-gray-300 to-gray-400 text-white font-semibold text-lg opacity-70 cursor-not-allowed"
                   >
                     {t('startFree')}
                   </button>

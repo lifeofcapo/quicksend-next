@@ -11,7 +11,6 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Получаем уведомления по user_id (теперь он в сессии!)
     const { data: notifications, error } = await supabaseAdmin
       .from("notifications")
       .select("*")

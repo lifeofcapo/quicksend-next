@@ -211,7 +211,7 @@
     "accountSuspension": "Gmail and G Suite account suspensions or closures",
     "accountSuspensionText": "QuickSend and its parent company, QuickSend, Inc., cannot be held responsible if Google suspends or terminates your Google or Gmail account because of QuickSend use. Ultimately, you are responsible for the email activity inside your Gmail account. You understand and agree that QuickSend is designed to automate the sending of mass emails through your Google account, and it is your responsibility to adhere to Google's own terms and conditions. QuickSend has no ability to reinstate a Google account should Google decide to suspend or terminate it.",
     "subscriptions": "Subscriptions",
-    "subscriptionsText": "You understand that if you subscribe to a paid QuickSend account using a credit card or PayPal account, you will be charged a monthly or annual fee, based on the plan you choose, until you cancel your subscription. This does not apply to Bitcoin-based subscriptions.",
+    "subscriptionsText": "You understand that if you subscribe to a paid QuickSend account using a credit card or PayPal account, you will be charged a monthly or annual fee, based on the plan you choose, until you cancel your subscription.",
     "chargebacks": "Chargebacks",
     "chargebacksText": "Sometimes, a subscribed user will choose to issue a chargeback via their credit card company in order to effect a cancellation. As a small business, we are sensitive to chargebacks and the costs we incur because of them, and as a result, we take the following action when a chargeback is issued against our merchant account:\n\n1. We investigate the incident to determine if we are at fault.\n2. If we find that we are not at fault, we submit evidence to the credit card company to defend our charges.\n3. We automatically cancel the subscription associated with the chargeback.\n4. We institute either a lifetime ban on that particular Google account, or a reinstatement fee on the account should the account decide to re-subscribe to QuickSend in the future.",
     "support": "Support",
@@ -397,5 +397,22 @@
     "minCharacters": "Must be at least {{count}} characters",
     "maxCharacters": "Must not exceed {{count}} characters",
     "agreeRequired": "You must agree to continue"
+  },
+  "paypal": {
+    "securePayment": "Secure Payment",
+    "securePaymentDescription": "Pay securely through PayPal. Your payment details are protected by the world leader in online payments.",
+    "buyerProtection": "Buyer Protection",
+    "buyerProtectionDescription": "Full purchase protection. Money back guarantee if there are issues with your subscription.",
+    "multiplePaymentMethods": "Multiple Payment Methods", 
+    "multiplePaymentMethodsDescription": "Pay with credit card, debit card, or through your PayPal balance.",
+    "securityNote": "SSL encryption • 256-bit security",
+    "selectPlan": "Select Plan for Payment",
+    "selectPlanDescription": "Start using QuickSend immediately after payment",
+    "creditDebitCard": "Credit/Debit Card",
+    "recommended": "Recommended",
+    "subscribeWithPaypal": "Subscribe with PayPal",
+    "termsAgreement": "By clicking the button, you agree to our ",
+    "termsOfService": "Terms of Service",
+    "privacyNote": "Your payment details are never stored on our servers"
   }
 }

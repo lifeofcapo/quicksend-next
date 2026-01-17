@@ -7,7 +7,7 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 export async function POST(
   request: Request,
-  { params }: { params: Promise<{ id: string }> } // params is a Promise!
+  { params }: { params: Promise<{ id: string }> } 
 ) {
   try {
     const session = await getServerSession(authOptions);
