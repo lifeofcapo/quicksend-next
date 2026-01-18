@@ -13,7 +13,6 @@ interface LoginPageProps {
 export default async function LoginPage({ params }: LoginPageProps) {
   const session = await getServerSession(authOptions);
   
-  // Если пользователь уже авторизован, перенаправляем на профиль
   if (session) {
     redirect(`/${params.lang}/profile`);
   }

@@ -414,5 +414,6 @@
     "termsAgreement": "By clicking the button, you agree to our ",
     "termsOfService": "Terms of Service",
     "privacyNote": "Your payment details are never stored on our servers"
-  }
+  },
+  "and": "and"
 }

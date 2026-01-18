@@ -65,14 +65,14 @@ export function ProductsSection() {
   return (
     <section id="products" className="py-16 px-4 bg-white dark:bg-gray-900 transition-colors">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-cyan-400/10 rounded-full mix-blend-multiply filter blur-3xl dark:opacity-20"></div>
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-gradient-to-tr from-[#AEE5C2]/10 to-[#FFD1A6]/10 rounded-full mix-blend-multiply filter blur-3xl dark:opacity-20"></div>
+        <div className="absolute -top-20 -right-20 w-64 h-64 bg-linear-to-br from-blue-500/10 to-cyan-400/10 rounded-full mix-blend-multiply filter blur-3xl dark:opacity-20"></div>
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-linear-to-tr from-[#AEE5C2]/10 to-[#FFD1A6]/10 rounded-full mix-blend-multiply filter blur-3xl dark:opacity-20"></div>
       </div>
 
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] dark:from-blue-400 dark:via-cyan-300 dark:to-[#8ED8A8]">
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] dark:from-blue-400 dark:via-cyan-300 dark:to-[#8ED8A8]">
               {t('productsTitle')}
             </span>
           </h2>
@@ -88,12 +88,12 @@ export function ProductsSection() {
                 key={i} 
                 className="group relative flex flex-col h-full bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm p-6 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 hover:border-transparent hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] overflow-hidden"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
+                <div className={`absolute inset-0 bg-linear-to-br ${product.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
                 
                 <div className="flex-1">
                   <div className="relative inline-flex mb-4">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
-                    <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center">
+                    <div className={`absolute inset-0 bg-linear-to-br ${product.gradient} rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
+                    <div className="relative w-14 h-14 rounded-xl bg-linear-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 flex items-center justify-center">
                       <Icon className="w-7 h-7" 
                         style={{
                           background: `linear-gradient(135deg, ${product.gradient.replace('from-', '').replace('to-', '').replace(' ', ', ')})`,
@@ -105,7 +105,7 @@ export function ProductsSection() {
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-3 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-br group-hover:bg-clip-text transition-all duration-300"
+                  <h3 className="text-xl font-bold mb-3 dark:text-white group-hover:text-transparent group-hover:bg-linear-to-br group-hover:bg-clip-text transition-all duration-300"
                       style={{backgroundImage: `linear-gradient(135deg, ${product.gradient})`}}>
                     {t(product.titleKey)}
                   </h3>
@@ -119,10 +119,10 @@ export function ProductsSection() {
                     href={`/${language}/faq`}
                     className="group/link relative inline-flex items-center justify-between w-full px-4 py-3 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-md"
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-r ${product.gradient} opacity-5 group-hover/link:opacity-10 transition-opacity duration-300`}></div>
+                    <div className={`absolute inset-0 bg-linear-to-r ${product.gradient} opacity-5 group-hover/link:opacity-10 transition-opacity duration-300`}></div>
                     <div className="absolute inset-0 border border-gray-200 dark:border-gray-700 rounded-lg group-hover/link:border-transparent transition-colors duration-300"></div>
                     
-                    <span className="relative text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover/link:text-transparent group-hover/link:bg-gradient-to-r group-hover/link:bg-clip-text transition-all duration-300"
+                    <span className="relative text-sm font-semibold text-gray-700 dark:text-gray-300 group-hover/link:text-transparent group-hover/link:bg-linear-to-r group-hover/link:bg-clip-text transition-all duration-300"
                           style={{backgroundImage: `linear-gradient(90deg, ${product.gradient})`}}>
                       {t('moreDetails')}
                     </span>
@@ -131,8 +131,8 @@ export function ProductsSection() {
                   </Link>
                 </div>
 
-                <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute -top-2 -left-2 w-12 h-12 bg-gradient-to-tr from-[#AEE5C2]/10 to-transparent rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-500 delay-100"></div>
+                <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-linear-to-br from-blue-500/10 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute -top-2 -left-2 w-12 h-12 bg-linearto-tr from-[#AEE5C2]/10 to-transparent rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-500 delay-100"></div>
               </div>
             );
           })}
@@ -151,11 +151,11 @@ export function ProductsSection() {
               href={`/${language}/profile`}
               className="group relative inline-flex items-center justify-center px-8 py-4 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] group-hover:from-blue-600 group-hover:via-cyan-500 group-hover:to-[#8ED8A8] transition-all duration-500"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] group-hover:from-blue-600 group-hover:via-cyan-500 group-hover:to-[#8ED8A8] transition-all duration-500"></div>
               
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-300 to-[#AEE5C2] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-blue-400 via-cyan-300 to-[#AEE5C2] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
               
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               
               <div className="relative flex items-center gap-3">
                 <div className="relative">
@@ -174,7 +174,7 @@ export function ProductsSection() {
             </Link>
           ) : (
             <div className="group relative inline-flex items-center justify-center px-8 py-4 rounded-2xl overflow-hidden transition-all duration-300 cursor-not-allowed opacity-70">
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-400 via-gray-300 to-gray-400"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-gray-400 via-gray-300 to-gray-400"></div>
 
               <div className="relative flex items-center gap-3">
                 <div className="relative">

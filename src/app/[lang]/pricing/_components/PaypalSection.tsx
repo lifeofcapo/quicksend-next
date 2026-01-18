@@ -4,13 +4,20 @@ import { useState } from 'react';
 import { Lock, Shield, CreditCard } from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useLanguage } from '@/contexts/language-context';
+import TermsAgreement from '@/components/TermsAgreement';
 
-export default function PaypalSection () {
-    const [isAnnual, setIsAnnual] = useState(false);
-    const { theme } = useTheme();
-    const { t } = useTranslation();
-        return (
-        <div className="container mx-auto max-w-7xl z-20 pt-24 pb-32 px-4 relative bg-linear-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors">
+export default function PaypalSection() {
+  const [isAnnual, setIsAnnual] = useState(false);
+  const { theme } = useTheme();
+  const { t } = useTranslation();
+  const { language } = useLanguage();
+  const subscribeButtonText = t('paypal.subscribeWithPaypal');
+  return (
+    <div className={theme === 'dark' ? 'dark' : ''}>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+        <div className="pt-24 pb-32 px-4">
+          <div className="container mx-auto max-w-7xl">
             <div className="bg-white dark:bg-gray-800/50 rounded-2xl p-8 md:p-12 shadow-xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
@@ -26,7 +33,7 @@ export default function PaypalSection () {
                     </div>
                     
                     <p className="text-gray-600 dark:text-gray-400 text-lg">
-                        {t('paypal.securePaymentDescription')}
+                      {t('paypal.securePaymentDescription')}
                     </p>
                   </div>
 
@@ -38,10 +45,10 @@ export default function PaypalSection () {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                            {t('paypal.buyerProtection')}
+                          {t('paypal.buyerProtection')}
                         </h3>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {t('paypal.buyerProtectionDescription')}
+                          {t('paypal.buyerProtectionDescription')}
                         </p>
                       </div>
                     </div>
@@ -53,10 +60,10 @@ export default function PaypalSection () {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                            {t('paypal.multiplePaymentMethods')}
+                          {t('paypal.multiplePaymentMethods')}
                         </h3>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {t('paypal.multiplePaymentMethodsDescription')}
+                          {t('paypal.multiplePaymentMethodsDescription')}
                         </p>
                       </div>
                     </div>
@@ -75,10 +82,10 @@ export default function PaypalSection () {
                 <div className="bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50 rounded-xl p-8 border border-gray-200/30 dark:border-gray-700/30">
                   <div className="text-center mb-8">
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                        {t('paypal.selectPlan')}
+                      {t('paypal.selectPlan')}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                        {t('paypal.selectPlanDescription')}
+                      {t('paypal.selectPlanDescription')}
                     </p>
                   </div>
 
@@ -94,7 +101,7 @@ export default function PaypalSection () {
                               PayPal
                             </div>
                             <div className="text-sm text-gray-600 dark:text-gray-400">
-                                {t('paypal.creditDebitCard')}
+                              {t('paypal.creditDebitCard')}
                             </div>
                           </div>
                         </div>
@@ -114,7 +121,7 @@ export default function PaypalSection () {
                       
                       <div className="relative flex items-center justify-center gap-3">
                         <div className="font-bold text-lg">
-                            {t('paypal.subscribeWithPaypal')}
+                          {t('paypal.subscribeWithPaypal')}
                         </div>
                         <Lock className="w-5 h-5" />
                       </div>
@@ -123,12 +130,10 @@ export default function PaypalSection () {
                     </button>
 
                     <div className="text-center pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {t('paypal.termsAgreement')}
-                        <a href="#" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
-                          {t('paypal.termsOfService')}
-                        </a>
-                      </p>
+                      <TermsAgreement 
+                        buttonName={subscribeButtonText} 
+                        variant="paypal" 
+                      />
                       <div className="mt-2 flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-500">
                         <Shield className="w-3 h-3" />
                         <span>
@@ -140,6 +145,9 @@ export default function PaypalSection () {
                 </div>
               </div>
             </div>
+          </div>
         </div>
-)
+      </div>
+    </div>
+  );
 }

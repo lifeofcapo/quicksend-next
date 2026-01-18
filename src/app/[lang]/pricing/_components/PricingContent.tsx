@@ -2,33 +2,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Rocket, Star, Crown, Check, X, Lock, Shield, CreditCard } from 'lucide-react';
+import { Rocket, Star, Crown, Check, X} from 'lucide-react';
 import { useTheme } from '@/contexts/theme-context';
 import { useTranslation } from '@/hooks/useTranslation';
 import Image from 'next/image';
-
-interface PlanFeature {
-  textRu: string;
-  textEn: string;
-  included: boolean;
-}
-
-interface Plan {
-  id: string;
-  nameRu: string;
-  nameEn: string;
-  icon: typeof Rocket;
-  monthlyPriceRu: number;
-  monthlyPriceEn: number;
-  annualPriceRu: number;
-  annualPriceEn: number;
-  isPopular?: boolean;
-  features: PlanFeature[];
-}
-
-interface PricingContentProps {
-  lang: string;
-}
+import { PlanFeature, Plan, PricingContentProps } from '../../../../types/interface';
 
 export default function PricingContent({ lang }: PricingContentProps) {
   const [isAnnual, setIsAnnual] = useState(false);

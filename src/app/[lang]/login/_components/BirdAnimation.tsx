@@ -1,109 +1,57 @@
 // @/app/[lang]/login/_components/BirdAnimation.tsx
 'use client';
-import { useEffect, useMemo, useState } from "react";
-
-interface EyePosition {
-  leftEyeMoveX: number;
-  leftEyeMoveY: number;
-  rightEyeMoveX: number;
-  rightEyeMoveY: number;
-}
+import { useEffect, useMemo, useState, useRef } from "react";
 
 export default function BirdAnimation() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [birdCenter, setBirdCenter] = useState({ x: 0, y: 0 });
-  const [isClient, setIsClient] = useState(false);
+  const birdRef = useRef<HTMLDivElement | null>(null);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [eyeCenter, setEyeCenter] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    setIsClient(true);
-    
-    const updateBirdCenter = () => {
-      if (typeof window !== "undefined") {
-        const viewportCenterX = window.innerWidth / 2;
-        const viewportCenterY = window.innerHeight / 2;
-        
-        setBirdCenter({ 
-          x: viewportCenterX, 
-          y: viewportCenterY - 100
-        });
-      }
+    const updateEyeCenter = () => {
+      if (!birdRef.current) return;
+      const rect = birdRef.current.getBoundingClientRect();
+      setEyeCenter({
+        x: rect.left + rect.width * 0.72,
+        y: rect.top + rect.height * 0.28,
+      });
     };
 
-    updateBirdCenter();
-    window.addEventListener("resize", updateBirdCenter);
+    updateEyeCenter();
+    window.addEventListener("resize", updateEyeCenter);
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    const onMove = (e: MouseEvent) => {
+      setMouse({ x: e.clientX, y: e.clientY });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", onMove);
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", updateBirdCenter);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("resize", updateEyeCenter);
     };
   }, []);
 
-  // Вычисляем смещение для зрачков
-  const eyePosition: EyePosition = useMemo(() => {
-    // На сервере возвращаем нулевые значения
-    if (!isClient) {
-      return {
-        leftEyeMoveX: 0,
-        leftEyeMoveY: 0,
-        rightEyeMoveX: 0,
-        rightEyeMoveY: 0
-      };
-    }
+  const eyePositions = useMemo(() => {
+    const dx = mouse.x - eyeCenter.x;
+    const dy = mouse.y - eyeCenter.y;
+    const angle = Math.atan2(dy, dx);
+    const dist = Math.min(Math.hypot(dx, dy) / 60, 1);
+    const max = 6;
 
-    // Центр каждого глаза относительно центра птички
-    const leftEyeCenterX = birdCenter.x - 90;
-    const leftEyeCenterY = birdCenter.y - 20;
-    
-    const rightEyeCenterX = birdCenter.x - 60;
-    const rightEyeCenterY = birdCenter.y - 20;
-
-    // Для левого глаза
-    const leftEyeX = position.x - leftEyeCenterX;
-    const leftEyeY = position.y - leftEyeCenterY;
-
-    // Для правого глаза
-    const rightEyeX = position.x - rightEyeCenterX;
-    const rightEyeY = position.y - rightEyeCenterY;
-
-    const leftAngle = Math.atan2(leftEyeY, leftEyeX);
-    const rightAngle = Math.atan2(rightEyeY, rightEyeX);
-
-    const maxMovement = 6;
-
-    // Ограничиваем движение зрачков внутри глаза
-    const leftDistance = Math.min(Math.sqrt(leftEyeX * leftEyeX + leftEyeY * leftEyeY) / 50, 1);
-    const rightDistance = Math.min(Math.sqrt(rightEyeX * rightEyeX + rightEyeY * rightEyeY) / 50, 1);
-
-    const leftX = Math.cos(leftAngle) * maxMovement * leftDistance;
-    const leftY = Math.sin(leftAngle) * maxMovement * leftDistance;
-    
-    const rightX = Math.cos(rightAngle) * maxMovement * rightDistance;
-    const rightY = Math.sin(rightAngle) * maxMovement * rightDistance;
-
-    return { 
-      leftEyeMoveX: leftX, 
-      leftEyeMoveY: leftY,
-      rightEyeMoveX: rightX,
-      rightEyeMoveY: rightY
+    return {
+      left: {
+        x: Math.cos(angle) * max * dist,
+        y: Math.sin(angle) * max * dist,
+      },
+      right: {
+        x: Math.cos(angle) * max * dist,
+        y: Math.sin(angle) * max * dist,
+      }
     };
-  }, [position, birdCenter, isClient]);
-
-  // Используем стиль только после гидратации
-  const leftEyeStyle = isClient ? {
-    transform: `translate(${eyePosition.leftEyeMoveX}px, ${eyePosition.leftEyeMoveY}px)`
-  } : {};
-
-  const rightEyeStyle = isClient ? {
-    transform: `translate(${eyePosition.rightEyeMoveX}px, ${eyePosition.rightEyeMoveY}px)`
-  } : {};
+  }, [mouse, eyeCenter]);
 
   return (
-    <div className="relative mb-6 z-10">
+    <div className="relative mb-6 z-10" ref={birdRef}>
       {/* Тело */}
       <div className="w-48 h-28 bg-sky-500 rounded-full relative shadow-xl dark:bg-sky-600">
         {/* Голова */}
@@ -112,13 +60,17 @@ export default function BirdAnimation() {
           <div className="absolute top-4 left-3 w-6 h-6 bg-white rounded-full overflow-hidden">
             <div
               className="absolute top-1 left-1 w-3 h-3 bg-black rounded-full transition-transform duration-150"
-              style={leftEyeStyle}
+              style={{
+                transform: `translate(${eyePositions.left.x}px, ${eyePositions.left.y}px)`,
+              }}
             />
           </div>
           <div className="absolute top-4 right-3 w-6 h-6 bg-white rounded-full overflow-hidden">
             <div
               className="absolute top-1 left-1 w-3 h-3 bg-black rounded-full transition-transform duration-150"
-              style={rightEyeStyle}
+              style={{
+                transform: `translate(${eyePositions.right.x}px, ${eyePositions.right.y}px)`,
+              }}
             />
           </div>
 
