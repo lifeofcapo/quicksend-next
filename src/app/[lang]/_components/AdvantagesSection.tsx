@@ -4,11 +4,6 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { Zap, Shield, Snowflake, DollarSign, TrendingUp, Settings } from 'lucide-react';
 import HeroLottieAnimation from '@/components/HeroLottieAnimation';
 
-type LangValue = {
-  ru: string;
-  en: string;
-};
-
 export function AdvantagesSection() {
   const { language } = useLanguage();
   const { t } = useTranslation();
@@ -55,7 +50,7 @@ export function AdvantagesSection() {
         relative overflow-hidden
       "
     >
-      <div className="absolute inset-0 pointer-events-none opacity-40 md:opacity-100">
+      <div className="hidden lg:block absolute inset-0 pointer-events-none opacity-40 md:opacity-100">
         <HeroLottieAnimation />
       </div>
 
