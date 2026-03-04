@@ -105,7 +105,7 @@ export default function PaypalSection() {
                             </div>
                           </div>
                         </div>
-                        <div className="text-right shrink-0">
+                        <div className="text-right shrink-0 hidden sm:block">
                           <div className="font-bold text-gray-900 dark:text-white">
                             {isAnnual ? '20% OFF' : 'Standard'}
                           </div>

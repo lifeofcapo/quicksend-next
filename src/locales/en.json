@@ -58,7 +58,6 @@
     "standard": "Standard", 
     "premium": "Premium",
     "trialButton": "Start",
-    "choose": "Choose",
     "features": {
       "trial": ["50 emails/day", "Basic features", "Email support"],
       "standard": ["500 emails/day", "Advanced features", "Priority support"],
@@ -397,7 +396,8 @@
     "invalidUrl": "Please enter a valid URL starting with http:// or https://",
     "minCharacters": "Must be at least {{count}} characters",
     "maxCharacters": "Must not exceed {{count}} characters",
-    "agreeRequired": "You must agree to continue"
+    "agreeRequired": "You must agree to continue",
+    "bio": "Jordan Tennant is a Music Entrepreneur who is the Co Founder of Tenty. He helps producers and songwriters with DSP takedowns. 3 years experience in Music Industry"
   },
   "paypal": {
     "securePayment": "Secure Payment",
@@ -416,5 +416,6 @@
     "termsOfService": "Terms of Service",
     "privacyNote": "Your payment details are never stored on our servers"
   },
-  "and": "and"
+  "and": "and",
+  "choose": "Choose"
 }

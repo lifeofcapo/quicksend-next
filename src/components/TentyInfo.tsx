@@ -21,7 +21,7 @@ export default function TentyInfo() {
                 </div>
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2">
-                        <h4 className="text-lg font-semibold truncate">Jordan Tennant</h4>
+                        <h4 className="text-lg font-semibold">Jordan Tennant</h4>
                         <a 
                             href="https://instagram.com/freshprincej_astro" 
                             target="_blank" 
@@ -34,8 +34,7 @@ export default function TentyInfo() {
                 </div>
             </div>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm sm:text-base">
-                Jordan Tennant is a Music Entrepreneur who is the Co Founder of Tenty. 
-                He helps producers and songwriters with DSP takedowns. 3 years experience in Music Industry
+                {t('tenty.bio')}
             </p>
         </section>
             
