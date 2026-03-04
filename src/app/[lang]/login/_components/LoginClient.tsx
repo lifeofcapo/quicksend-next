@@ -14,7 +14,7 @@ export default function LoginClient () {
   const subscribeButtonText = t('login.continueWithGoogle');
   
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center gap-8 bg-linear-to-br from-sky-50 to-indigo-100 dark:from-slate-900 dark:to-sky-800 relative overflow-hidden transition-colors duration-300 pt-45 pb-16">
+    <div className="min-h-screen flex flex-col justify-center items-center gap-8 bg-linear-to-br from-sky-50 to-indigo-100 dark:from-slate-900 dark:to-sky-800 relative overflow-hidden transition-colors duration-300 pt-45 pb-16 px-4">
 
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-10 -left-10 w-28 h-28 bg-sky-200 rounded-full opacity-20 animate-float dark:bg-sky-700"></div>
@@ -24,17 +24,17 @@ export default function LoginClient () {
 
       <BirdAnimation />
 
-      <div className="text-center z-10 bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-white/20 animate-fade-in dark:bg-slate-800/70 dark:border-slate-700 max-w-lg w-full mx-4">
+      <div className="text-center z-10 bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-white/20 animate-fade-in dark:bg-slate-800/70 dark:border-slate-700 max-w-lg w-full">
         
         <h1 className="text-4xl font-bold bg-linear-to-r from-sky-700 to-indigo-600 bg-clip-text text-transparent mb-2 dark:from-sky-300 dark:to-indigo-300">
           {t('login.welcome')}
         </h1>
 
-        <p className="text-gray-500 mb-8 max-w-md mx-auto dark:text-gray-400 px-4">
+        <p className="text-gray-500 mb-8 max-w-md mx-auto dark:text-gray-400 px-2">
           {t('login.joinCommunity')}
         </p>
 
-        <div className="px-4">
+        <div className="px-2 sm:px-4">
           <button
             onClick={() => signIn("google", { 
               callbackUrl: `/${language}/profile`

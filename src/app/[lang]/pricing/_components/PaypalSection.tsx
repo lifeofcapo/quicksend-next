@@ -22,7 +22,7 @@ export default function PaypalSection() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="relative">
                         <div className="absolute inset-0 bg-linear-to-r from-blue-500 to-green-500 blur-md opacity-20"></div>
                         <Lock className="w-8 h-8 text-green-600 dark:text-green-400 relative" />
@@ -105,7 +105,7 @@ export default function PaypalSection() {
                             </div>
                           </div>
                         </div>
-                        <div className="text-right">
+                        <div className="text-right shrink-0">
                           <div className="font-bold text-gray-900 dark:text-white">
                             {isAnnual ? '20% OFF' : 'Standard'}
                           </div>
@@ -135,7 +135,6 @@ export default function PaypalSection() {
                         variant="paypal" 
                       />
                       <div className="mt-2 flex items-center justify-center gap-2 text-xs text-gray-500 dark:text-gray-500">
-                        <Shield className="w-3 h-3" />
                         <span>
                           {t('paypal.privacyNote')}
                         </span>

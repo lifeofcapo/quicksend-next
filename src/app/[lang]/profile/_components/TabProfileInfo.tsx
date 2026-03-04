@@ -257,23 +257,6 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
                 </span>
               </div>
             </div>
-
-            <div>
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
-                {t('profile.userId')}
-              </p>
-              <div className="flex items-center gap-2">
-                <code className="text-sm text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded">
-                  {user?.id?.substring(0, 8) || '—'}
-                </code>
-                <button
-                  className="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-                  onClick={() => user?.id && navigator.clipboard.writeText(user.id)}
-                >
-                  {t('profile.copy')}
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
