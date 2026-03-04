@@ -47,7 +47,6 @@ export default function TabEmailValidation({ email }: TabEmailValidationProps) {
     if (!e.target.files || e.target.files.length === 0) return;
     const selectedFile = e.target.files[0];
     
-    // Проверяем тип файла
     if (selectedFile.type === 'text/plain' || 
         selectedFile.name.endsWith('.csv') || 
         selectedFile.name.endsWith('.txt')) {
@@ -72,7 +71,6 @@ export default function TabEmailValidation({ email }: TabEmailValidationProps) {
       const matches = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
       const uniqueEmails = Array.from(new Set(matches));
 
-      // Устанавливаем статистику
       setStats({
         total: matches.length,
         valid: uniqueEmails.length,

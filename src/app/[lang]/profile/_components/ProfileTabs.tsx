@@ -22,7 +22,7 @@ const userTabs = [
 ];
 
 export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
   const tabs = isManager ? managerTabs : userTabs;
 
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -37,12 +37,12 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
   }, [isManager, activeTab]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-      <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-gray-700 pb-2">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-8">
+      <div className="flex gap-1 sm:gap-4 mb-6 border-b border-gray-200 dark:border-gray-700 pb-2 overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
         {tabs.map(tab => (
           <button
             key={tab.id}
-            className={`px-3 py-2 rounded-md text-sm font-medium ${
+            className={`px-3 py-2 rounded-md text-xs sm:text-sm font-medium whitespace-nowrap shrink-0 transition-colors ${
               activeTab === tab.id
                 ? 'bg-blue-600 text-white'
                 : 'text-gray-600 dark:text-gray-400 hover:text-blue-500'
@@ -59,15 +59,11 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
           {activeTab === 'profile' && (
             <TabProfileInfo user={sessionUser} userData={userData} />
           )}
-
           {activeTab === 'notifications' && <TabNotifications />}
-
-          {activeTab === 'tenty' && <TabTenty/>}
-
+          {activeTab === 'tenty' && <TabTenty />}
           {activeTab === 'email' && (
             <TabEmailValidation email={sessionUser.email} />
           )}
-
           {activeTab === 'danger' && (
             <TabDangerZone email={sessionUser.email} />
           )}
@@ -92,11 +88,10 @@ function ManagerDashboard({ sessionUser }: any) {
   const { t } = useTranslation();
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">{t('profile.managerDashboard')}</h2> 
-
-      <div className="p-5 bg-gray-50 dark:bg-gray-700/30 rounded-lg shadow">
-        <p><b>{t('profile.name')}:</b> {sessionUser.name}</p> 
-        <p><b>{t('profile.email')}:</b> {sessionUser.email}</p> 
+      <h2 className="text-xl sm:text-2xl font-bold mb-4">{t('profile.managerDashboard')}</h2>
+      <div className="p-4 sm:p-5 bg-gray-50 dark:bg-gray-700/30 rounded-lg shadow">
+        <p><b>{t('profile.name')}:</b> {sessionUser.name}</p>
+        <p><b>{t('profile.email')}:</b> {sessionUser.email}</p>
         <p className="text-gray-500 mt-3">
           {t('profile.managerRoleDescription')}
         </p>
@@ -109,8 +104,7 @@ function ManagerRequestList({ requests }: any) {
   const { t } = useTranslation();
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">{t('profile.allTentyRequests')}</h2>
-
+      <h2 className="text-xl sm:text-2xl font-bold mb-4">{t('profile.allTentyRequests')}</h2>
       <div className="space-y-4">
         {requests.map((req: any) => (
           <a
@@ -118,23 +112,17 @@ function ManagerRequestList({ requests }: any) {
             href={`/manager/tenty/${req.id}`}
             className="block p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition"
           >
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="font-semibold">{req.track_name}</h3>
-                <p className="text-gray-500 text-sm">
-                  {req.artist_nickname}
-                </p>
+            <div className="flex justify-between items-center gap-3">
+              <div className="min-w-0">
+                <h3 className="font-semibold truncate">{req.track_name}</h3>
+                <p className="text-gray-500 text-sm truncate">{req.artist_nickname}</p>
               </div>
-
-              <span
-                className="px-2 py-1 text-sm rounded bg-gray-200 dark:bg-gray-800"
-              >
+              <span className="px-2 py-1 text-sm rounded bg-gray-200 dark:bg-gray-800 shrink-0">
                 {req.status}
               </span>
             </div>
           </a>
         ))}
-
         {requests.length === 0 && (
           <p className="text-gray-500">{t('profile.noRequestsYet')}</p>
         )}

@@ -238,7 +238,7 @@ export default function Header() {
                 className="flex items-center justify-center gap-3 py-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
               >
                 <UserCircle className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-                <span className="text-base font-medium text-gray-800 dark:text-white">Профиль</span>
+                <span className="text-base font-medium text-gray-800 dark:text-white">{t('profileWord')}</span>
               </Link>
             )}
           </div>

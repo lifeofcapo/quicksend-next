@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Bell, Check, Trash2, RefreshCw, BellOff } from 'lucide-react';
+import { Bell, Check, RefreshCw, BellOff } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface Notification {
@@ -35,19 +35,13 @@ export default function TabNotifications() {
       await fetchNotifications();
       setLoading(false);
     };
-
     loadNotifications();
   }, []);
 
   const handleMarkAsRead = async (id: string) => {
     try {
-      await fetch(`/api/notifications/${id}/read`, {
-        method: 'POST',
-      });
-      
-      setNotifications(prev =>
-        prev.map(n => n.id === id ? { ...n, read: true } : n)
-      );
+      await fetch(`/api/notifications/${id}/read`, { method: 'POST' });
+      setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
     } catch (err) {
       console.error('Error marking notification as read:', err);
     }
@@ -55,10 +49,7 @@ export default function TabNotifications() {
 
   const handleMarkAllAsRead = async () => {
     try {
-      await fetch('/api/notifications/read-all', {
-        method: 'POST',
-      });
-      
+      await fetch('/api/notifications/read-all', { method: 'POST' });
       setNotifications(prev => prev.map(n => ({ ...n, read: true })));
     } catch (err) {
       console.error('Error marking all as read:', err);
@@ -71,40 +62,32 @@ export default function TabNotifications() {
     setIsRefreshing(false);
   };
 
-  const filteredNotifications = filter === 'unread' 
+  const filteredNotifications = filter === 'unread'
     ? notifications.filter(n => !n.read)
     : notifications;
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
   const getNotificationTypeStyle = (type?: string) => {
-    const styles = {
+    const styles: Record<string, string> = {
       info: 'border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20',
       warning: 'border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/20',
       success: 'border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20',
       error: 'border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20',
       default: 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800',
     };
-    
-    return styles[type as keyof typeof styles] || styles.default;
+    return styles[type ?? 'default'] || styles.default;
   };
 
   const getNotificationIcon = (type?: string) => {
-    const icons = {
-      info: 'ℹ️',
-      warning: '⚠️',
-      success: '✅',
-      error: '❌',
-      default: '📢',
+    const icons: Record<string, string> = {
+      info: 'ℹ️', warning: '⚠️', success: '✅', error: '❌', default: '📢',
     };
-    
-    return icons[type as keyof typeof icons] || icons.default;
+    return icons[type ?? 'default'] || icons.default;
   };
 
   const formatTimeAgo = (dateString: string) => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
+    const diffMs = new Date().getTime() - new Date(dateString).getTime();
     const diffMins = Math.floor(diffMs / 60000);
     const diffHours = Math.floor(diffMins / 60);
     const diffDays = Math.floor(diffHours / 24);
@@ -113,31 +96,29 @@ export default function TabNotifications() {
     if (diffMins < 60) return t('profile.minutesAgo', { count: diffMins });
     if (diffHours < 24) return t('profile.hoursAgo', { count: diffHours });
     if (diffDays < 7) return t('profile.daysAgo', { count: diffDays });
-    
-    return date.toLocaleDateString();
+    return new Date(dateString).toLocaleDateString();
   };
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-            <Bell className="text-blue-600 dark:text-blue-400 w-6 h-6" />
+    <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg shrink-0">
+            <Bell className="text-blue-600 dark:text-blue-400 w-5 h-5 sm:w-6 sm:h-6" />
           </div>
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+          <div className="min-w-0">
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100 truncate">
               {t('profile.notifications')}
             </h3>
             {unreadCount > 0 && (
-              <p className="text-sm text-blue-600 dark:text-blue-400">
+              <p className="text-xs sm:text-sm text-blue-600 dark:text-blue-400">
                 {t('profile.unreadCount', { count: unreadCount })}
               </p>
             )}
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           <button
             onClick={handleRefresh}
             disabled={loading || isRefreshing}
@@ -146,7 +127,6 @@ export default function TabNotifications() {
           >
             <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
           </button>
-          
           {notifications.length > 0 && (
             <button
               onClick={handleMarkAllAsRead}
@@ -160,12 +140,11 @@ export default function TabNotifications() {
         </div>
       </div>
 
-      {/* Filter Tabs */}
       {notifications.length > 0 && (
-        <div className="flex gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+        <div className="flex gap-2 border-b border-gray-200 dark:border-gray-700 pb-2 overflow-x-auto">
           <button
             onClick={() => setFilter('all')}
-            className={`px-4 py-2 text-sm font-medium rounded-lg transition ${
+            className={`px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition whitespace-nowrap ${
               filter === 'all'
                 ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
@@ -175,7 +154,7 @@ export default function TabNotifications() {
           </button>
           <button
             onClick={() => setFilter('unread')}
-            className={`px-4 py-2 text-sm font-medium rounded-lg transition ${
+            className={`px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition whitespace-nowrap ${
               filter === 'unread'
                 ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300'
@@ -186,10 +165,9 @@ export default function TabNotifications() {
         </div>
       )}
 
-      {/* Notifications List */}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-12 space-y-3">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
           <p className="text-gray-500 dark:text-gray-400">{t('profile.loadingNotifications')}</p>
         </div>
       ) : filteredNotifications.length === 0 ? (
@@ -199,10 +177,7 @@ export default function TabNotifications() {
           </div>
           <div>
             <h4 className="font-medium text-gray-700 dark:text-gray-300">
-              {filter === 'unread' 
-                ? t('profile.noUnreadNotifications')
-                : t('profile.noNotificationsYet')
-              }
+              {filter === 'unread' ? t('profile.noUnreadNotifications') : t('profile.noNotificationsYet')}
             </h4>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               {t('profile.notificationsWillAppearHere')}
@@ -210,68 +185,51 @@ export default function TabNotifications() {
           </div>
         </div>
       ) : (
-        <>
-
-          {/* Notifications */}
-          <ul className="space-y-3">
-            {filteredNotifications.map((n) => (
-              <li
-                key={n.id}
-                className={`p-4 rounded-xl border transition-all hover:shadow-md ${
-                  n.read 
-                    ? 'opacity-80'
-                    : 'border-l-4 border-l-blue-500'
-                } ${getNotificationTypeStyle(n.type)}`}
-              >
-                <div className="flex gap-3">
-                  {/* Notification Icon */}
-                  <div className="shrink-0 pt-1 text-lg">
-                    {getNotificationIcon(n.type)}
+        <ul className="space-y-3">
+          {filteredNotifications.map((n) => (
+            <li
+              key={n.id}
+              className={`p-3 sm:p-4 rounded-xl border transition-all hover:shadow-md ${
+                n.read ? 'opacity-80' : 'border-l-4 border-l-blue-500'
+              } ${getNotificationTypeStyle(n.type)}`}
+            >
+              <div className="flex gap-2 sm:gap-3">
+                <div className="shrink-0 pt-1 text-base sm:text-lg">
+                  {getNotificationIcon(n.type)}
+                </div>
+                <div className="grow min-w-0">
+                  <div className="flex justify-between items-start gap-2 mb-1 sm:mb-2">
+                    <h4 className={`font-medium text-sm sm:text-base ${
+                      n.read ? 'text-gray-700 dark:text-gray-400' : 'text-gray-900 dark:text-gray-100'
+                    }`}>
+                      {n.title}
+                    </h4>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap shrink-0">
+                      {formatTimeAgo(n.created_at)}
+                    </span>
                   </div>
-
-                  {/* Content */}
-                  <div className="grow">
-                    <div className="flex justify-between items-start mb-2">
-                      <h4 className={`font-medium ${
-                        n.read 
-                          ? 'text-gray-700 dark:text-gray-400'
-                          : 'text-gray-900 dark:text-gray-100'
-                      }`}>
-                        {n.title}
-                      </h4>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">
-                        {formatTimeAgo(n.created_at)}
-                      </span>
-                    </div>
-                    
-                    <p className="text-gray-700 dark:text-gray-400 mb-3">
-                      {n.message}
-                    </p>
-
-                    {/* Actions */}
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
-                        {new Date(n.created_at).toLocaleString()}
-                      </span>
-                      
-                      <div className="flex items-center gap-2">
-                        {!n.read && (
-                          <button
-                            onClick={() => handleMarkAsRead(n.id)}
-                            className="text-xs text-blue-500 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 px-2 py-1 rounded transition flex items-center gap-1"
-                          >
-                            <Check className="w-3 h-3" />
-                            {t('profile.markAsRead')}
-                          </button>
-                        )}
-                      </div>
-                    </div>
+                  <p className="text-sm text-gray-700 dark:text-gray-400 mb-2 sm:mb-3">
+                    {n.message}
+                  </p>
+                  <div className="flex justify-between items-center flex-wrap gap-2">
+                    <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+                      {new Date(n.created_at).toLocaleString()}
+                    </span>
+                    {!n.read && (
+                      <button
+                        onClick={() => handleMarkAsRead(n.id)}
+                        className="text-xs text-blue-500 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20 px-2 py-1 rounded transition flex items-center gap-1"
+                      >
+                        <Check className="w-3 h-3" />
+                        {t('profile.markAsRead')}
+                      </button>
+                    )}
                   </div>
                 </div>
-              </li>
-            ))}
-          </ul>
-        </>
+              </div>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
