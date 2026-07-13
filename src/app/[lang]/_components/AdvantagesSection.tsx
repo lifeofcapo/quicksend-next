@@ -2,6 +2,7 @@
 'use client';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Zap, Shield, Clock, DollarSign, FileCheck, Headphones } from 'lucide-react';
+import { Card } from '@/components/ui/card';
 
 const ADVANTAGES = [
   { icon: Zap,         titleKey: 'advantages.speed',       descKey: 'advantages.speedDesc' },
@@ -16,43 +17,30 @@ export function AdvantagesSection() {
   const { t } = useTranslation();
 
   return (
-    <section
-      id="whyquicksend"
-      className="py-16 px-4 bg-gray-50 dark:bg-gray-800 transition-colors relative overflow-hidden"
-    >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -right-20 w-64 h-64 bg-linear-to-br from-blue-500/10 to-cyan-400/10 rounded-full blur-3xl dark:opacity-20" />
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-linear-to-tr from-cyan-400/10 to-[#AEE5C2]/10 rounded-full blur-3xl dark:opacity-20" />
-      </div>
-
-      <div className="container mx-auto relative z-10 max-w-6xl">
+    <section id="whyquicksend" className="py-16 px-4 bg-secondary/40">
+      <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
             {t('whyTitle')}
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('whyDesc')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {ADVANTAGES.map(({ icon: Icon, titleKey, descKey }, i) => (
-            <div
-              key={i}
-              className="bg-white dark:bg-gray-700 p-5 sm:p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center"
-            >
-              <div className="flex justify-center mb-3">
-                <div className="w-12 h-12 rounded-xl bg-linear-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-md shadow-blue-500/20">
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
+            <Card key={i} className="p-6 hover:border-primary/40 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <Icon className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-2 dark:text-white">
+              <h3 className="text-base font-semibold mb-1.5 text-foreground">
                 {t(titleKey)}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {t(descKey)}
               </p>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

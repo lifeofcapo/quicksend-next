@@ -45,7 +45,7 @@ export function useTranslation() {
     
     if (params) {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
-        const regex = new RegExp(`{{${paramKey}}}`, 'g');
+        const regex = new RegExp(`{${paramKey}}`, 'g');
         result = result.replace(regex, String(paramValue));
       });
     }

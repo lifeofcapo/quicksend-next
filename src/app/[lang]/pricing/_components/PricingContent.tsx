@@ -1,14 +1,19 @@
 // src/app/[lang]/pricing/_components/PricingContent.tsx
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useLanguage } from '@/contexts/language-context';
 import { useTranslation } from '@/hooks/useTranslation';
 import Link from 'next/link';
 import {
   ShieldCheck, Music, Image as ImageIcon, Video,
   Check, Zap, Gift, Star, Crown, ArrowRight,
+  Upload, UserCheck, CheckCircle2, Lock, Globe, Clock,
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
+import { PaymentMethodSelector, type PaymentMethodId } from './PaymentMethodSelector';
 
 interface Bundle {
   id: string;
@@ -18,44 +23,20 @@ interface Bundle {
   savings: number;
   savingsPct: number;
   icon: typeof ShieldCheck;
+  descKey: string;
   popular?: boolean;
 }
 
 const BUNDLES: Bundle[] = [
-  {
-    id: 'single',
-    qty: 1,
-    pricePerUnit: 25,
-    totalPrice: 25,
-    savings: 0,
-    savingsPct: 0,
-    icon: Zap,
-  },
-  {
-    id: 'pack5',
-    qty: 5,
-    pricePerUnit: 22,
-    totalPrice: 110,
-    savings: 15,
-    savingsPct: 12,
-    icon: Star,
-    popular: true,
-  },
-  {
-    id: 'pack10',
-    qty: 10,
-    pricePerUnit: 19,
-    totalPrice: 190,
-    savings: 60,
-    savingsPct: 24,
-    icon: Crown,
-  },
+  { id: 'single', qty: 1,  pricePerUnit: 25, totalPrice: 25,  savings: 0,  savingsPct: 0,  icon: Zap,   descKey: 'pricing.bundleDescSingle' },
+  { id: 'pack5',  qty: 5,  pricePerUnit: 22, totalPrice: 110, savings: 15, savingsPct: 12, icon: Star,  descKey: 'pricing.bundleDescPack5', popular: true },
+  { id: 'pack10', qty: 10, pricePerUnit: 19, totalPrice: 190, savings: 60, savingsPct: 24, icon: Crown, descKey: 'pricing.bundleDescPack10' },
 ];
 
 const CONTENT_TYPES = [
-  { icon: Music,      key: 'pricing.typeBeats' },
-  { icon: ImageIcon,  key: 'pricing.typeCovers' },
-  { icon: Video,      key: 'pricing.typeVideos' },
+  { icon: Music,     key: 'pricing.typeBeats' },
+  { icon: ImageIcon, key: 'pricing.typeCovers' },
+  { icon: Video,     key: 'pricing.typeVideos' },
 ];
 
 const FEATURES = [
@@ -66,181 +47,260 @@ const FEATURES = [
   'pricing.feature5',
 ];
 
+const STEPS = [
+  { icon: Upload,       titleKey: 'pricing.step1Title', descKey: 'pricing.step1Desc' },
+  { icon: UserCheck,    titleKey: 'pricing.step2Title', descKey: 'pricing.step2Desc' },
+  { icon: CheckCircle2, titleKey: 'pricing.step3Title', descKey: 'pricing.step3Desc' },
+];
+
+const STATS = [
+  { icon: ShieldCheck, valueKey: 'stats.takedownsValue', labelKey: 'stats.takedowns' },
+  { icon: Globe,       valueKey: 'stats.platformsValue', labelKey: 'stats.platforms' },
+  { icon: Clock,       valueKey: 'stats.avgDaysValue',   labelKey: 'stats.avgDays' },
+];
+
 export default function PricingContent({ lang }: { lang: string }) {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const [selected, setSelected] = useState<string>('pack5');
+  const [selectedId, setSelectedId] = useState<string>('pack5');
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethodId>('paypal');
+
+  const selectedBundle = useMemo(
+    () => BUNDLES.find((b) => b.id === selectedId) ?? BUNDLES[0],
+    [selectedId]
+  );
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
-      <div className="relative pt-28 pb-12 px-4 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-linear-to-br from-blue-500/10 to-cyan-400/10 rounded-full blur-3xl dark:opacity-20" />
-          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-linear-to-tr from-cyan-400/10 to-[#AEE5C2]/10 rounded-full blur-3xl dark:opacity-20" />
+    <div className="min-h-screen bg-background">
+      <div className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-primary-lighter opacity-60 blur-3xl" />
         </div>
-        <div className="container mx-auto max-w-3xl text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 mb-6">
-            <Gift className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">
-              {t('pricing.freeFirst')}
-            </span>
-          </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] dark:from-blue-400 dark:via-cyan-300 dark:to-[#8ED8A8]">
-              {t('pricing')}
-            </span>
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-            {t('pricing.subtitle')}
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 mt-6">
-            {CONTENT_TYPES.map(({ icon: Icon, key }) => (
-              <div
-                key={key}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300"
-              >
-                <Icon className="w-4 h-4 text-blue-500" />
-                {t(key)}
+        <div className="pt-28 pb-14 px-4">
+          <div className="container mx-auto max-w-3xl text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground tracking-tight">
+              {t('pricingTitle')}
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+              {t('pricing.subtitle')}
+            </p>
+            <div className="flex justify-center mt-6">
+              <div className="inline-flex items-center rounded-full border border-border bg-card/60 backdrop-blur-sm px-1.5 py-1.5 shadow-sm">
+                {CONTENT_TYPES.map(({ icon: Icon, key }, i) => (
+                  <div key={key} className="flex items-center">
+                    {i > 0 && <span className="w-px h-3.5 bg-border mx-1" aria-hidden />}
+                    <span className="flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-medium text-foreground/80 whitespace-nowrap">
+                      <Icon className="w-3.5 h-3.5 text-primary shrink-0" />
+                      {t(key)}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="px-4 pb-8">
-        <div className="container mx-auto max-w-3xl">
-          <div className="relative overflow-hidden rounded-2xl bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] p-px">
-            <div className="rounded-2xl bg-white dark:bg-gray-900 px-6 py-5 flex flex-col sm:flex-row items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-linear-to-br from-blue-500 to-cyan-400 flex items-center justify-center shrink-0">
-                <Gift className="w-6 h-6 text-white" />
-              </div>
-              <div className="text-center sm:text-left">
-                <p className="font-bold text-gray-900 dark:text-white text-lg">
-                  {t('pricing.freeBannerTitle')}
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  {t('pricing.freeBannerDesc')}
-                </p>
-              </div>
-              <Link
-                href={`/${language}/profile`}
-                className="ml-auto shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold text-sm hover:opacity-90 transition"
-              >
-                {t('pricing.tryFree')}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+            </div>
+            <div className="mt-10 grid grid-cols-3 max-w-lg mx-auto divide-x divide-border border-y border-border py-5">
+              {STATS.map(({ icon: Icon, valueKey, labelKey }) => (
+                <div key={labelKey} className="px-3">
+                  <div className="flex items-center justify-center gap-1.5 text-2xl font-bold text-foreground tabular-nums">
+                    <Icon className="w-4 h-4 text-primary" />
+                    {t(valueKey)}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">{t(labelKey)}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
-
-      {/* Bundle selector */}
-      <div className="px-4 pb-16">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 dark:text-white">
-            {t('pricing.buyMoreSaveMore')}
-          </h2>
-          <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
-            {t('pricing.perTakedown', { price: '$25' })}
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-            {BUNDLES.map((bundle) => {
-              const Icon = bundle.icon;
-              const isSelected = selected === bundle.id;
-              return (
-                <button
-                  key={bundle.id}
-                  onClick={() => setSelected(bundle.id)}
-                  className={`relative rounded-2xl p-6 text-left border-2 transition-all duration-300 hover:scale-[1.02] ${
-                    isSelected
-                      ? 'border-blue-500 dark:border-blue-400 shadow-xl shadow-blue-500/10'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
-                  } bg-white dark:bg-gray-800`}
-                >
-                  {bundle.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-linear-to-r from-blue-500 to-cyan-400 text-white text-xs font-bold whitespace-nowrap">
-                      {t('popular')}
-                    </div>
-                  )}
-
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                      isSelected
-                        ? 'bg-linear-to-br from-blue-500 to-cyan-400'
-                        : 'bg-gray-100 dark:bg-gray-700'
-                    }`}>
-                      <Icon className={`w-5 h-5 ${isSelected ? 'text-white' : 'text-gray-600 dark:text-gray-300'}`} />
-                    </div>
-                    <div>
-                      <p className="font-bold text-gray-900 dark:text-white">
-                        {bundle.qty === 1
-                          ? t('pricing.singleTakedown')
-                          : t('pricing.bundleN', { n: bundle.qty })}
-                      </p>
-                      {bundle.savingsPct > 0 && (
-                        <p className="text-xs text-green-600 dark:text-green-400 font-semibold">
-                          -{bundle.savingsPct}% {t('pricing.discount')}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="mb-1">
-                    <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                      ${bundle.totalPrice}
-                    </span>
-                    {bundle.qty > 1 && (
-                      <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">
-                        (${bundle.pricePerUnit} {t('pricing.each')})
-                      </span>
-                    )}
-                  </div>
-
-                  {bundle.savings > 0 && (
-                    <p className="text-sm text-green-600 dark:text-green-400">
-                      {t('pricing.youSave', { amount: `$${bundle.savings}` })}
-                    </p>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <Link
-              href={`/${language}/profile`}
-              className="group relative inline-flex items-center gap-3 px-10 py-4 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/25"
-            >
-              <div className="absolute inset-0 bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] group-hover:from-blue-600 group-hover:via-cyan-500 group-hover:to-[#8ED8A8] transition-all duration-500" />
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              <ShieldCheck className="relative w-5 h-5 text-white" />
-              <span className="relative text-white text-lg font-bold">
-                {t('pricing.startCta')}
-              </span>
-              <ArrowRight className="relative w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
-            </Link>
+      <div className="px-4 pb-10">
+        <div className="container mx-auto max-w-3xl">
+          <div className="flex flex-col sm:flex-row items-center gap-4 rounded-xl bg-primary-lighter px-6 py-5">
+            <div className="w-11 h-11 rounded-lg bg-card flex items-center justify-center shrink-0">
+              <Gift className="w-5 h-5 text-primary" />
+            </div>
+            <div className="text-center sm:text-left flex-1">
+              <p className="font-semibold text-foreground">{t('pricing.freeBannerTitle')}</p>
+              <p className="text-muted-foreground text-sm">{t('pricing.freeBannerDesc')}</p>
+            </div>
+            <Button asChild className="shrink-0 gap-2">
+              <Link href={`/${language}/profile`}>
+                {t('pricing.tryFree')}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
+      <div className="px-4 pb-20">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+              {t('pricing.buyMoreSaveMore')}
+            </h2>
+            <p className="text-muted-foreground">
+              {t('pricing.perTakedown', { price: '$25' })}
+            </p>
+          </div>
 
-      {/* What's included */}
-      <div className="px-4 pb-20 bg-gray-50 dark:bg-gray-800 transition-colors">
-        <div className="container mx-auto max-w-2xl pt-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 dark:text-white">
-            {t('pricing.whatsIncluded')}
-          </h2>
-          <div className="space-y-4">
-            {FEATURES.map((key) => (
-              <div key={key} className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-linear-to-br from-blue-500 to-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-white" />
+          <div className="flex flex-col lg:flex-row gap-8 items-stretch">
+            <div className="flex-1 flex flex-col sm:flex-row gap-4">
+              {BUNDLES.map((bundle) => {
+                const Icon = bundle.icon;
+                const isSelected = selectedId === bundle.id;
+                return (
+                  <button
+                    key={bundle.id}
+                    type="button"
+                    onClick={() => setSelectedId(bundle.id)}
+                    aria-pressed={isSelected}
+                    className={cn(
+                      'relative rounded-xl p-5 text-left border bg-card transition-all flex flex-col h-full sm:flex-1 min-w-0',
+                      isSelected ? 'border-primary ring-1 ring-primary shadow-md' : 'border-border hover:border-primary/40'
+                    )}
+                  >
+                    {bundle.popular && (
+                      <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary-foreground">
+                        {t('popular')}
+                      </span>
+                    )}
+
+                    <div className={cn(
+                      'w-9 h-9 rounded-lg flex items-center justify-center mb-3',
+                      isSelected ? 'bg-primary' : 'bg-secondary'
+                    )}>
+                      <Icon className={cn('w-4 h-4', isSelected ? 'text-primary-foreground' : 'text-muted-foreground')} />
+                    </div>
+
+                    <p className="font-semibold text-foreground text-sm mb-1.5">
+                      {bundle.qty === 1 ? t('pricing.singleTakedown') : t('pricing.bundleN', { n: bundle.qty })}
+                    </p>
+
+                    <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+                      {t(bundle.descKey)}
+                    </p>
+
+                    <div className="mt-auto">
+                      <div className="flex items-baseline gap-2 mb-1">
+                        <span className="text-2xl font-bold text-foreground tabular-nums">${bundle.totalPrice}</span>
+                        {bundle.qty > 1 && (
+                          <span className="text-xs text-muted-foreground tabular-nums">
+                            (${bundle.pricePerUnit} {t('pricing.each')})
+                          </span>
+                        )}
+                        {bundle.savingsPct > 0 && (
+                          <span className="ml-auto text-[11px] font-semibold text-accent-dark bg-accent-light rounded-full px-1.5 py-0.5 tabular-nums shrink-0">
+                            -{bundle.savingsPct}%
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium tabular-nums h-4">
+                        {bundle.savings > 0 && t('pricing.youSave', { amount: `$${bundle.savings}` })}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1 mt-3" aria-hidden>
+                        {Array.from({ length: bundle.qty }).map((_, i) => (
+                          <span
+                            key={i}
+                            className={cn('w-1.5 h-1.5 rounded-full', isSelected ? 'bg-primary' : 'bg-border')}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+            <Card className="p-5 flex flex-col h-full w-full lg:w-[360px] lg:shrink-0 lg:sticky lg:top-24">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-4">
+                {t('pricing.orderSummary')}
+              </p>
+
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-border">
+                <div>
+                  <p className="font-semibold text-foreground text-sm">
+                    {selectedBundle.qty === 1 ? t('pricing.singleTakedown') : t('pricing.bundleN', { n: selectedBundle.qty })}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {selectedBundle.qty} {t('pricing.credits')}
+                  </p>
                 </div>
-                <p className="text-gray-700 dark:text-gray-300">{t(key)}</p>
+                <span className="text-xl font-bold text-foreground tabular-nums">${selectedBundle.totalPrice}</span>
+              </div>
+
+              <p className="text-xs text-muted-foreground mb-4">{t('pricing.creditsNote')}</p>
+
+              <p className="text-xs font-medium text-foreground mb-2">
+                {language === 'ru' ? 'Способ оплаты' : 'Payment method'}
+              </p>
+              <PaymentMethodSelector
+                value={paymentMethod}
+                onChange={setPaymentMethod}
+                lang={language === 'ru' ? 'ru' : 'en'}
+                className="!grid-cols-1 gap-2 mb-5"
+              />
+
+              <div className="mt-auto">
+                <Button size="lg" asChild className="w-full gap-2">
+                  <Link href={`/${language}/profile`}>
+                    <Lock className="w-4 h-4" />
+                    {t('pricing.payNow')} · ${selectedBundle.totalPrice}
+                  </Link>
+                </Button>
+
+                <p className="mt-3 text-center text-[11px] text-muted-foreground">
+                  {t('pricing.securePayment')}
+                </p>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </div>
+      <div className="px-4 pb-20 bg-secondary/40">
+        <div className="container mx-auto max-w-4xl pt-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground">
+            {t('pricing.howItWorksTitle')}
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-8">
+            {STEPS.map(({ icon: Icon, titleKey, descKey }, i) => (
+              <div key={titleKey} className="text-center sm:text-left">
+                <div className="flex items-center gap-3 mb-3 justify-center sm:justify-start">
+                  <span className="text-xs font-bold text-primary tabular-nums">0{i + 1}</span>
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Icon className="w-4 h-4 text-primary" />
+                  </div>
+                </div>
+                <p className="font-semibold text-foreground mb-1">{t(titleKey)}</p>
+                <p className="text-sm text-muted-foreground">{t(descKey)}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+      <div className="px-4 py-20">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-foreground">
+            {t('pricing.whatsIncluded')}
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+            {FEATURES.map((key) => (
+              <div key={key} className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5">
+                  <Check className="w-3 h-3 text-primary-foreground" />
+                </div>
+                <p className="text-foreground text-sm">{t(key)}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg" asChild className="gap-2">
+              <Link href={`/${language}/profile`}>
+                <ShieldCheck className="w-5 h-5" />
+                {t('pricing.startCta')}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
