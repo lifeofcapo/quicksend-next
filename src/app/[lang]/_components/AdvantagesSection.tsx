@@ -1,57 +1,28 @@
+// src/app/[lang]/_components/AdvantagesSection.tsx
 'use client';
-import { useLanguage } from '@/contexts/language-context';
 import { useTranslation } from '@/hooks/useTranslation';
-import { Zap, Shield, Snowflake, DollarSign, TrendingUp, Settings } from 'lucide-react';
-import HeroLottieAnimation from '@/components/HeroLottieAnimation';
+import { Zap, Shield, Clock, DollarSign, FileCheck, Headphones } from 'lucide-react';
+
+const ADVANTAGES = [
+  { icon: Zap,         titleKey: 'advantages.speed',       descKey: 'advantages.speedDesc' },
+  { icon: Shield,      titleKey: 'advantages.security',    descKey: 'advantages.securityDesc' },
+  { icon: Clock,       titleKey: 'advantages.fastResult',  descKey: 'advantages.fastResultDesc' },
+  { icon: DollarSign,  titleKey: 'advantages.lowPrice',    descKey: 'advantages.lowPriceDesc' },
+  { icon: FileCheck,   titleKey: 'advantages.legal',       descKey: 'advantages.legalDesc' },
+  { icon: Headphones,  titleKey: 'advantages.support',     descKey: 'advantages.supportDesc' },
+];
 
 export function AdvantagesSection() {
-  const { language } = useLanguage();
   const { t } = useTranslation();
 
-  const advantages = [
-    { 
-      icon: Zap, 
-      titleKey: 'advantages.speed',
-      descKey: 'advantages.speedDesc'
-    },
-    { 
-      icon: Shield, 
-      titleKey: 'advantages.security',
-      descKey: 'advantages.securityDesc'
-    },
-    { 
-      icon: Snowflake, 
-      titleKey: 'advantages.coldEmails',
-      descKey: 'advantages.coldEmailsDesc'
-    },
-    { 
-      icon: DollarSign, 
-      titleKey: 'advantages.lowPrice',
-      descKey: 'advantages.lowPriceDesc'
-    },
-    { 
-      icon: TrendingUp, 
-      titleKey: 'advantages.analytics',
-      descKey: 'advantages.analyticsDesc'
-    },
-    { 
-      icon: Settings, 
-      titleKey: 'advantages.flexibleSetup',
-      descKey: 'advantages.flexibleSetupDesc'
-    },
-  ]; 
-      return (
-   <section
+  return (
+    <section
       id="whyquicksend"
-      className="
-        py-16 px-4 
-        bg-gray-50 dark:bg-gray-800 
-        transition-colors 
-        relative overflow-hidden
-      "
+      className="py-16 px-4 bg-gray-50 dark:bg-gray-800 transition-colors relative overflow-hidden"
     >
-      <div className="hidden lg:block absolute inset-0 pointer-events-none opacity-40 md:opacity-100">
-        <HeroLottieAnimation />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-20 -right-20 w-64 h-64 bg-linear-to-br from-blue-500/10 to-cyan-400/10 rounded-full blur-3xl dark:opacity-20" />
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-linear-to-tr from-cyan-400/10 to-[#AEE5C2]/10 rounded-full blur-3xl dark:opacity-20" />
       </div>
 
       <div className="container mx-auto relative z-10 max-w-6xl">
@@ -64,41 +35,25 @@ export function AdvantagesSection() {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-start gap-12">
-          <div className="flex-1 w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              {advantages.map((a, i) => {
-                const Icon = a.icon;
-                return (
-                  <div
-                    key={i}
-                    className="
-                      bg-white dark:bg-gray-700 
-                      p-5 sm:p-6 
-                      rounded-xl shadow-md 
-                      hover:shadow-xl 
-                      transition 
-                      text-center
-                    "
-                  >
-                    <div className="flex justify-center mb-3">
-                      <Icon className="w-9 h-9 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2 dark:text-white">
-                      {t(a.titleKey)}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                      {t(a.descKey)}
-                    </p>
-                  </div>
-                );
-              })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {ADVANTAGES.map(({ icon: Icon, titleKey, descKey }, i) => (
+            <div
+              key={i}
+              className="bg-white dark:bg-gray-700 p-5 sm:p-6 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center"
+            >
+              <div className="flex justify-center mb-3">
+                <div className="w-12 h-12 rounded-xl bg-linear-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-md shadow-blue-500/20">
+                  <Icon className="w-6 h-6 text-white" />
+                </div>
+              </div>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2 dark:text-white">
+                {t(titleKey)}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+                {t(descKey)}
+              </p>
             </div>
-          </div>
-          <div className="flex-1 relative lg:flex items-end">
-            <div className="relative w-full">
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

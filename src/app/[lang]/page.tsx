@@ -1,25 +1,22 @@
-// app/[lang]/page.tsx
+// src/app/[lang]/page.tsx
 import { HeroSection } from './_components/HeroSection';
 import { AdvantagesSection } from './_components/AdvantagesSection';
-import { ProductsSection } from './_components/ProductsSection';
+import DspTakedownSection from './_components/DspTakedownSection';
 import { StatsSection } from './_components/StatsSection';
 import { ContactSection } from './_components/ContactSection';
-import DspTakedownSection from './_components/DspTakedownSection';
-
 
 export default async function Home({
-  params
+  params,
 }: {
   params: Promise<{ lang: string }>;
 }) {
-  const { lang } = await params;
-  
+  await params; // lang used by child components via context
+
   return (
     <div className="relative z-10">
       <main className="grow">
         <HeroSection />
         <AdvantagesSection />
-        <ProductsSection />
         <DspTakedownSection />
         <StatsSection />
         <ContactSection />

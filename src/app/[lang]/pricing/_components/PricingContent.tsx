@@ -2,253 +2,247 @@
 'use client';
 
 import { useState } from 'react';
-import { Rocket, Star, Crown, Check, X} from 'lucide-react';
-import { useTheme } from '@/contexts/theme-context';
+import { useLanguage } from '@/contexts/language-context';
 import { useTranslation } from '@/hooks/useTranslation';
-import Image from 'next/image';
-import { PlanFeature, Plan, PricingContentProps } from '../../../../types/interface';
+import Link from 'next/link';
+import {
+  ShieldCheck, Music, Image as ImageIcon, Video,
+  Check, Zap, Gift, Star, Crown, ArrowRight,
+} from 'lucide-react';
 
-export default function PricingContent({ lang }: PricingContentProps) {
-  const [isAnnual, setIsAnnual] = useState(false);
-  const { theme } = useTheme();
+interface Bundle {
+  id: string;
+  qty: number;
+  pricePerUnit: number;
+  totalPrice: number;
+  savings: number;
+  savingsPct: number;
+  icon: typeof ShieldCheck;
+  popular?: boolean;
+}
+
+const BUNDLES: Bundle[] = [
+  {
+    id: 'single',
+    qty: 1,
+    pricePerUnit: 25,
+    totalPrice: 25,
+    savings: 0,
+    savingsPct: 0,
+    icon: Zap,
+  },
+  {
+    id: 'pack5',
+    qty: 5,
+    pricePerUnit: 22,
+    totalPrice: 110,
+    savings: 15,
+    savingsPct: 12,
+    icon: Star,
+    popular: true,
+  },
+  {
+    id: 'pack10',
+    qty: 10,
+    pricePerUnit: 19,
+    totalPrice: 190,
+    savings: 60,
+    savingsPct: 24,
+    icon: Crown,
+  },
+];
+
+const CONTENT_TYPES = [
+  { icon: Music,      key: 'pricing.typeBeats' },
+  { icon: ImageIcon,  key: 'pricing.typeCovers' },
+  { icon: Video,      key: 'pricing.typeVideos' },
+];
+
+const FEATURES = [
+  'pricing.feature1',
+  'pricing.feature2',
+  'pricing.feature3',
+  'pricing.feature4',
+  'pricing.feature5',
+];
+
+export default function PricingContent({ lang }: { lang: string }) {
   const { t } = useTranslation();
-
-  const plans: Plan[] = [
-    {
-      id: 'trial',
-      nameRu: 'Пробный',
-      nameEn: 'Trial',
-      icon: Rocket,
-      monthlyPriceRu: 0,
-      monthlyPriceEn: 0,
-      annualPriceRu: 0,
-      annualPriceEn: 0,
-      features: [
-        { textRu: 'Работает внутри Gmail', textEn: 'Works inside Gmail', included: true },
-        { textRu: '50 получателей/день', textEn: '50 emails/day', included: true },
-        { textRu: '10 Писем', textEn: '10 Campaigns', included: true },
-        { textRu: 'Базовая персонализация', textEn: 'Basic personalization', included: true },
-        { textRu: 'Подключение таблиц', textEn: 'Spreadsheet integration', included: false },
-        { textRu: 'Верификация почты', textEn: 'Email verification', included: false },
-        { textRu: 'Последовательности', textEn: 'Sequences', included: false },
-        { textRu: 'Email поддержка', textEn: 'Email support', included: true },
-        { textRu: 'Приоритетная поддержка', textEn: 'Priority support', included: false },
-      ]
-    },
-    {
-      id: 'standard',
-      nameRu: 'Стандартный',
-      nameEn: 'Standard',
-      icon: Star,
-      monthlyPriceRu: 990,
-      monthlyPriceEn: 11.5,
-      annualPriceRu: 792,
-      annualPriceEn: 9.2,
-      isPopular: true,
-      features: [
-        { textRu: 'Работает внутри Gmail', textEn: 'Works inside Gmail', included: true },
-        { textRu: '500 получателей/день', textEn: '500 emails/day', included: true },
-        { textRu: '500 Писем', textEn: '500 Campaigns', included: true },
-        { textRu: 'Расширенная персонализация', textEn: 'Advanced personalization', included: true },
-        { textRu: 'Подключение таблиц', textEn: 'Spreadsheet integration', included: true },
-        { textRu: 'Верификация почты', textEn: 'Email verification', included: true },
-        { textRu: 'Базовые последовательности', textEn: 'Basic sequences', included: true },
-        { textRu: 'Email поддержка', textEn: 'Email support', included: true },
-        { textRu: 'Приоритетная поддержка', textEn: 'Priority support', included: true },
-      ]
-    },
-    {
-      id: 'premium',
-      nameRu: 'Премиум',
-      nameEn: 'Premium',
-      icon: Crown,
-      monthlyPriceRu: 1990,
-      monthlyPriceEn: 21,
-      annualPriceRu: 1592,
-      annualPriceEn: 16.8,
-      features: [
-        { textRu: 'Работает внутри Gmail', textEn: 'Works inside Gmail', included: true },
-        { textRu: 'Безлимитные письма', textEn: 'Unlimited emails', included: true },
-        { textRu: 'Безлимитные кампании', textEn: 'Unlimited campaigns', included: true },
-        { textRu: 'Продвинутая персонализация', textEn: 'Advanced personalization', included: true },
-        { textRu: 'Подключение таблиц', textEn: 'Advanced spreadsheet integration', included: true },
-        { textRu: 'Продвинутая верификация', textEn: 'Advanced verification', included: true },
-        { textRu: 'Продвинутые последовательности', textEn: 'Advanced sequences', included: true },
-        { textRu: 'Email поддержка', textEn: 'Email support', included: true },
-        { textRu: 'Приоритетная поддержка', textEn: 'Priority support', included: true },
-      ]
-    }
-  ];
-
-  const getPrice = (plan: Plan) => {
-    if (isAnnual) {
-      return lang === 'ru' 
-        ? `₽${plan.annualPriceRu}${t('perMonth')}` 
-        : `$${plan.annualPriceEn}${t('perMonth')}`;
-    }
-    return lang === 'ru' 
-      ? plan.monthlyPriceRu === 0 ? 'Бесплатно' : `₽${plan.monthlyPriceRu}${t('perMonth')}`
-      : plan.monthlyPriceEn === 0 ? 'Free' : `$${plan.monthlyPriceEn}${t('perMonth')}`;
-  };
-
-  const getPlanName = (plan: Plan) => {
-    return lang === 'ru' ? plan.nameRu : plan.nameEn;
-  };
-
-  const getFeatureText = (feature: PlanFeature) => {
-    return lang === 'ru' ? feature.textRu : feature.textEn;
-  };
+  const { language } = useLanguage();
+  const [selected, setSelected] = useState<string>('pack5');
 
   return (
-    <div className={theme === 'dark' ? 'dark' : ''}>
-      <div className="min-h-screen bg-linear-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors">
-        <main className="pt-24 pb-32 px-4 relative">
-          <div className="absolute inset-x-0 bottom-0 h-[600px] pointer-events-none overflow-hidden">
-            <div className="absolute inset-0 bg-linear-to-t from-gray-50 via-transparent to-transparent dark:from-gray-900 dark:via-transparent z-10 opacity-70"></div>
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full opacity-40 dark:opacity-30">
-              <Image
-                src="/images/businesswoman.png"
-                alt="Background"
-                fill
-                className="object-contain object-bottom"
-                priority
-              />
-            </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
+      <div className="relative pt-28 pb-12 px-4 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-linear-to-br from-blue-500/10 to-cyan-400/10 rounded-full blur-3xl dark:opacity-20" />
+          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-linear-to-tr from-cyan-400/10 to-[#AEE5C2]/10 rounded-full blur-3xl dark:opacity-20" />
+        </div>
+        <div className="container mx-auto max-w-3xl text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 mb-6">
+            <Gift className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">
+              {t('pricing.freeFirst')}
+            </span>
           </div>
 
-          <div className="container mx-auto max-w-7xl relative z-20">
-            <div className="relative bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] dark:from-blue-600 dark:via-cyan-500 dark:to-[#8ED8A8] rounded-2xl p-8 md:p-12 mb-12 text-center overflow-hidden">
-              <div className="absolute inset-0 bg-linear-to-r from-blue-400/20 via-cyan-300/20 to-[#AEE5C2]/20"></div>
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
-              
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">
-                {t('pricing')}
-              </h1>
-            </div>
-
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
-              {t('pricingSub')}
-            </p>
-
-            <div className="flex items-center justify-center gap-4 mb-12">
-              <span className={`font-medium ${!isAnnual ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
-                {t('monthly')}
-              </span>
-              <button
-                onClick={() => setIsAnnual(!isAnnual)}
-                className="group relative w-14 h-7 rounded-full bg-linear-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 overflow-hidden transition-all duration-300 hover:shadow-lg"
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] dark:from-blue-400 dark:via-cyan-300 dark:to-[#8ED8A8]">
+              {t('pricing')}
+            </span>
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
+            {t('pricing.subtitle')}
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 mt-6">
+            {CONTENT_TYPES.map(({ icon: Icon, key }) => (
+              <div
+                key={key}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                <div className={`absolute inset-0 bg-linear-to-r from-blue-500 to-cyan-400 transition-opacity duration-300 ${isAnnual ? 'opacity-100' : 'opacity-0'}`}></div>
-                <span
-                  className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform duration-300 shadow-md ${
-                    isAnnual ? 'translate-x-7' : 'translate-x-0'
-                  }`}
-                />
-              </button>
-              <div className="flex items-center gap-2">
-                <span className={`font-medium ${isAnnual ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
-                  {t('annually')}
-                </span>
-                <span className="px-2 py-1 bg-linear-to-r from-blue-500 to-cyan-400 text-white text-xs rounded-full font-semibold">
-                  -20%
-                </span>
+                <Icon className="w-4 h-4 text-blue-500" />
+                {t(key)}
               </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="px-4 pb-8">
+        <div className="container mx-auto max-w-3xl">
+          <div className="relative overflow-hidden rounded-2xl bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] p-px">
+            <div className="rounded-2xl bg-white dark:bg-gray-900 px-6 py-5 flex flex-col sm:flex-row items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-linear-to-br from-blue-500 to-cyan-400 flex items-center justify-center shrink-0">
+                <Gift className="w-6 h-6 text-white" />
+              </div>
+              <div className="text-center sm:text-left">
+                <p className="font-bold text-gray-900 dark:text-white text-lg">
+                  {t('pricing.freeBannerTitle')}
+                </p>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  {t('pricing.freeBannerDesc')}
+                </p>
+              </div>
+              <Link
+                href={`/${language}/profile`}
+                className="ml-auto shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold text-sm hover:opacity-90 transition"
+              >
+                {t('pricing.tryFree')}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 relative">
-              {plans.map((plan) => {
-                const Icon = plan.icon;
-                return (
-                  <div
-                    key={plan.id}
-                    className={`relative rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl ${
-                      plan.isPopular 
-                        ? 'border-2 border-blue-400/50' 
-                        : 'border border-gray-200/30 dark:border-gray-700/30'
-                    }`}
-                  >
-                    <div className="absolute inset-0 bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm rounded-2xl"></div>
-                    
-                    {plan.isPopular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-30">
-                        <div className="bg-linear-to-r from-blue-500 to-cyan-400 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap">
-                          {t('popular')}
-                        </div>
-                      </div>
-                    )}
+      {/* Bundle selector */}
+      <div className="px-4 pb-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 dark:text-white">
+            {t('pricing.buyMoreSaveMore')}
+          </h2>
+          <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
+            {t('pricing.perTakedown', { price: '$25' })}
+          </p>
 
-                    {plan.isPopular && (
-                      <div className="absolute inset-0 bg-linear-to-br from-blue-500/10 via-cyan-400/10 to-[#AEE5C2]/10 rounded-2xl"></div>
-                    )}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+            {BUNDLES.map((bundle) => {
+              const Icon = bundle.icon;
+              const isSelected = selected === bundle.id;
+              return (
+                <button
+                  key={bundle.id}
+                  onClick={() => setSelected(bundle.id)}
+                  className={`relative rounded-2xl p-6 text-left border-2 transition-all duration-300 hover:scale-[1.02] ${
+                    isSelected
+                      ? 'border-blue-500 dark:border-blue-400 shadow-xl shadow-blue-500/10'
+                      : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
+                  } bg-white dark:bg-gray-800`}
+                >
+                  {bundle.popular && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-linear-to-r from-blue-500 to-cyan-400 text-white text-xs font-bold whitespace-nowrap">
+                      {t('popular')}
+                    </div>
+                  )}
 
-                    <div className="relative z-10">
-                      <div className="mb-6">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="relative">
-                            <div className="absolute inset-0 bg-linear-to-br from-blue-500 to-cyan-400 blur-md opacity-30"></div>
-                            <Icon className="w-8 h-8 text-blue-600 dark:text-blue-400 relative" />
-                          </div>
-                          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                            {getPlanName(plan)}
-                          </h2>
-                        </div>
-                        
-                        <div className="text-center py-4">
-                          <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                            {getPrice(plan)}
-                          </div>
-                          {isAnnual && plan.id !== 'trial' && (
-                            <div className="text-sm text-gray-600 dark:text-gray-400">
-                              {t('annually')}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      <ul className="space-y-3 mb-8">
-                        {plan.features.map((feature, idx) => (
-                          <li
-                            key={idx}
-                            className={`flex items-start gap-3 ${
-                              feature.included ? 'text-gray-800 dark:text-gray-200' : 'text-gray-500 dark:text-gray-500'
-                            }`}
-                          >
-                            {feature.included ? (
-                              <div className="relative shrink-0 mt-0.5">
-                                <Check className="w-5 h-5 text-green-500 relative z-10" />
-                                <div className="absolute inset-0 bg-green-500 blur-sm opacity-20"></div>
-                              </div>
-                            ) : (
-                              <div className="relative shrink-0 mt-0.5">
-                                <X className="w-5 h-5 text-red-500 relative z-10" />
-                                <div className="absolute inset-0 bg-red-500 blur-sm opacity-20"></div>
-                              </div>
-                            )}
-                            <span className="text-sm">{getFeatureText(feature)}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      <button
-                        className={`group relative w-full py-3 rounded-lg font-semibold transition-all duration-300 overflow-hidden ${
-                          plan.isPopular
-                            ? 'bg-linear-to-r from-blue-500 to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-500'
-                            : 'bg-linear-to-r from-gray-800 to-gray-700 dark:from-gray-700 dark:to-gray-600 text-white hover:from-gray-900 hover:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-500'
-                        }`}
-                      >
-                        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                        
-                        <span className="relative">
-                          {plan.id === 'trial' ? t('startFree') : `${t('choose')} ${getPlanName(plan)}`}
-                        </span>
-                      </button>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                      isSelected
+                        ? 'bg-linear-to-br from-blue-500 to-cyan-400'
+                        : 'bg-gray-100 dark:bg-gray-700'
+                    }`}>
+                      <Icon className={`w-5 h-5 ${isSelected ? 'text-white' : 'text-gray-600 dark:text-gray-300'}`} />
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900 dark:text-white">
+                        {bundle.qty === 1
+                          ? t('pricing.singleTakedown')
+                          : t('pricing.bundleN', { n: bundle.qty })}
+                      </p>
+                      {bundle.savingsPct > 0 && (
+                        <p className="text-xs text-green-600 dark:text-green-400 font-semibold">
+                          -{bundle.savingsPct}% {t('pricing.discount')}
+                        </p>
+                      )}
                     </div>
                   </div>
-                );
-              })}
-            </div>
+
+                  <div className="mb-1">
+                    <span className="text-3xl font-bold text-gray-900 dark:text-white">
+                      ${bundle.totalPrice}
+                    </span>
+                    {bundle.qty > 1 && (
+                      <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">
+                        (${bundle.pricePerUnit} {t('pricing.each')})
+                      </span>
+                    )}
+                  </div>
+
+                  {bundle.savings > 0 && (
+                    <p className="text-sm text-green-600 dark:text-green-400">
+                      {t('pricing.youSave', { amount: `$${bundle.savings}` })}
+                    </p>
+                  )}
+                </button>
+              );
+            })}
           </div>
-        </main>
+
+          {/* CTA */}
+          <div className="text-center">
+            <Link
+              href={`/${language}/profile`}
+              className="group relative inline-flex items-center gap-3 px-10 py-4 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/25"
+            >
+              <div className="absolute inset-0 bg-linear-to-r from-blue-500 via-cyan-400 to-[#AEE5C2] group-hover:from-blue-600 group-hover:via-cyan-500 group-hover:to-[#8ED8A8] transition-all duration-500" />
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+              <ShieldCheck className="relative w-5 h-5 text-white" />
+              <span className="relative text-white text-lg font-bold">
+                {t('pricing.startCta')}
+              </span>
+              <ArrowRight className="relative w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* What's included */}
+      <div className="px-4 pb-20 bg-gray-50 dark:bg-gray-800 transition-colors">
+        <div className="container mx-auto max-w-2xl pt-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 dark:text-white">
+            {t('pricing.whatsIncluded')}
+          </h2>
+          <div className="space-y-4">
+            {FEATURES.map((key) => (
+              <div key={key} className="flex items-start gap-3">
+                <div className="w-6 h-6 rounded-full bg-linear-to-br from-blue-500 to-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <Check className="w-3.5 h-3.5 text-white" />
+                </div>
+                <p className="text-gray-700 dark:text-gray-300">{t(key)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

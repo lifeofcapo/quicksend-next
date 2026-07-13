@@ -5,7 +5,6 @@
 
 @layer theme {
   :root {
-    /* Light mode colors (soft green + apricot) */
     --color-bg-page: #ffffff;
     --color-bg-card: #ffffff;
     --color-bg-header: #ffffff;
@@ -16,16 +15,13 @@
     --color-text-footer: #ffffff;
 
     --color-border: #e5e7eb;
-
-    /* Soft-Fresh Theme */
-    --color-primary-main: #8ED8A8;      /* мягкий зелёный */
-    --color-primary-light: #AEE5C2;     /* светлый мятный */
-    --color-primary-dark: #6FCF97;      /* акцент зелёный */
-    --color-primary-lighter: #DFF7EA;   /* пастельный фон */
-
-    --color-accent-main: #FFB87A;       /* мягкий абрикос */
-    --color-accent-light: #FFD1A6;      /* персик */
-    --color-accent-dark: #FFA65B;       /* акцент оранжевый */
+    --color-primary-main: #8ED8A8;    
+    --color-primary-light: #AEE5C2;    
+    --color-primary-dark: #6FCF97;      
+    --color-primary-lighter: #DFF7EA;  
+    --color-accent-main: #FFB87A;      
+    --color-accent-light: #FFD1A6;     
+    --color-accent-dark: #FFA65B;      
 
     --gradient-soft-green-orange: linear-gradient(
       135deg,
@@ -36,7 +32,6 @@
     );
   }
 
-  /* Dark Mode */
   .dark {
     --color-bg-page: #111827;
     --color-bg-card: #1a2421;
@@ -108,7 +103,6 @@ body {
   animation: fade-in 0.8s ease-out;
 }
 
-/* Добавьте эти анимации в ваш globals.css */
 @keyframes blob {
   0% {
     transform: translate(0px, 0px) scale(1);
@@ -136,14 +130,12 @@ body {
   animation-delay: 4s;
 }
 
-/* Плавные переходы для кнопок */
 @layer utilities {
   .backdrop-blur-sm {
     backdrop-filter: blur(4px);
   }
 }
 
-/* Эффект мерцания для декоративных элементов */
 @keyframes shimmer {
   0% {
     opacity: 0.3;
@@ -160,7 +152,6 @@ body {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Анимации для облаков */
 @keyframes cloud1 {
   0%, 100% {
     transform: translateX(0px) scale(1);

@@ -1,10 +1,10 @@
 {
   "title": "QuickSend",
-  "description": "QuickSend is a modern service for mass sending emails in Gmail.",
-  "startFree": "Start for free",
-  "learnMore": "Learn more",
+  "description": "Professional DSP takedown service for beatmakers and music creators. We remove stolen beats, covers and videos from streaming platforms quickly and reliably.",
+  "startFree": "Start Free",
+  "learnMore": "Learn More",
   "whyTitle": "Why QuickSend?",
-  "whyDesc": "We guarantee an easy-to-use platform that optimizes your outreach and minimizes spam issues.",
+  "whyDesc": "We protect beatmakers, producers, and artists from copyright theft on every major streaming platform.",
   "productsTitle": "Our Email Products",
   "productsSubtitle": "Powerful tools for effective Email Sending and other",
   "moreDetails": "More details →",
@@ -13,31 +13,61 @@
   "statsEmails": "Emails sent all-time:",
   "statsCampaigns": "Completed campaigns:",
   "statsCopyrights": "Successful copyright complaints",
-  "pricing": "Pricing & Plans",
-  "pricingSub": "Start by sending 50 emails per day for free!",
+  "pricingTitle": "Pricing",
+  "pricingSub": "First takedown is free. Then $25 per takedown.",
   "monthly": "Monthly",
   "annually": "Annually",
-  "discount": "(20% discount)",
+  "discount": "(20% off)",
   "popular": "Popular",
   "free": "Free",
-  "perMonth": "/month",
+  "perMonth": "/mo",
   "payYear": "when paying",
   "perYear": "per year",
-  "contactUs": "Contact Us!",
-  "feedback": "Send us improvement suggestions, job inquiries, and bug reports!",
+  "contactUs": "Contact Us",
+  "feedback": "Send us your questions, improvement suggestions or bug reports. We reply within 24 hours.",
+  "pricing": {
+    "subtitle": "Transparent pay-per-takedown pricing. No subscriptions, no hidden fees.",
+    "freeFirst": "1st Takedown is FREE",
+    "freeBannerTitle": "Your First Takedown is on Us",
+    "freeBannerDesc": "Sign in with Google, submit your first copyright complaint, and we will handle it at no cost.",
+    "tryFree": "Try for Free",
+    "buyMoreSaveMore": "Buy More, Save More",
+    "perTakedown": "Standard price: {price} per takedown",
+    "singleTakedown": "Single Takedown",
+    "bundleN": "Pack of {n} Takedowns",
+    "discount": "discount",
+    "each": "each",
+    "youSave": "You save {amount}",
+    "startCta": "Get Started",
+    "whatsIncluded": "What's Included",
+    "typeBeats": "Beats",
+    "typeCovers": "Covers",
+    "typeVideos": "Videos",
+    "feature1": "Takedown filed on Spotify, Apple Music, YouTube, SoundCloud, Tidal, Deezer, Amazon Music or other platforms.",
+    "feature2": "Covers beats, cover art, music videos and other copyright-protected content.",
+    "feature3": "Dedicated manager reviews every report personally before submission.",
+    "feature4": "Status updates sent to your profile and email throughout the process.",
+    "feature5": "Average removal confirmed within 3 to 7 business days."
+  },
   "advantages": {
-    "speed": "Speed",
-    "speedDesc": "Send thousands of emails at lightning speed",
-    "security": "Security", 
-    "securityDesc": "Top-level protection of your data",
-    "coldEmails": "Cold Emails",
-    "coldEmailsDesc": "Effective tools for cold emailing",
-    "lowPrice": "Low Price",
-    "lowPriceDesc": "Affordable rates for any budget",
-    "analytics": "Analytics",
-    "analyticsDesc": "Detailed statistics for all mailings",
-    "flexibleSetup": "Flexible Setup",
-    "flexibleSetupDesc": "Configure email sending to your needs"
+      "speed": "Fast Processing",
+      "speedDesc": "We submit takedown requests within 24 hours of receiving your report.",
+      "security": "Legal Compliance",
+      "securityDesc": "All reports follow DMCA and international copyright law requirements.",
+      "fastResult": "Quick Results",
+      "fastResultDesc": "Average track removal takes 3 to 7 business days after submission.",
+      "lowPrice": "Fair Pricing",
+      "lowPriceDesc": "First takedown is free. Pay only $25 per takedown. Volume discounts available.",
+      "legal": "Evidence-Based",
+      "legalDesc": "We guide you through providing the right proof of ownership for maximum success.",
+      "support": "Dedicated Support",
+      "supportDesc": "Our team reviews every report and keeps you updated at every step.",
+      "coldEmails": "Cold Emails",
+      "coldEmailsDesc": "Effective tools for cold emailing",
+      "analytics": "Analytics",
+      "analyticsDesc": "Detailed statistics for all mailings",
+      "flexibleSetup": "Flexible Setup",
+      "flexibleSetupDesc": "Configure email sending to your needs"
   },
   "products": {
     "massEmails": "Mass Emails in Gmail",
@@ -55,7 +85,7 @@
   },
   "plans": {
     "trial": "Trial",
-    "standard": "Standard", 
+    "standard": "Standard",
     "premium": "Premium",
     "trialButton": "Start",
     "features": {
@@ -65,20 +95,22 @@
     }
   },
   "header": {
-    "aboutUs": "About us",
+    "aboutUs": "Why QuickSend",
     "products": "Products",
     "pricing": "Pricing",
-    "contact": "Contact us",
+    "contact": "Contact",
     "signIn": "Sign In",
-    "logout": "Logout"
+    "logout": "Logout",
+    "services": "Services"
   },
-    "login": {
-    "welcome": "Welcome back!",
-    "joinCommunity": "Join our community and discover beneficial services.",
-    "continueWithGoogle": "Continue with Google", 
-    "securityNote": "Secure login · Privacy protected"
+  "login": {
+    "welcome": "Welcome to QuickSend",
+    "joinCommunity": "Sign in to submit takedown requests, track their status, and protect your music.",
+    "continueWithGoogle": "Continue with Google",
+    "securityNote": "Secure login · Privacy protected",
+    "loading": "Signing in..."
   },
-  "copyright": " QuickSend, inc. All rights reserved.",
+  "copyright": " QuickSend. All rights reserved.",
   "privacyFooterTitle": "Privacy Policy",
   "termsFooterTitle": "Terms of Use",
   "faqFooter": "FAQ",
@@ -192,9 +224,16 @@
     "emailValidation": "Email Validation",
     "dangerZone": "Danger Zone",
     "name": "Name",
-    "email": "Email"
+    "email": "Email",
+    "title": "My Profile",
+    "tabs": {
+      "takedowns": "My Takedowns",
+      "profile": "Profile",
+      "notifications": "Notifications",
+      "danger": "Danger Zone"
+    }
   },
-"terms": {
+  "terms": {
     "title": "Quicksend Terms of Use and Anti-Spam Policy",
     "lastUpdated": "Last Time Updated: February, 2025",
     "intro": "Please note that your use of and access to our services (defined below) are subject to the following terms; if you do not agree to all of the following, you may not use or access the services in any manner.\n\nThese Terms of Use (the \"Terms\") are a binding contract between you and QuickSend, Inc. (\"QuickSend\", \"we\" and \"us\"). If you have any questions, comments, or concerns regarding these terms or the Services, please contact us at support@quicksend.zendesk.com.\n\nYou must agree to and accept all of the Terms, or you don't have the right to use the Services. Your using the Services in any way means that you agree to all of these Terms, and these Terms will remain in effect while you use the Services. These Terms include the provisions in this document, as well as those in the Privacy Policy.",
@@ -252,14 +291,14 @@
     "emailWarmup": "Email Warmup",
     "emailWarmupText": "QuickSend does not provide email warming services for email accounts."
   },
-    "faq": {
+  "faq": {
     "title": "FAQ",
     "lastUpdated": "Last Time Updated: February, 2025",
     "searchPlaceholder": "Search...",
     "noResults": "No matching questions found",
     "topics": {
       "basics": "Basics",
-      "sending": "Sending", 
+      "sending": "Sending",
       "reports": "Reports",
       "pricing": "Pricing",
       "support": "Support"
@@ -322,30 +361,30 @@
     "description": "It may have been moved or deleted. If you believe this is an error, please contact support.",
     "backHome": "Return to home page"
   },
-    "dsp": {
-    "title": "DSP Takedowns — Protect Your Music Worldwide",
-    "description": "Our team of industry professionals handles complete removal of stolen beats, illegal samples, or unauthorized uploads from all major DSP platforms such as Spotify, Apple Music, YouTube Music, TikTok, and more.",
-    "protection": "Secure Rights Protection",
-    "protectionDesc": "We ensure your work is taken down quickly and legally from all platforms.",
-    "originality": "Producers & Artists Focused",
-    "originalityDesc": "Made by people who understand the music industry from the inside.",
-    "removal": "Fast Track Removal",
-    "removalDesc": "Speedy takedowns with accurate DMCA processing.",
-    "legal": "Legal Accuracy",
-    "legalDesc": "Every case is reviewed by a specialist with experience in copyright law.",
-    "cta": "Submit Now",
-    "guarantee": "24/7 support • Fast removal • Guaranteed results"
+  "dsp": {
+    "title": "DSP Takedowns",
+    "description": "Someone uploaded your beat, cover art or video without permission? We handle the entire takedown process — from filing the complaint to confirming removal from the platform.",
+    "protection": "Copyright Protection",
+    "protectionDesc": "We protect your rights across Spotify, Apple Music, YouTube, SoundCloud, Tidal, Deezer, Amazon Music and more.",
+    "originality": "Originality Verification",
+    "originalityDesc": "We help you document proof of original authorship to support your claim.",
+    "removal": "Content Removal",
+    "removalDesc": "We file formal takedown requests and track removal status until the content is gone.",
+    "legal": "Legal Support",
+    "legalDesc": "All takedowns are filed in compliance with DMCA and platform-specific policies.",
+    "cta": "Submit a Takedown",
+    "guarantee": "100% legal, compliant with DMCA and platform rules"
   },
   "isMobile": {
-    "title": "Unavailable on Mobile",
-    "desc": "Extension requires a computer"
+    "title": "Desktop Required",
+    "desc": "Please open this page on a desktop device."
   },
   "isChrome": {
-    "title": "Requires Chrome",
-    "desc": "Extension works only in Chrome Browser"
+    "title": "Chrome Required",
+    "desc": "Please open this page in Google Chrome on a desktop."
   },
-    "tenty": {
-    "personalInfo": "Personal Information",
+  "tenty": {
+    "personalInfo": "Personal Info",
     "reportDetails": "Report Details",
     "ownershipProof": "Ownership Proof",
     "reviewSubmit": "Review & Submit",
@@ -357,22 +396,22 @@
     "legalWarning": "By submitting this form, you are making a legal declaration under penalty of perjury. Providing false or misleading information may result in legal consequences, including but not limited to civil penalties and criminal charges.",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "companyName": "Company Name",
-    "mailingAddress": "Mailing Address",
-    "phoneNumber": "Phone Number",
-    "email": "Email Address",
-    "additionalContacts": "Additional Contact Details",
+    "companyName": "Company / Label (optional)",
+    "mailingAddress": "Mailing Address (optional)",
+    "phoneNumber": "Phone Number (optional)",
+    "email": "Contact Email",
+    "additionalContacts": "Additional Contacts (optional)",
     "additionalContactsPlaceholder": "Social media, alternative email, etc.",
-    "reportingPlatform": "Reporting Platform",
-    "reportType": "Type of Report",
-    "contentType": "Type of Content",
-    "reportingReason": "Why are you reporting this content?",
-    "reportingReasonPlaceholder": "Please provide a detailed explanation of the infringement...",
-    "evidenceUrl": "URL Link (Proof of Ownership)",
+    "reportingPlatform": "Platform",
+    "reportType": "Report Type",
+    "contentType": "Content Type",
+    "reportingReason": "Describe the Violation",
+    "reportingReasonPlaceholder": "Describe how your copyright was violated. Mention the track/content name, release date, and why you believe it infringes your rights. Minimum 50 characters.",
+    "evidenceUrl": "Link to Infringing Content",
     "evidenceUrlHelp": "Provide a link to evidence proving your ownership (e.g., copyright registration, distribution agreement, etc.)",
-    "ownershipType": "What type of work do you own?",
-    "ownershipExplanation": "Complete Explanation of Ownership",
-    "ownershipExplanationPlaceholder": "Explain in detail your ownership rights, including dates, registration numbers, and any relevant details...",
+    "ownershipType": "Your Relationship to the Content",
+    "ownershipExplanation": "Explain Your Ownership",
+    "ownershipExplanationPlaceholder": "Describe how you created or own this content. Include release date, original publication link, or any other proof. Minimum 100 characters.",
     "selectPlatform": "Select Platform",
     "selectReportType": "Select Report Type",
     "selectContentType": "Select Content Type",
@@ -392,19 +431,65 @@
     "submitSuccess": "Report submitted successfully! You will receive a confirmation email shortly.",
     "submitError": "Error submitting report. Please try again.",
     "requiredField": "This field is required",
-    "invalidEmail": "Please enter a valid email address",
-    "invalidUrl": "Please enter a valid URL starting with http:// or https://",
-    "minCharacters": "Must be at least {{count}} characters",
-    "maxCharacters": "Must not exceed {{count}} characters",
+    "invalidEmail": "Invalid email address",
+    "invalidUrl": "Must be a valid URL starting with http:// or https://",
+    "minCharacters": "Minimum {count} characters required",
+    "maxCharacters": "Maximum {count} characters allowed",
     "agreeRequired": "You must agree to continue",
-    "bio": "Jordan Tennant is a Music Entrepreneur who is the Co Founder of Tenty. He helps producers and songwriters with DSP takedowns. 3 years experience in Music Industry"
+    "bio": "Jordan Tennant is a Music Entrepreneur who is the Co Founder of Tenty. He helps producers and songwriters with DSP takedowns. 3 years experience in Music Industry",
+    "title": "Submit Takedown Report",
+    "subtitle": "Fill out the form below to file a copyright complaint.",
+    "phone": "Phone Number (optional)",
+    "evidenceUrl2": "Second Evidence Link (optional)",
+    "invalidPhone": "Invalid phone number",
+    "invalidFormat": "Invalid format",
+    "platform": {
+      "spotify": "Spotify",
+      "appleMusic": "Apple Music",
+      "youtube": "YouTube",
+      "soundcloud": "SoundCloud",
+      "tidal": "Tidal",
+      "deezer": "Deezer",
+      "amazonMusic": "Amazon Music",
+      "other": "Other"
+    },
+    "reportType": {
+      "copyright": "Copyright Infringement",
+      "dmca": "DMCA Takedown",
+      "neighboring": "Neighboring Rights"
+    },
+    "contentType": {
+      "beat": "Beat / Instrumental",
+      "beatDesc": "A musical beat or instrumental track stolen from your catalog.",
+      "cover": "Cover Art / Image",
+      "coverDesc": "Your original artwork or cover image used without permission.",
+      "video": "Video",
+      "videoDesc": "A music video, lyric video, or other video content using your work.",
+      "other": "Other",
+      "otherDesc": "Any other type of copyright-protected content."
+    },
+    "ownership": {
+      "originalCreator": "I am the original creator",
+      "label": "I represent a label or publisher",
+      "authorizedAgent": "I am an authorized agent"
+    },
+    "agree": {
+      "terms": "I confirm this report is accurate and I have the legal right to submit it.",
+      "accuracy": "I understand that filing a false claim may have legal consequences.",
+      "penalties": "I agree to the Terms of Use and Privacy Policy."
+    },
+    "submit": "Submit Report",
+    "successTitle": "Report Submitted!",
+    "successDesc": "We have received your takedown request. Our manager will review it and update you within 1–2 business days.",
+    "noReports": "You have not submitted any takedown reports yet.",
+    "submitFirst": "Submit Your First Takedown"
   },
   "paypal": {
     "securePayment": "Secure Payment",
     "securePaymentDescription": "Pay securely through PayPal. Your payment details are protected by the world leader in online payments.",
     "buyerProtection": "Buyer Protection",
     "buyerProtectionDescription": "Full purchase protection. Money back guarantee if there are issues with your subscription.",
-    "multiplePaymentMethods": "Multiple Payment Methods", 
+    "multiplePaymentMethods": "Multiple Payment Methods",
     "multiplePaymentMethodsDescription": "Pay with credit card, debit card, or through your PayPal balance.",
     "securityNote": "SSL encryption • 256-bit security",
     "selectPlan": "Select Plan for Payment",
@@ -417,5 +502,28 @@
     "privacyNote": "Your payment details are never stored on our servers"
   },
   "and": "and",
-  "choose": "Choose"
+  "choose": "Choose",
+  "hero": {
+    "badge": "DSP Takedown Service",
+    "headline": "Protect Your Music",
+    "cta": "Submit Takedown",
+    "freeTrial": "First takedown is FREE — no credit card required",
+    "typeBeats": "Beats",
+    "typeCovers": "Covers",
+    "typeVideos": "Videos",
+    "statusActive": "Active",
+    "statusRemoved": "Removed ✓",
+    "statusPending": "Pending",
+    "statusProcessing": "Processing",
+    "avgTime": "Average removal time:",
+    "days": "days"
+  },
+  "stats": {
+    "takedowns": "Successful takedowns",
+    "takedownsValue": "500+",
+    "platforms": "Platforms covered",
+    "platformsValue": "8+",
+    "avgDays": "Avg. removal time",
+    "avgDaysValue": "5 days"
+  }
 }

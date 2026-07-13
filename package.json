@@ -9,27 +9,24 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@auth/supabase-adapter": "^1.7.4",
     "@lottiefiles/react-lottie-player": "^3.6.0",
-    "@next-auth/supabase-adapter": "^0.2.1",
     "@supabase/supabase-js": "^2.78.0",
-    "bcrypt": "^6.0.0",
     "date-fns": "^4.1.0",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.552.0",
-    "next": "^16.0.7",
-    "next-auth": "^4.24.13",
+    "next": "^15.3.3",
+    "next-auth": "^5.0.0-beta.28",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/bcrypt": "^6.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "baseline-browser-mapping": "^2.10.0",
     "eslint": "^9",
-    "eslint-config-next": "16.0.1",
+    "eslint-config-next": "^15.3.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
