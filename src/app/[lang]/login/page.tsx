@@ -1,20 +1,18 @@
 // @/app/[lang]/login/page.tsx
-import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 import LoginClient from "./_components/LoginClient";
 
 interface LoginPageProps {
-  params: {
-    lang: string;
-  };
+  params: Promise<{ lang: string }>;
 }
 
 export default async function LoginPage({ params }: LoginPageProps) {
-  const session = await getServerSession(authOptions);
-  
+  const { lang } = await params;
+  const session = await auth();
+
   if (session) {
-    redirect(`/${params.lang}/profile`);
+    redirect(`/${lang}/profile`);
   }
 
   return <LoginClient />;

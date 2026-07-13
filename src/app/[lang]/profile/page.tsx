@@ -1,11 +1,10 @@
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import ProfileTabs from './_components/ProfileTabs';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 
 export default async function ProfilePage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session?.user?.email) redirect('/en/login');
 
   const { data: userData, error } = await supabaseAdmin
@@ -14,10 +13,7 @@ export default async function ProfilePage() {
     .eq('email', session.user.email)
     .single();
 
-  if (error || !userData) {
-    console.error('Error fetching user or user not found:', error);
-    redirect('/en/login');
-  }
+  if (error || !userData) redirect('/en/login');
 
   const isManager = session.user.email === process.env.MANAGER_EMAIL;
 

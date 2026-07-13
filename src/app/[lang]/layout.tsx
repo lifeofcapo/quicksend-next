@@ -41,6 +41,7 @@ export async function generateMetadata({
   ];
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://quicksend.vercel.app'),
     title: titles[lang as Language] ?? titles.en,
     description: descriptions[lang as Language] ?? descriptions.en,
     keywords,
