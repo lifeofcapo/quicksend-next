@@ -11,9 +11,6 @@ export default function TentyReportForm() {
   const { t } = useTranslation();
   const { data: session, status } = useSession();
 
-  if (status === 'loading') return <div className="p-4 text-center">Loading...</div>;
-  if (status === 'unauthenticated') return <div className="p-4 text-center">Please sign in to submit a report</div>;
-
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<ReportData>({
     firstName: '', lastName: '', companyName: '', mailingAddress: '',
@@ -24,6 +21,9 @@ export default function TentyReportForm() {
   });
   const [errors, setErrors] = useState<Partial<Record<keyof ReportData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  if (status === 'loading') return <div className="p-4 text-center">Loading...</div>;
+  if (status === 'unauthenticated') return <div className="p-4 text-center">Please sign in to submit a report</div>;
 
   const steps = [
     { number: 1, title: t('tenty.personalInfo') },

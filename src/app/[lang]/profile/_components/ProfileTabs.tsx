@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import TabProfileInfo from './TabProfileInfo';
 import TabTenty from './TabTenty';
-import TabEmailValidation from './TabEmailValidation';
 import TabDangerZone from './TabDangerZone';
 import TabNotifications from './TabNotifications';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -61,9 +60,6 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
           )}
           {activeTab === 'notifications' && <TabNotifications />}
           {activeTab === 'tenty' && <TabTenty />}
-          {activeTab === 'email' && (
-            <TabEmailValidation email={sessionUser.email} />
-          )}
           {activeTab === 'danger' && (
             <TabDangerZone email={sessionUser.email} />
           )}
@@ -114,8 +110,8 @@ function ManagerRequestList({ requests }: any) {
           >
             <div className="flex justify-between items-center gap-3">
               <div className="min-w-0">
-                <h3 className="font-semibold truncate">{req.track_name}</h3>
-                <p className="text-gray-500 text-sm truncate">{req.artist_nickname}</p>
+                <h3 className="font-semibold truncate">{req.first_name} {req.last_name}</h3>
+                <p className="text-gray-500 text-sm truncate">{req.reporting_platform} · {req.content_type}</p>
               </div>
               <span className="px-2 py-1 text-sm rounded bg-gray-200 dark:bg-gray-800 shrink-0">
                 {req.status}
@@ -123,9 +119,7 @@ function ManagerRequestList({ requests }: any) {
             </div>
           </a>
         ))}
-        {requests.length === 0 && (
-          <p className="text-gray-500">{t('profile.noRequestsYet')}</p>
-        )}
+        {requests.length === 0 && <p className="text-gray-500">{t('profile.noRequestsYet')}</p>}
       </div>
     </div>
   );

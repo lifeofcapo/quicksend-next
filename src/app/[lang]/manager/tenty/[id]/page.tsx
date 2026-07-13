@@ -16,7 +16,7 @@ export default async function ManagerTentyRequest({ params }: ManagerTentyReques
   const { id } = await params;
 
   const { data: req, error } = await supabaseAdmin
-    .from("tenty_requests")
+    .from("tenty_reports")
     .select("*")
     .eq("id", id)
     .single();
@@ -26,22 +26,17 @@ export default async function ManagerTentyRequest({ params }: ManagerTentyReques
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-10">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">
-          Tenty Request #{req.id}
-        </h1>
-
+        <h1 className="text-3xl font-bold mb-6">Tenty Report #{req.id}</h1>
         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow space-y-5">
-          <p><b>Track Link:</b> {req.track_link}</p>
-          <p><b>Artist Nickname:</b> {req.artist_nickname}</p>
-          <p><b>Track name:</b> {req.track_name}</p>
-          <p><b>Rights holder:</b> {req.rights_holder}</p>
-          <p><b>Name:</b> {req.full_name}</p>
+          <p><b>Name:</b> {req.first_name} {req.last_name}</p>
+          <p><b>Company:</b> {req.company_name ?? '—'}</p>
           <p><b>Email:</b> {req.email}</p>
-          <p><b>Address:</b> {req.address}</p>
-
-          <div className="pt-5">
-            <ModeButtons id={req.id} userId={req.user_id} />
-          </div>
+          <p><b>Phone:</b> {req.phone ?? '—'}</p>
+          <p><b>Platform:</b> {req.reporting_platform}</p>
+          <p><b>Content type:</b> {req.content_type}</p>
+          <p><b>Reason:</b> {req.reporting_reason}</p>
+          <p><b>Evidence:</b> <a href={req.evidence_url} target="_blank" className="text-blue-500 underline">{req.evidence_url}</a></p>
+          <p><b>Ownership:</b> {req.ownership_type} — {req.ownership_explanation}</p>
         </div>
       </div>
     </div>
