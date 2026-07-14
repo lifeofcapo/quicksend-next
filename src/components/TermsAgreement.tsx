@@ -23,7 +23,7 @@ export default function TermsAgreement({ buttonName, variant = 'paypal' }: Terms
     <p className={className}>
       {isRussian ? (
         <>
-          Нажимая на кнопку "{buttonName}", вы соглашаетесь с{' '}
+          Нажимая на кнопку «{buttonName}», вы соглашаетесь с{' '}
           <Link href={`/${language}/privacy`} className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
             политикой конфиденциальности
           </Link>
@@ -43,7 +43,7 @@ export default function TermsAgreement({ buttonName, variant = 'paypal' }: Terms
         </>
       ) : (
         <>
-          By clicking the "{buttonName}" button, you agree to our{' '}
+          By clicking the «{buttonName}» button, you agree to our{' '}
           <Link href={`/${language}/privacy`} className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
             Privacy Policy
           </Link>

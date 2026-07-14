@@ -6,6 +6,7 @@ import TabTenty from './TabTenty';
 import TabDangerZone from './TabDangerZone';
 import TabNotifications from './TabNotifications';
 import { useTranslation } from '@/hooks/useTranslation';
+import type { Session } from 'next-auth';
 
 const managerTabs = [
   { id: 'manager_dashboard', label: 'managerDashboard' },
@@ -20,12 +21,37 @@ const userTabs = [
   { id: 'danger', label: 'dangerZone' },
 ];
 
-export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
+interface UserData {
+  avatar_url?: string;
+  company_name?: string;
+  emails_sent?: number;
+  created_at?: string;
+  status?: string;
+  active_plan?: string;
+  subscription_end?: string;
+}
+
+interface TentyRequest {
+  id: string;
+  first_name: string;
+  last_name: string;
+  reporting_platform: string;
+  content_type: string;
+  status: string;
+}
+
+interface ProfileTabsProps {
+  sessionUser: Session['user'];
+  userData: UserData;
+  isManager: boolean;
+}
+
+export default function ProfileTabs({ sessionUser, userData, isManager }: ProfileTabsProps) {
   const { t } = useTranslation();
   const tabs = isManager ? managerTabs : userTabs;
 
   const [activeTab, setActiveTab] = useState(tabs[0].id);
-  const [requests, setRequests] = useState([]);
+  const [requests, setRequests] = useState<TentyRequest[]>([]);
 
   useEffect(() => {
     if (isManager && activeTab === 'manager_requests') {
@@ -61,7 +87,7 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
           {activeTab === 'notifications' && <TabNotifications />}
           {activeTab === 'tenty' && <TabTenty />}
           {activeTab === 'danger' && (
-            <TabDangerZone email={sessionUser.email} />
+            <TabDangerZone email={sessionUser.email ?? ''} />
           )}
         </>
       )}
@@ -80,7 +106,7 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: any) {
   );
 }
 
-function ManagerDashboard({ sessionUser }: any) {
+function ManagerDashboard({ sessionUser }: { sessionUser: Session['user'] }) {
   const { t } = useTranslation();
   return (
     <div>
@@ -96,7 +122,7 @@ function ManagerDashboard({ sessionUser }: any) {
   );
 }
 
-function ManagerRequestList({ requests }: any) {
+function ManagerRequestList({ requests }: { requests: TentyRequest[] }) {
   const { t } = useTranslation();
   return (
     <div>

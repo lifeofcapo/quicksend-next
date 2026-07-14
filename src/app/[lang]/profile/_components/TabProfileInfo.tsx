@@ -1,3 +1,4 @@
+//TabProfileInfo.tsx
 'use client';
 
 import Image from 'next/image';
@@ -5,9 +6,10 @@ import { format } from 'date-fns';
 import { useTranslation } from '@/hooks/useTranslation';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/language-context';
+import type { Session } from 'next-auth';
 
 interface TabProfileInfoProps {
-  user: any;
+  user: Session['user'];
   userData: {
     avatar_url?: string;
     company_name?: string;
@@ -202,7 +204,7 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
                 <p className="text-gray-900 dark:text-white text-base sm:text-lg">
                   {user?.name ?? t('profile.userNameFallback')}
                 </p>
-                {user?.email_verified && (
+                {user?.emailVerified && (
                   <span className="px-2 py-0.5 bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 text-xs font-medium rounded-full">
                     {t('profile.verified')}
                   </span>

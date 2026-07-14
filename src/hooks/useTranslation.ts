@@ -20,15 +20,15 @@ export function useTranslation() {
   
   const currentLanguage = (language in translations ? language : 'en') as Language;
   
-  const t = (key: string, params?: Record<string, any>): string => {
+  const t = (key: string, params?: Record<string, string | number>): string => {
     // console.log(`Translating key: "${key}" for language: "${currentLanguage}"`);  - Line for debugging user language context
     
     const keys = key.split('.');
-    let value: any = translations[currentLanguage];
+    let value: unknown = translations[currentLanguage];
     
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
-        value = value[k];
+        value = (value as Record<string, unknown>)[k];
       } else {
         console.warn(`Translation not found for key: "${key}" at segment: "${k}" in language: "${currentLanguage}"`);
         console.warn('Available keys at this level:', Object.keys(value || {}));
