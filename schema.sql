@@ -197,3 +197,15 @@ alter table public.users enable row level security;
 alter table public.notifications enable row level security;
 alter table public.tenty_reports enable row level security;
 alter table public.tenty_request_messages enable row level security;
+
+-- Даём права на схему и таблицы роли anon (используется service_role тоже проходит через это)
+GRANT USAGE ON SCHEMA next_auth TO anon, authenticated, service_role;
+
+GRANT ALL ON ALL TABLES IN SCHEMA next_auth TO anon, authenticated, service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA next_auth TO anon, authenticated, service_role;
+
+-- Отдельно на каждую таблицу явно (PostgREST иногда требует это)
+GRANT SELECT, INSERT, UPDATE, DELETE ON next_auth.users TO anon, authenticated, service_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON next_auth.accounts TO anon, authenticated, service_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON next_auth.sessions TO anon, authenticated, service_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON next_auth.verification_tokens TO anon, authenticated, service_role;

@@ -1,10 +1,13 @@
 import { validationRules, ValidationRule } from './schemas';
 
 export type FormData = {
-  [key: string]: any;
+  [key: string]: string | boolean | number | undefined;
 };
 
-export type TranslationFunction = (key: string, params?: Record<string, any>) => string;
+export type TranslationFunction = (key: string, params?: Record<string, string | number>) => string;
+
+const str = (val: string | boolean | number | undefined): string =>
+  val === undefined || val === null ? '' : String(val);
 
 export const validateStep = (
   step: number, 
@@ -39,17 +42,17 @@ export const validateStep = (
 
   switch (step) {
     case 1:
-      const firstNameError = validateField('firstName', formData.firstName, validationRules.firstName!);
+      const firstNameError = validateField('firstName', str(formData.firstName), validationRules.firstName!);
       if (firstNameError) errors.firstName = firstNameError;
-      
-      const lastNameError = validateField('lastName', formData.lastName, validationRules.lastName!);
+
+      const lastNameError = validateField('lastName', str(formData.lastName), validationRules.lastName!);
       if (lastNameError) errors.lastName = lastNameError;
-      
-      const emailError = validateField('email', formData.email, validationRules.email!);
+
+      const emailError = validateField('email', str(formData.email), validationRules.email!);
       if (emailError) errors.email = emailError;
-      
+
       if (formData.phoneNumber) {
-        const phoneError = validateField('phoneNumber', formData.phoneNumber, validationRules.phone!);
+        const phoneError = validateField('phoneNumber', str(formData.phoneNumber), validationRules.phone!);
         if (phoneError) errors.phoneNumber = phoneError;
       }
       break;
@@ -65,23 +68,19 @@ export const validateStep = (
         errors.contentType = t('tenty.requiredField');
       }
       
-      const reasonError = validateField('reportingReason', formData.reportingReason, validationRules.reportingReason!);
+      const reasonError = validateField('reportingReason', str(formData.reportingReason), validationRules.reportingReason!);
       if (reasonError) errors.reportingReason = reasonError;
       break;
 
     case 3:
-      const urlError = validateField('evidenceUrl', formData.evidenceUrl, validationRules.url!);
+      const urlError = validateField('evidenceUrl', str(formData.evidenceUrl), validationRules.url!);
       if (urlError) errors.evidenceUrl = urlError;
       
       if (!formData.ownershipType) {
         errors.ownershipType = t('tenty.requiredField');
       }
       
-      const ownershipError = validateField(
-        'ownershipExplanation', 
-        formData.ownershipExplanation, 
-        validationRules.ownershipExplanation!
-      );
+      const ownershipError = validateField('ownershipExplanation', str(formData.ownershipExplanation), validationRules.ownershipExplanation!);
       if (ownershipError) errors.ownershipExplanation = ownershipError;
       break;
 

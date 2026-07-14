@@ -128,7 +128,7 @@ function ManagerRequestList({ requests }: { requests: TentyRequest[] }) {
     <div>
       <h2 className="text-xl sm:text-2xl font-bold mb-4">{t('profile.allTentyRequests')}</h2>
       <div className="space-y-4">
-        {requests.map((req: any) => (
+        {requests.map((req) => (
           <a
             key={req.id}
             href={`/manager/tenty/${req.id}`}

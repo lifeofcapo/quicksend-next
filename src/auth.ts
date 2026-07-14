@@ -3,6 +3,7 @@ import { SupabaseAdapter } from '@auth/supabase-adapter';
 import authConfig from './auth.config';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  debug: true,
   ...authConfig,
   adapter: SupabaseAdapter({
     url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
