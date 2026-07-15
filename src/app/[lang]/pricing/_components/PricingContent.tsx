@@ -14,24 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { PaymentMethodSelector, type PaymentMethodId } from './PaymentMethodSelector';
-
-interface Bundle {
-  id: string;
-  qty: number;
-  pricePerUnit: number;
-  totalPrice: number;
-  savings: number;
-  savingsPct: number;
-  icon: typeof ShieldCheck;
-  descKey: string;
-  popular?: boolean;
-}
-
-const BUNDLES: Bundle[] = [
-  { id: 'single', qty: 1,  pricePerUnit: 25, totalPrice: 25,  savings: 0,  savingsPct: 0,  icon: Zap,   descKey: 'pricing.bundleDescSingle' },
-  { id: 'pack5',  qty: 5,  pricePerUnit: 22, totalPrice: 110, savings: 15, savingsPct: 12, icon: Star,  descKey: 'pricing.bundleDescPack5', popular: true },
-  { id: 'pack10', qty: 10, pricePerUnit: 19, totalPrice: 190, savings: 60, savingsPct: 24, icon: Crown, descKey: 'pricing.bundleDescPack10' },
-];
+import { PricingPlan, PRICING_PLANS } from '@/lib/pricing';
 
 const CONTENT_TYPES = [
   { icon: Music,     key: 'pricing.typeBeats' },
@@ -62,11 +45,12 @@ const STATS = [
 export default function PricingContent({ lang }: { lang: string }) {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const [selectedId, setSelectedId] = useState<string>('pack5');
+  const [selectedId, setSelectedId] =
+  useState<PricingPlan['id']>('five');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethodId>('paypal');
 
   const selectedBundle = useMemo(
-    () => BUNDLES.find((b) => b.id === selectedId) ?? BUNDLES[0],
+    () => PRICING_PLANS.find((b) => b.id === selectedId) ?? PRICING_PLANS[0],
     [selectedId]
   );
 
@@ -144,21 +128,21 @@ export default function PricingContent({ lang }: { lang: string }) {
 
           <div className="flex flex-col lg:flex-row gap-8 items-stretch">
             <div className="flex-1 flex flex-col sm:flex-row gap-4">
-              {BUNDLES.map((bundle) => {
-                const Icon = bundle.icon;
-                const isSelected = selectedId === bundle.id;
+              {PRICING_PLANS.map((pricingPlan) => {
+                const Icon = pricingPlan.icon;
+                const isSelected = selectedId === pricingPlan.id;
                 return (
                   <button
-                    key={bundle.id}
+                    key={pricingPlan.id}
                     type="button"
-                    onClick={() => setSelectedId(bundle.id)}
+                    onClick={() => setSelectedId(pricingPlan.id)}
                     aria-pressed={isSelected}
                     className={cn(
                       'relative rounded-xl p-5 text-left border bg-card transition-all flex flex-col h-full sm:flex-1 min-w-0',
                       isSelected ? 'border-primary ring-1 ring-primary shadow-md' : 'border-border hover:border-primary/40'
                     )}
                   >
-                    {bundle.popular && (
+                    {pricingPlan.popular && (
                       <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary-foreground">
                         {t('popular')}
                       </span>
@@ -172,34 +156,34 @@ export default function PricingContent({ lang }: { lang: string }) {
                     </div>
 
                     <p className="font-semibold text-foreground text-sm mb-1.5">
-                      {bundle.qty === 1 ? t('pricing.singleTakedown') : t('pricing.bundleN', { n: bundle.qty })}
+                      {pricingPlan.qty === 1 ? t('pricing.singleTakedown') : t('pricing.bundleN', { n: pricingPlan.qty })}
                     </p>
 
                     <p className="text-xs text-muted-foreground leading-relaxed mb-4">
-                      {t(bundle.descKey)}
+                      {t(pricingPlan.descKey)}
                     </p>
 
                     <div className="mt-auto">
                       <div className="flex items-baseline gap-2 mb-1">
-                        <span className="text-2xl font-bold text-foreground tabular-nums">${bundle.totalPrice}</span>
-                        {bundle.qty > 1 && (
+                        <span className="text-2xl font-bold text-foreground tabular-nums">${pricingPlan.totalPrice}</span>
+                        {pricingPlan.qty > 1 && (
                           <span className="text-xs text-muted-foreground tabular-nums">
-                            (${bundle.pricePerUnit} {t('pricing.each')})
+                            (${pricingPlan.pricePerUnit} {t('pricing.each')})
                           </span>
                         )}
-                        {bundle.savingsPct > 0 && (
+                        {pricingPlan.savingsPct > 0 && (
                           <span className="ml-auto text-[11px] font-semibold text-accent-dark bg-accent-light rounded-full px-1.5 py-0.5 tabular-nums shrink-0">
-                            -{bundle.savingsPct}%
+                            -{pricingPlan.savingsPct}%
                           </span>
                         )}
                       </div>
 
                       <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium tabular-nums h-4">
-                        {bundle.savings > 0 && t('pricing.youSave', { amount: `$${bundle.savings}` })}
+                        {pricingPlan.savings > 0 && t('pricing.youSave', { amount: `$${pricingPlan.savings}` })}
                       </p>
 
                       <div className="flex flex-wrap gap-1 mt-3" aria-hidden>
-                        {Array.from({ length: bundle.qty }).map((_, i) => (
+                        {Array.from({ length: pricingPlan.qty }).map((_, i) => (
                           <span
                             key={i}
                             className={cn('w-1.5 h-1.5 rounded-full', isSelected ? 'bg-primary' : 'bg-border')}

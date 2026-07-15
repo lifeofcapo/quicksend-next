@@ -8,6 +8,7 @@ import { montserrat } from '@/lib/font';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { notFound } from 'next/navigation';
+import { auth } from '@/auth';
 
 const languages = ['en', 'ru'] as const;
 type Language = (typeof languages)[number];
@@ -87,16 +88,17 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     notFound();
   }
 
+  const session = await auth();
+
   return (
     <html lang={lang} className={montserrat.variable} suppressHydrationWarning>
       <head>
-        {/* Inject theme script before first paint to prevent flash */}
         <ThemeScript />
       </head>
       <body className={`${montserrat.className} flex flex-col min-h-screen`}>
         <ThemeProvider>
           <LanguageProvider initialLanguage={lang as Language}>
-            <AuthProvider>
+            <AuthProvider session={session}>
               <Header />
               {children}
               <Footer />

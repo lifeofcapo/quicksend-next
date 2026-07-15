@@ -7,6 +7,8 @@ import TabDangerZone from './TabDangerZone';
 import TabNotifications from './TabNotifications';
 import { useTranslation } from '@/hooks/useTranslation';
 import type { Session } from 'next-auth';
+import TabPayments from './TabPayments';
+import TabMyRequests from './TabMyRequests';
 
 const managerTabs = [
   { id: 'manager_dashboard', label: 'managerDashboard' },
@@ -16,19 +18,18 @@ const managerTabs = [
 const userTabs = [
   { id: 'profile', label: 'profileInfo' },
   { id: 'notifications', label: 'notifications' },
+  { id: 'requests', label: 'myRequests' },
+  { id: 'payments', label: 'payments' },
   { id: 'tenty', label: 'tenty' },
-  { id: 'email', label: 'emailValidation' },
   { id: 'danger', label: 'dangerZone' },
 ];
 
 interface UserData {
   avatar_url?: string;
   company_name?: string;
-  emails_sent?: number;
   created_at?: string;
   status?: string;
-  active_plan?: string;
-  subscription_end?: string;
+  credits_remaining?: number;
 }
 
 interface TentyRequest {
@@ -85,6 +86,8 @@ export default function ProfileTabs({ sessionUser, userData, isManager }: Profil
             <TabProfileInfo user={sessionUser} userData={userData} />
           )}
           {activeTab === 'notifications' && <TabNotifications />}
+          {activeTab === 'requests' && <TabMyRequests />}
+          {activeTab === 'payments' && <TabPayments creditsRemaining={userData.credits_remaining ?? 0} />}
           {activeTab === 'tenty' && <TabTenty />}
           {activeTab === 'danger' && (
             <TabDangerZone email={sessionUser.email ?? ''} />

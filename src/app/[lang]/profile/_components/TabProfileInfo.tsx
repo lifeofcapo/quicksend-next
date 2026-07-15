@@ -1,4 +1,3 @@
-//TabProfileInfo.tsx
 'use client';
 
 import Image from 'next/image';
@@ -7,17 +6,20 @@ import { useTranslation } from '@/hooks/useTranslation';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/language-context';
 import type { Session } from 'next-auth';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 interface TabProfileInfoProps {
   user: Session['user'];
   userData: {
     avatar_url?: string;
     company_name?: string;
-    emails_sent?: number;
     created_at?: string;
     status?: string;
-    active_plan?: string;
-    subscription_end?: string;
+    credits_remaining?: number;
   };
 }
 
@@ -43,21 +45,36 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
       inactive: t('profile.inactive'),
       pending: t('profile.pending'),
       suspended: t('profile.suspended'),
-      trial: t('profile.trial'),
     };
     return statusMap[status.toLowerCase()] || status;
   };
 
-  const getTranslatedPlan = (plan?: string) => {
-    if (!plan) return t('profile.freePlan');
-    const planMap: Record<string, string> = {
-      free: t('profile.freePlan'),
-      basic: t('profile.basicPlan'),
-      pro: t('profile.proPlan'),
-      premium: t('profile.premiumPlan'),
-      enterprise: t('profile.enterprisePlan'),
-    };
-    return planMap[plan.toLowerCase()] || plan;
+  const router = useRouter();
+  const [isEditing, setIsEditing] = useState(false);
+  const [form, setForm] = useState({
+    name: user?.name ?? '',
+    company_name: userData?.company_name ?? '',
+    avatar_url: userData?.avatar_url ?? '',
+  });
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const res = await fetch('/api/profile', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setIsEditing(false);
+        router.refresh();
+      } else {
+        alert(t('profile.updateFailed'));
+      }
+    } finally {
+      setSaving(false);
+    }
   };
 
   return (
@@ -74,7 +91,7 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
           />
           {userData?.status && (
             <div className={`absolute bottom-0 right-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white dark:border-gray-800 ${
-              userData.status === 'active' || userData.status === 'trial'
+              userData.status === 'active'
                 ? 'bg-green-500'
                 : userData.status === 'pending'
                 ? 'bg-yellow-500'
@@ -103,8 +120,7 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
         </div>
       </div>
 
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <div className="p-4 sm:p-5 bg-linear-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-900/10 rounded-xl border border-blue-100 dark:border-blue-800">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-blue-100 dark:bg-blue-800/50 rounded-lg">
@@ -113,50 +129,21 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
               </svg>
             </div>
             <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
-              {t('profile.activePlanLabel')}
+              {t('profile.creditsRemaining')}
             </p>
           </div>
           <p className="text-xl font-bold text-gray-900 dark:text-white">
-            {getTranslatedPlan(userData?.active_plan)}
+            {userData?.credits_remaining ?? 0}
           </p>
-          {(!userData?.active_plan || userData.active_plan.toLowerCase() === 'free') && (
-            <Link
-              href={`/${language}/pricing`}
-              className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium inline-block"
-            >
-              {t('profile.upgradePlan')} →
-            </Link>
-          )}
-        </div>
-        <div className="p-4 sm:p-5 bg-linear-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-900/10 rounded-xl border border-green-100 dark:border-green-800">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-green-100 dark:bg-green-800/50 rounded-lg">
-              <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
-              {t('profile.subscriptionEndsLabel')}
-            </p>
-          </div>
-          <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-            {userData?.subscription_end ? formatDate(userData.subscription_end) : t('profile.noSubscription')}
-          </p>
-          {userData?.subscription_end && (
-            <div className="mt-2">
-              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                <div
-                  className="bg-green-600 h-2 rounded-full"
-                  style={{
-                    width: `${Math.max(10, Math.min(100, (new Date().getTime() - new Date(userData.subscription_end).getTime()) / (30 * 24 * 60 * 60 * 1000) * 100))}%`
-                  }}
-                />
-              </div>
-            </div>
-          )}
+          <Link
+            href={`/${language}/profile?tab=payments`}
+            className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium inline-block"
+          >
+            {t('profile.buyCredits')} →
+          </Link>
         </div>
 
-        <div className="p-4 sm:p-5 bg-linear-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-900/10 rounded-xl border border-purple-100 dark:border-purple-800 sm:col-span-2 lg:col-span-1">
+        <div className="p-4 sm:p-5 bg-linear-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-900/10 rounded-xl border border-purple-100 dark:border-purple-800">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-purple-100 dark:bg-purple-800/50 rounded-lg">
               <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,8 +161,6 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
             <span className={`px-2 py-1 text-xs font-medium rounded-full ${
               (!userData?.status || userData.status === 'active')
                 ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
-                : userData.status === 'trial'
-                ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
                 : userData.status === 'pending'
                 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300'
                 : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
@@ -186,81 +171,93 @@ export default function TabProfileInfo({ user, userData }: TabProfileInfoProps) 
         </div>
       </div>
 
-      {/* Account Details */}
       <div className="p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-4 sm:mb-6">
           <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
             {t('profile.accountDetails')}
           </h2>
+          <Button
+            variant={isEditing ? 'outline' : 'secondary'}
+            size="sm"
+            onClick={() => setIsEditing((v) => !v)}
+          >
+            {isEditing ? t('profile.cancel') : t('profile.edit')}
+          </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          <div className="space-y-4 sm:space-y-5">
+        {isEditing ? (
+          <div className="space-y-4">
             <div>
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
-                {t('profile.fullName')}
-              </p>
-              <div className="flex items-center gap-2 flex-wrap">
-                <p className="text-gray-900 dark:text-white text-base sm:text-lg">
-                  {user?.name ?? t('profile.userNameFallback')}
-                </p>
-                {user?.emailVerified && (
-                  <span className="px-2 py-0.5 bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 text-xs font-medium rounded-full">
-                    {t('profile.verified')}
-                  </span>
-                )}
-              </div>
+              <Label htmlFor="name">{t('profile.fullName')}</Label>
+              <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
             </div>
-
             <div>
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Email</p>
-              <p className="text-gray-900 dark:text-white text-base sm:text-lg break-all">
-                {user?.email ?? t('profile.emailFallback')}
-              </p>
+              <Label htmlFor="company">{t('profile.company')}</Label>
+              <Input id="company" value={form.company_name} onChange={(e) => setForm({ ...form, company_name: e.target.value })} />
             </div>
-
             <div>
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
-                {t('profile.company')}
-              </p>
-              <p className="text-gray-900 dark:text-white">
-                {userData?.company_name ?? '—'}
-              </p>
+              <Label htmlFor="avatar">{t('profile.avatarUrl')}</Label>
+              <Input id="avatar" value={form.avatar_url} onChange={(e) => setForm({ ...form, avatar_url: e.target.value })} placeholder="https://..." />
             </div>
+            <Button onClick={handleSave} disabled={saving}>
+              {saving ? t('profile.saving') : t('profile.save')}
+            </Button>
           </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <div className="space-y-4 sm:space-y-5">
+              <div>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                  {t('profile.fullName')}
+                </p>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <p className="text-gray-900 dark:text-white text-base sm:text-lg">
+                    {user?.name ?? t('profile.userNameFallback')}
+                  </p>
+                  {user?.emailVerified && (
+                    <span className="px-2 py-0.5 bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 text-xs font-medium rounded-full">
+                      {t('profile.verified')}
+                    </span>
+                  )}
+                </div>
+              </div>
 
-          <div className="space-y-4 sm:space-y-5">
-            <div>
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
-                {t('profile.accountCreated')}
-              </p>
-              <div className="flex items-center gap-2 flex-wrap">
+              <div>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Email</p>
+                <p className="text-gray-900 dark:text-white text-base sm:text-lg break-all">
+                  {user?.email ?? t('profile.emailFallback')}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                  {t('profile.company')}
+                </p>
                 <p className="text-gray-900 dark:text-white">
-                  {userData?.created_at ? formatDate(userData.created_at) : '—'}
+                  {userData?.company_name ?? '—'}
                 </p>
-                {userData?.created_at && (
-                  <span className="text-xs text-gray-500">
-                    ({format(new Date(userData.created_at), 'PP')})
-                  </span>
-                )}
               </div>
             </div>
 
-            <div>
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
-                {t('profile.emailsSent')}
-              </p>
-              <div className="flex items-baseline gap-2 flex-wrap">
-                <p className="text-gray-900 dark:text-white text-2xl font-bold">
-                  {userData?.emails_sent?.toLocaleString() ?? '0'}
+            <div className="space-y-4 sm:space-y-5">
+              <div>
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                  {t('profile.accountCreated')}
                 </p>
-                <span className="text-sm text-green-600 dark:text-green-400">
-                  +0% {t('profile.fromLastMonth')}
-                </span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <p className="text-gray-900 dark:text-white">
+                    {userData?.created_at ? formatDate(userData.created_at) : '—'}
+                  </p>
+                  {userData?.created_at && (
+                    <span className="text-xs text-gray-500">
+                      ({format(new Date(userData.created_at), 'PP')})
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -14,6 +14,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const { data: userRow } = await supabaseAdmin
+      .from('users')
+      .select('credits_remaining')
+      .eq('id', session.user.id)
+      .single();
+
+    if (!userRow || userRow.credits_remaining < 1) {
+      return NextResponse.json(
+        { error: 'No takedown credits remaining. Please purchase more.' },
+        { status: 402 }
+      );
+    }
+
     const body = await request.json();
 
     // Validate required fields
@@ -59,6 +72,12 @@ export async function POST(request: Request) {
       .single();
 
     if (error) throw error;
+
+    await supabaseAdmin
+    .from('users')
+    .update({ credits_remaining: userRow.credits_remaining - 1 })
+    .eq('id', session.user.id)
+    .gte('credits_remaining', 1);
 
     return NextResponse.json({
       success: true,
