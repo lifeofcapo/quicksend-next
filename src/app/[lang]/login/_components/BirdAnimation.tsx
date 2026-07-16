@@ -52,11 +52,8 @@ export default function BirdAnimation() {
 
   return (
     <div className="relative mb-6 z-10" ref={birdRef}>
-      {/* Тело */}
       <div className="w-48 h-28 bg-sky-500 rounded-full relative shadow-xl dark:bg-sky-600">
-        {/* Голова */}
         <div className="absolute -top-6 -right-6 w-18 h-18 bg-sky-400 rounded-full dark:bg-sky-300">
-          {/* Два глаза */}
           <div className="absolute top-4 left-3 w-6 h-6 bg-white rounded-full overflow-hidden">
             <div
               className="absolute top-1 left-1 w-3 h-3 bg-black rounded-full transition-transform duration-150"
@@ -73,19 +70,11 @@ export default function BirdAnimation() {
               }}
             />
           </div>
-
-          {/* Клюв */}
           <div className="absolute top-10 left-6 w-6 h-3 bg-amber-400 rounded-sm dark:bg-amber-300 transform rotate-6"></div>
         </div>
-
-        {/* Крыло */}
         <div className="absolute top-8 left-6 w-20 h-12 bg-sky-600 rounded-full dark:bg-sky-500 shadow-inner transform rotate-3" />
-
-        {/* Хвост */}
         <div className="absolute top-8 -left-6 w-10 h-8 bg-sky-700 rounded-r-full dark:bg-sky-500 transform -rotate-6" />
       </div>
-
-      {/* Лапы */}
       <div className="flex gap-6 justify-center mt-1">
         <div className="w-1 h-8 bg-amber-400 rounded-sm dark:bg-amber-300 transform translate-y-2"></div>
         <div className="w-1 h-8 bg-amber-400 rounded-sm dark:bg-amber-300 transform translate-y-2"></div>

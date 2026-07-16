@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useLanguage } from '@/contexts/language-context';
 import { useTranslation } from '@/hooks/useTranslation';
 import TermsAgreement from '@/components/TermsAgreement';
-import { ShieldCheck } from 'lucide-react';
+import BirdAnimation from './BirdAnimation';
 
 export default function LoginClient() {
   const [isHovered, setIsHovered] = useState(false);
@@ -23,21 +23,13 @@ export default function LoginClient() {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center gap-8 bg-linear-to-br from-sky-50 to-indigo-100 dark:from-slate-900 dark:to-sky-800 relative overflow-hidden transition-colors duration-300 pt-28 pb-16 px-4">
-      {/* Background blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-10 -left-10 w-28 h-28 bg-sky-200 rounded-full opacity-20 animate-float dark:bg-sky-700" />
         <div className="absolute top-1/4 -right-10 w-20 h-20 bg-indigo-200 rounded-full opacity-30 animate-float dark:bg-indigo-700" style={{ animationDelay: '1s' }} />
         <div className="absolute bottom-1/3 left-1/4 w-16 h-16 bg-indigo-300 rounded-full opacity-25 animate-float dark:bg-indigo-800" style={{ animationDelay: '2s' }} />
       </div>
-
-      {/* Shield icon for DSP branding */}
       <div className="relative z-10 flex flex-col items-center gap-2">
-        <div className="w-20 h-20 rounded-2xl bg-linear-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-xl shadow-blue-500/30">
-          <ShieldCheck className="w-10 h-10 text-white" />
-        </div>
-        <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 tracking-widest uppercase">
-          QuickSend
-        </p>
+        <BirdAnimation />
       </div>
 
       <div className="text-center z-10 bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl border border-white/20 dark:bg-slate-800/70 dark:border-slate-700 max-w-lg w-full">

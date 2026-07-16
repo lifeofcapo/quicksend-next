@@ -90,7 +90,7 @@ export default function Header() {
                 <Button variant="ghost" asChild>
                   <Link href={`/${language}/login`}>{t('header.signIn')}</Link>
                 </Button>
-                <Button asChild>
+                <Button asChild className='btn-shimmer'>
                   <Link href={`/${language}/profile`} className="gap-2">
                     <ShieldCheck className="w-4 h-4" />
                     {t('hero.cta')}

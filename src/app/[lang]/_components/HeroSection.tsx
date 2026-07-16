@@ -32,13 +32,7 @@ export function HeroSection() {
     >
       <div className="container mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 max-w-7xl mx-auto">
-          {/* Text block */}
           <div className="flex-1 text-center lg:text-left max-w-2xl">
-            <Badge variant="secondary" className="gap-1.5 py-1.5 px-3 mb-6 text-primary">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              {t('hero.badge')}
-            </Badge>
-
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-5 leading-tight text-foreground">
               <span className="text-primary">QuickSend</span>
               <br />
@@ -51,7 +45,6 @@ export function HeroSection() {
               {t('description')}
             </p>
 
-            {/* Content type pills */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
               {CONTENT_TYPES.map(({ icon: Icon, labelKey }) => (
                 <Badge key={labelKey} variant="secondary" className="gap-1.5 py-1.5 px-3 font-normal">
@@ -60,10 +53,8 @@ export function HeroSection() {
                 </Badge>
               ))}
             </div>
-
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3">
-              <Button size="lg" asChild>
+              <Button size="lg" asChild className='btn-shimmer'>
                 <Link href={`/${language}/profile`} className="gap-2">
                   <ShieldCheck className="w-5 h-5" />
                   {t('hero.cta')}
@@ -73,15 +64,12 @@ export function HeroSection() {
                 <Link href={`/${language}/pricing`}>{t('learnMore')}</Link>
               </Button>
             </div>
-
-            {/* Trust line */}
             <p className="mt-5 text-sm text-muted-foreground flex items-center justify-center lg:justify-start gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
               {t('hero.freeTrial')}
             </p>
           </div>
 
-          {/* Visual block */}
           <div className="flex-1 flex justify-center items-center max-w-md w-full">
             <Card className="w-full p-6">
               <div className="flex items-center gap-3 mb-5">

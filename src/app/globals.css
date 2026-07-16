@@ -26,7 +26,7 @@
   --foreground: #1c1c1c;
   --card: #ffffff;
   --card-foreground: #1c1c1c;
-  --primary: #57b780;
+  --primary: #3b82f6;
   --primary-foreground: #ffffff;
   --secondary: #f4f5f4;
   --secondary-foreground: #1c1c1c;
@@ -36,16 +36,16 @@
   --destructive-foreground: #ffffff;
   --border-ui: #e5e7eb;
   --input-ui: #e5e7eb;
-  --ring: #8ED8A8;
+  --ring: #93c5fd;
 }
  
 .dark {
   --background: #111827;
   --foreground: #f9fafb;
-  --card: #1a2421;
+  --card: #1a2130;
   --card-foreground: #f9fafb;
-  --primary: #6FCF97;
-  --primary-foreground: #0b1f14;
+  --primary: #60a5fa;
+  --primary-foreground: #0b1220;
   --secondary: #1f2937;
   --secondary-foreground: #f9fafb;
   --muted: #1f2937;
@@ -54,7 +54,7 @@
   --destructive-foreground: #1c1c1c;
   --border-ui: #374151;
   --input-ui: #374151;
-  --ring: #6FCF97;
+  --ring: #60a5fa;
 }
 
 @layer theme {
@@ -69,18 +69,18 @@
     --color-text-footer: #ffffff;
 
     --color-border: #e5e7eb;
-    --color-primary-main: #8ED8A8;    
-    --color-primary-light: #AEE5C2;    
-    --color-primary-dark: #6FCF97;      
-    --color-primary-lighter: #DFF7EA;  
-    --color-accent-main: #FFB87A;      
-    --color-accent-light: #FFD1A6;     
-    --color-accent-dark: #FFA65B;      
+    --color-primary-main: #7DD3FC;
+    --color-primary-light: #BAE6FD;
+    --color-primary-dark: #2563EB;
+    --color-primary-lighter: #E0F2FE;
+    --color-accent-main: #FFB87A;
+    --color-accent-light: #FFD1A6;
+    --color-accent-dark: #FFA65B;
 
-    --gradient-soft-green-orange: linear-gradient(
+    --gradient-soft-blue-orange: linear-gradient(
       135deg,
-      #AEE5C2,
-      #8ED8A8,
+      #BAE6FD,
+      #7DD3FC,
       #FFB87A,
       #FFA65B
     );
@@ -88,7 +88,7 @@
 
   .dark {
     --color-bg-page: #111827;
-    --color-bg-card: #1a2421;
+    --color-bg-card: #1a2130;
     --color-bg-header: #1f2937;
     --color-bg-footer: #111827;
 
@@ -98,11 +98,10 @@
 
     --color-border: #374151;
 
-    /* Dark, but still soft pastel */
-    --color-primary-main: #6FCF97;
-    --color-primary-light: #8ED8A8;
-    --color-primary-dark: #57b780;
-    --color-primary-lighter: #214133;
+    --color-primary-main: #60a5fa;
+    --color-primary-light: #7DD3FC;
+    --color-primary-dark: #3b82f6;
+    --color-primary-lighter: #1E3A5F;
 
     --color-accent-main: #FFB87A;
     --color-accent-light: #FFD1A6;
@@ -204,14 +203,36 @@ body {
 
 @keyframes shimmer {
   0% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
+    background-position: -200% center;
   }
   100% {
-    opacity: 0.3;
+    background-position: 200% center;
   }
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.btn-shimmer:hover::after {
+  opacity: 1;
+  animation: shimmer 1.2s ease-in-out;
 }
 
 .animate-pulse {

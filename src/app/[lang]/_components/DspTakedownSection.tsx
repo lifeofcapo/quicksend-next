@@ -83,11 +83,10 @@ export default function DspTakedownSection() {
             ))}
           </div>
 
-          <Button size="lg" asChild className="w-full sm:w-auto">
+          <Button size="lg" asChild className="w-full sm:w-auto btn-shimmer">
             <a href={`/${language}/profile`} className="gap-2">
               <Shield className="w-5 h-5" />
-              {t('dsp.cta')}
-              <ArrowRight className="w-4 h-4" />
+              {t('hero.cta')}
             </a>
           </Button>
 
