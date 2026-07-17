@@ -7,8 +7,11 @@ declare module 'next-auth' {
       emailVerified?: Date | null;
     } & DefaultSession['user'];
   }
+}
 
-  interface User {
+declare module 'next-auth/jwt' {
+  interface JWT extends DefaultJWT {
     id?: string;
+    emailVerified?: Date | null;
   }
 }

@@ -10,10 +10,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
   }),
   callbacks: {
-    session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id;
-        session.user.emailVerified = user.emailVerified;
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.emailVerified = ('emailVerified' in user)
+          ? (user as { emailVerified: Date | null }).emailVerified
+          : null;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user && token) {
+        session.user.id = token.id as string;
+        session.user.emailVerified = token.emailVerified as Date | null ?? null;
       }
       return session;
     },
