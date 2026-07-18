@@ -280,3 +280,21 @@ body {
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out forwards;
 }
+
+@keyframes radar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes radar-blip {
+  0%, 8% {
+    transform: scale(1.8);
+    opacity: 1;
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-primary-main) 20%, transparent);
+  }
+  9%, 100% {
+    transform: scale(1);
+    opacity: 0.55;
+    box-shadow: none;
+  }
+}

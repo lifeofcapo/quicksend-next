@@ -2,6 +2,7 @@
 import { HeroSection } from './_components/HeroSection';
 import { AdvantagesSection } from './_components/AdvantagesSection';
 import DspTakedownSection from './_components/DspTakedownSection';
+import { PricingSection } from './_components/PricingSection';
 import { StatsSection } from './_components/StatsSection';
 import { ContactSection } from './_components/ContactSection';
 
@@ -10,7 +11,7 @@ export default async function Home({
 }: {
   params: Promise<{ lang: string }>;
 }) {
-  await params; // lang used by child components via context
+  await params;
 
   return (
     <div className="relative z-10">
@@ -18,6 +19,7 @@ export default async function Home({
         <HeroSection />
         <AdvantagesSection />
         <DspTakedownSection />
+        <PricingSection />
         <StatsSection />
         <ContactSection />
       </main>

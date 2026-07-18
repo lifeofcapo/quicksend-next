@@ -62,7 +62,12 @@
     "step2Title": "Submit your report",
     "step2Desc": "Fill out a short form — one credit is reserved and our manager reviews it personally.",
     "step3Title": "We handle the rest",
-    "step3Desc": "We file the takedown on the platform. Most tracks come down within 3–7 business days."
+    "step3Desc": "We file the takedown on the platform. Most tracks come down within 3–7 business days.",
+    "homeEyebrow": "Pay as you go",
+    "homeTitle": "SIMPLE TRANSPARENT PRICING",
+    "homeSubtitle": "Buy takedown credits once, use them whenever you need. No recurring charges, no hidden fees.",
+    "oneTimePayment": "one-time payment",
+    "noSubscriptionNote": "No subscriptions. You only pay for the takedowns you actually need."
   },
   "advantages": {
       "speed": "Fast Processing",
@@ -241,6 +246,14 @@
     "name": "Name",
     "email": "Email",
     "title": "My Profile",
+    "creditsRemaining": "Remaining Credits",
+    "buyCredits": "Buy more credits",
+    "edit": "Edit",
+    "payments": "My Payments",
+    "myRequests": "My Requests",
+    "buy": "Buy",
+    "paymentHistory": "Payments history",
+    "noPaymentsYet": "No Payments yet",
     "tabs": {
       "takedowns": "My Takedowns",
       "profile": "Profile",
@@ -522,7 +535,7 @@
     "headline": "Protect Your Music",
     "cta": "Submit Takedown",
     "freeTrial": "First takedown is FREE — no credit card required",
-    "typeBeats": "Beats",
+    "typeMusic": "Music",
     "typeCovers": "Covers",
     "typeVideos": "Videos",
     "statusActive": "Active",

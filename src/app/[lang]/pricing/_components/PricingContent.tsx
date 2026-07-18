@@ -126,7 +126,7 @@ export default function PricingContent({ lang }: { lang: string }) {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8 items-stretch">
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
             <div className="flex-1 flex flex-col sm:flex-row gap-4">
               {PRICING_PLANS.map((pricingPlan) => {
                 const Icon = pricingPlan.icon;
@@ -182,13 +182,11 @@ export default function PricingContent({ lang }: { lang: string }) {
                         {pricingPlan.savings > 0 && t('pricing.youSave', { amount: `$${pricingPlan.savings}` })}
                       </p>
 
-                      <div className="flex flex-wrap gap-1 mt-3" aria-hidden>
-                        {Array.from({ length: pricingPlan.qty }).map((_, i) => (
-                          <span
-                            key={i}
-                            className={cn('w-1.5 h-1.5 rounded-full', isSelected ? 'bg-primary' : 'bg-border')}
-                          />
-                        ))}
+                      <div className="flex items-center gap-1.5 mt-3" aria-hidden>
+                        <Zap className={cn('w-3.5 h-3.5', isSelected ? 'text-primary' : 'text-muted-foreground')} />
+                        <span className={cn('text-xs font-medium', isSelected ? 'text-primary' : 'text-muted-foreground')}>
+                          {pricingPlan.qty} {t('pricing.credits')}
+                        </span>
                       </div>
                     </div>
                   </button>
