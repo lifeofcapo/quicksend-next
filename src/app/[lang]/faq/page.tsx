@@ -1,5 +1,4 @@
 // src/app/[lang]/faq/page.tsx
-import { headers } from 'next/headers';
 import FAQContent from './_components/FAQContent';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {

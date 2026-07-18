@@ -7,7 +7,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import Link from 'next/link';
 import {
   ShieldCheck, Music, Image as ImageIcon, Video,
-  Check, Zap, Gift, Star, Crown, ArrowRight,
+  Check, Zap, Gift, ArrowRight,
   Upload, UserCheck, CheckCircle2, Lock, Globe, Clock,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';

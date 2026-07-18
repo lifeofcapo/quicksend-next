@@ -8,7 +8,7 @@ import { ShieldCheck, Music, Image as ImageIcon, Video, Sparkles } from 'lucide-
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 const CONTENT_TYPES = [
   { icon: Music, labelKey: 'hero.typeMusic' },
@@ -147,7 +147,7 @@ export function HeroSection() {
                     <div className="flex items-start gap-3 p-3.5 rounded-xl bg-card shadow-sm">
                       <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center shrink-0 p-1.5 shadow-sm">
                         {item.template.iconSrc ? (
-                          <img src={item.template.iconSrc} alt={item.template.title} className="w-full h-full object-contain" />
+                          <Image src={item.template.iconSrc} alt={item.template.title} className="w-full h-full object-contain" />
                         ) : (
                           <Sparkles className="w-full h-full text-primary" />
                         )}

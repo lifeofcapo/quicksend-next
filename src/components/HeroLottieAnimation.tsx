@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useTheme } from '@/contexts/theme-context';
 
 const Player = dynamic(
   () =>
@@ -12,8 +11,6 @@ const Player = dynamic(
 );
 
 export default function HeroLottieAnimation() {
-  const { theme } = useTheme();
-
   return (
     <div 
       className="

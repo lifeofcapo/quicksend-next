@@ -3,7 +3,7 @@
 import { useLanguage } from '@/contexts/language-context';
 import { useTranslation } from '@/hooks/useTranslation';
 import dynamic from 'next/dynamic';
-import { ShieldAlert, Music, Ban, FileWarning, ArrowRight, Shield, Music2 } from 'lucide-react';
+import { ShieldAlert, Music, Ban, FileWarning, Shield, Music2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';

@@ -552,5 +552,11 @@
     "platformsValue": "8+",
     "avgDays": "Avg. removal time",
     "avgDaysValue": "5 days"
+  },
+  "termsAgreement": {
+    "before": "By clicking the «{{button}}» button, you agree to our",
+    "privacy": "Privacy Policy",
+    "and": "and",
+    "terms": "Terms of Use"
   }
 }

@@ -1,5 +1,5 @@
 import {
-  ShieldCheck, Image as ImageIcon, Zap, Star, Crown
+  ShieldCheck, Image as Zap, Star, Crown
 } from 'lucide-react';
 
 export interface PricingPlan {

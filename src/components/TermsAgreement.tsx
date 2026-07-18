@@ -1,4 +1,3 @@
-// @/components/TermsAgreement.tsx
 'use client';
 
 import { useTranslation } from '@/hooks/useTranslation';
@@ -10,46 +9,63 @@ interface TermsAgreementProps {
   variant?: 'paypal' | 'login';
 }
 
-export default function TermsAgreement({ buttonName, variant = 'paypal' }: TermsAgreementProps) {
+export default function TermsAgreement({
+  buttonName,
+  variant = 'paypal',
+}: TermsAgreementProps) {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  
+
   const isRussian = language === 'ru';
-  const className = variant === 'paypal' 
-    ? "text-sm text-gray-600 dark:text-gray-400" 
-    : "text-sm text-gray-400 mt-6 dark:text-gray-400";
+
+  const className =
+    variant === 'paypal'
+      ? 'text-sm text-gray-600 dark:text-gray-400'
+      : 'text-sm text-gray-400 mt-6 dark:text-gray-400';
 
   return (
     <p className={className}>
+      {t('termsAgreement.before', { button: buttonName })}{' '}
+
+      <Link
+        href={`/${language}/privacy`}
+        className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+      >
+        {t('termsAgreement.privacy')}
+      </Link>
+
       {isRussian ? (
         <>
-          Нажимая на кнопку «{buttonName}», вы соглашаетесь с{' '}
-          <Link href={`/${language}/privacy`} className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
-            политикой конфиденциальности
+          {t('termsAgreement.comma')}{' '}
+
+          <Link
+            href={`/${language}/terms`}
+            className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+          >
+            {t('termsAgreement.terms')}
           </Link>
-          ,{' '}
-          <Link href={`/${language}/terms`} className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
-            правилами использования,
-          </Link>
-          {' '}а также подтверждаете {' '}
-          <a 
-            href="https://quicksend.vercel.app/agreement-pd.pdf" 
-            target="_blank" 
+
+          {t('termsAgreement.afterTerms')}{' '}
+
+          <a
+            href="https://quicksend.vercel.app/agreement-pd.pdf"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
           >
-            согласие обработку персональных данных
+            {t('termsAgreement.personalData')}
           </a>
         </>
       ) : (
         <>
-          By clicking the «{buttonName}» button, you agree to our{' '}
-          <Link href={`/${language}/privacy`} className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
-            Privacy Policy
-          </Link>
-          {' '}and{' '}
-          <Link href={`/${language}/terms`} className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
-            Terms of Use
+          {' '}
+          {t('termsAgreement.and')}{' '}
+
+          <Link
+            href={`/${language}/terms`}
+            className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+          >
+            {t('termsAgreement.terms')}
           </Link>
         </>
       )}
