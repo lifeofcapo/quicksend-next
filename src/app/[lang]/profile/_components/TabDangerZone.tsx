@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Download, RefreshCw, LogOut } from 'lucide-react';
 
-export default function TabDangerZone({}) {
+export default function TabDangerZone({ email }: { email: string }) {
   const { t } = useTranslation();
 
   const handleSignOut = async () => {
