@@ -17,7 +17,7 @@ import { PaymentMethodSelector, type PaymentMethodId } from './PaymentMethodSele
 import { PricingPlan, PRICING_PLANS } from '@/lib/pricing';
 
 const CONTENT_TYPES = [
-  { icon: Music,     key: 'pricing.typeBeats' },
+  { icon: Music,     key: 'pricing.typeMusic' },
   { icon: ImageIcon, key: 'pricing.typeCovers' },
   { icon: Video,     key: 'pricing.typeVideos' },
 ];
@@ -106,7 +106,7 @@ export default function PricingContent({ lang }: { lang: string }) {
               <p className="font-semibold text-foreground">{t('pricing.freeBannerTitle')}</p>
               <p className="text-muted-foreground text-sm">{t('pricing.freeBannerDesc')}</p>
             </div>
-            <Button asChild className="shrink-0 gap-2">
+            <Button asChild className="shrink-0 gap-2 btn-shimmer">
               <Link href={`/${language}/profile`}>
                 {t('pricing.tryFree')}
                 <ArrowRight className="w-4 h-4" />
@@ -223,7 +223,7 @@ export default function PricingContent({ lang }: { lang: string }) {
               />
 
               <div className="mt-auto">
-                <Button size="lg" asChild className="w-full gap-2">
+                <Button size="lg" asChild className="w-full gap-2 btn-shimmer">
                   <Link href={`/${language}/profile`}>
                     <Lock className="w-4 h-4" />
                     {t('pricing.payNow')} · ${selectedBundle.totalPrice}
@@ -276,7 +276,7 @@ export default function PricingContent({ lang }: { lang: string }) {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" asChild className="gap-2">
+            <Button size="lg" asChild className="gap-2 btn-shimmer">
               <Link href={`/${language}/profile`}>
                 <ShieldCheck className="w-5 h-5" />
                 {t('pricing.startCta')}

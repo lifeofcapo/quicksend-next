@@ -43,25 +43,34 @@ export default function PrivacyContent({ lang }: PrivacyContentProps) {
 
                 <section>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    {t('privacy.emailLists')}
+                    {t('privacy.dataCollected')}
                   </h2>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {t('privacy.emailListsText')}
+                    {t('privacy.dataCollectedText')}
                   </p>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    {t('privacy.contentStorage')}
+                    {t('privacy.howWeUse')}
+                  </h2>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {t('privacy.howWeUseText')}
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                    {t('privacy.documentStorage')}
                   </h2>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                    {t('privacy.contentStorageText1')}
+                    {t('privacy.documentStorageText1')}
                   </p>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                    {t('privacy.contentStorageText2')}
+                    {t('privacy.documentStorageText2')}
                   </p>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {t('privacy.contentStorageText3')}
+                    {t('privacy.documentStorageText3')}
                   </p>
                 </section>
 
@@ -92,10 +101,10 @@ export default function PrivacyContent({ lang }: PrivacyContentProps) {
 
                 <section>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    {t('privacy.emailWarmup')}
+                    {t('privacy.security')}
                   </h2>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {t('privacy.emailWarmupText')}
+                    {t('privacy.securityText')}
                   </p>
                 </section>
               </div>

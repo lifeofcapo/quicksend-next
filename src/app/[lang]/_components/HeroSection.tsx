@@ -8,7 +8,6 @@ import { ShieldCheck, Music, Image as ImageIcon, Video, Sparkles } from 'lucide-
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
-import Image from 'next/image';
 
 const CONTENT_TYPES = [
   { icon: Music, labelKey: 'hero.typeMusic' },
@@ -17,14 +16,14 @@ const CONTENT_TYPES = [
 ];
 
 const NOTIFICATION_TEMPLATES = [
-  { title: 'Spotify', iconSrc: 'https://cdn.simpleicons.org/spotify', message: 'The reported track has been removed from Spotify.' },
-  { title: 'YouTube', iconSrc: 'https://cdn.simpleicons.org/youtube', message: 'Video taken down due to a copyright claim.' },
+  { title: 'Spotify', iconSrc: 'icons/spotify.svg', message: 'The reported track has been removed from Spotify.' },
+  { title: 'YouTube', iconSrc: 'icons/youtube.svg', message: 'Video taken down due to a copyright claim.' },
   { title: 'QuickSend', iconSrc: 'icons/quicksend.ico', message: 'Your takedown request was approved. 1 credit used.' }, 
-  { title: 'Apple Music', iconSrc: 'https://cdn.simpleicons.org/applemusic', message: 'Content removed following your DMCA request.' },
-  { title: 'SoundCloud', iconSrc: 'https://cdn.simpleicons.org/soundcloud', message: 'Track successfully taken down.' },
-  { title: 'TikTok', iconSrc: 'https://cdn.simpleicons.org/tiktok', message: 'Video removed for copyright infringement.' },
-  { title: 'Deezer', iconSrc: 'https://cdn.simpleicons.org/deezer', message: 'Track has been taken down from Deezer.' },
-  { title: 'Tidal', iconSrc: 'https://cdn.simpleicons.org/tidal', message: 'Content removed following your request.' },
+  { title: 'Apple Music', iconSrc: 'icons/applemusic.svg', message: 'Content removed following your DMCA request.' },
+  { title: 'SoundCloud', iconSrc: 'icons/soundcloud.svg', message: 'Track successfully taken down.' },
+  { title: 'TikTok', iconSrc: 'icons/tiktok.svg', message: 'Video removed for copyright infringement.' },
+  { title: 'Deezer', iconSrc: 'icons/deezer.svg', message: 'Track has been taken down from Deezer.' },
+  { title: 'Tidal', iconSrc: 'icons/tidal.svg', message: 'Content removed following your request.' },
   { title: 'Amazon Music', iconSrc: 'icons/amazon.svg', message: 'Track removed from Amazon Music.' },
 ] as const;
 
@@ -36,7 +35,7 @@ interface FeedItem {
 }
 
 const MAX_VISIBLE = 4;
-const SLOT_HEIGHT = 78; // px между карточками — стек позиционируется через transform, не влияет на layout
+const SLOT_HEIGHT = 78; 
 const ADD_INTERVAL_MS = 2400;
 const EXIT_DURATION_MS = 450;
 
@@ -147,7 +146,7 @@ export function HeroSection() {
                     <div className="flex items-start gap-3 p-3.5 rounded-xl bg-card shadow-sm">
                       <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center shrink-0 p-1.5 shadow-sm">
                         {item.template.iconSrc ? (
-                          <Image src={item.template.iconSrc} alt={item.template.title} className="w-full h-full object-contain" />
+                          <img src={item.template.iconSrc} alt={item.template.title} className="w-full h-full object-contain" />
                         ) : (
                           <Sparkles className="w-full h-full text-primary" />
                         )}

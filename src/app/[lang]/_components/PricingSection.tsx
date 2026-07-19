@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/language-context';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -13,29 +12,9 @@ import { PRICING_PLANS } from '@/lib/pricing';
 export function PricingSection() {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section ref={sectionRef} className="px-4 py-20 relative overflow-hidden">
+    <section className="px-4 py-20 relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary-lighter opacity-40 blur-3xl" />
       </div>
@@ -60,11 +39,7 @@ export function PricingSection() {
             return (
               <div
                 key={plan.id}
-                className={cn(
-                  'transition-all duration-700 opacity-0',
-                  isVisible && 'opacity-100 animate-fade-in-up'
-                )}
-                style={{ animationDelay: isVisible ? `${i * 150}ms` : undefined }}
+                className="transition-all duration-300"
               >
                 <Card
                   className={cn(
@@ -112,11 +87,7 @@ export function PricingSection() {
         </div>
 
         <div
-          className={cn(
-            'flex items-center justify-center gap-2 mt-10 text-sm text-muted-foreground opacity-0 transition-all duration-700',
-            isVisible && 'opacity-100 animate-fade-in-up'
-          )}
-          style={{ animationDelay: isVisible ? '450ms' : undefined }}
+            className="flex items-center justify-center gap-2 mt-10 text-sm text-muted-foreground"
         >
           <ShieldCheck className="w-4 h-4 text-primary shrink-0" />
           <span>{t('pricing.noSubscriptionNote')}</span>

@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
   
   const descriptions = {
-    ru: 'Часто задаваемые вопросы о QuickSend - все ответы на ваши вопросы о массовых email-рассылках',
-    en: 'Frequently Asked Questions about QuickSend - all answers about mass email campaigns'
+    ru: 'Часто задаваемые вопросы о QuickSend - ответы про удаление треков с DSP-платформ, цены и процесс подачи заявки',
+    en: 'Frequently Asked Questions about QuickSend - answers about DSP takedowns, pricing, and how the removal process works'
   };
   
   return {

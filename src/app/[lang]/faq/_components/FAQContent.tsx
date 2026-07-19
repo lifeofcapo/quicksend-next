@@ -32,77 +32,85 @@ export default function FAQContent({ lang }: FAQContentProps) {
       topic: 'faq.topics.basics',
       questions: [
         {
-          q: 'faq.questions.basics.whatNeed',
-          a: 'faq.answers.basics.whatNeed'
+          q: 'faq.questions.basics.whatIsQuickSend',
+          a: 'faq.answers.basics.whatIsQuickSend'
         },
         {
-          q: 'faq.questions.basics.changes',
-          a: 'faq.answers.basics.changes'
+          q: 'faq.questions.basics.whatCanBeRemoved',
+          a: 'faq.answers.basics.whatCanBeRemoved'
         },
         {
-          q: 'faq.questions.basics.sendAsReplies',
-          a: 'faq.answers.basics.sendAsReplies'
-        },
-        {
-          q: 'faq.questions.basics.createDrafts',
-          a: 'faq.answers.basics.createDrafts'
-        },
-        {
-          q: 'faq.questions.basics.autoFollowups',
-          a: 'faq.answers.basics.autoFollowups'
-        },
-        {
-          q: 'faq.questions.basics.replaceSystem',
-          a: 'faq.answers.basics.replaceSystem'
+          q: 'faq.questions.basics.whichPlatforms',
+          a: 'faq.answers.basics.whichPlatforms'
         }
       ]
     },
     {
-      topic: 'faq.topics.sending',
+      topic: 'faq.topics.process',
       questions: [
         {
-          q: 'faq.questions.sending.testEmail',
-          a: 'faq.answers.sending.testEmail'
+          q: 'faq.questions.process.howItWorks',
+          a: 'faq.answers.process.howItWorks'
         },
         {
-          q: 'faq.questions.sending.attachments',
-          a: 'faq.answers.sending.attachments'
+          q: 'faq.questions.process.documentsNeeded',
+          a: 'faq.answers.process.documentsNeeded'
         },
         {
-          q: 'faq.questions.sending.server',
-          a: 'faq.answers.sending.server'
+          q: 'faq.questions.process.howLong',
+          a: 'faq.answers.process.howLong'
         },
         {
-          q: 'faq.questions.sending.limits',
-          a: 'faq.answers.sending.limits'
+          q: 'faq.questions.process.trackStatus',
+          a: 'faq.answers.process.trackStatus'
         }
       ]
     },
     {
-      topic: 'faq.topics.reports',
+      topic: 'faq.topics.payment',
       questions: [
         {
-          q: 'faq.questions.reports.access',
-          a: 'faq.answers.reports.access'
+          q: 'faq.questions.payment.howMuch',
+          a: 'faq.answers.payment.howMuch'
+        },
+        {
+          q: 'faq.questions.payment.bundles',
+          a: 'faq.answers.payment.bundles'
+        },
+        {
+          q: 'faq.questions.payment.paymentMethods',
+          a: 'faq.answers.payment.paymentMethods'
+        },
+        {
+          q: 'faq.questions.payment.refund',
+          a: 'faq.answers.payment.refund'
         }
       ]
     },
     {
-      topic: 'faq.topics.pricing',
+      topic: 'faq.topics.legal',
       questions: [
         {
-          q: 'faq.questions.pricing.free',
-          a: 'faq.answers.pricing.free'
+          q: 'faq.questions.legal.mustOwnRights',
+          a: 'faq.answers.legal.mustOwnRights'
+        },
+        {
+          q: 'faq.questions.legal.falseClaim',
+          a: 'faq.answers.legal.falseClaim'
+        },
+        {
+          q: 'faq.questions.legal.counterNotice',
+          a: 'faq.answers.legal.counterNotice'
+        },
+        {
+          q: 'faq.questions.legal.noGuarantee',
+          a: 'faq.answers.legal.noGuarantee'
         }
       ]
     },
     {
       topic: 'faq.topics.support',
       questions: [
-        {
-          q: 'faq.questions.support.otherProducts',
-          a: 'faq.answers.support.otherProducts'
-        },
         {
           q: 'faq.questions.support.getSupport',
           a: 'faq.answers.support.getSupport'

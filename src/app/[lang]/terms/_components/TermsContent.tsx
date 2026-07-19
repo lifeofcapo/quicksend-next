@@ -41,13 +41,6 @@ export default function TermsContent({ lang }: TermsContentProps) {
                 <div className="space-y-8">
                   <section>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                      {t('terms.termsChange')}
-                    </h2>
-                    {formatText(t('terms.termsChangeText'))}
-                  </section>
-
-                  <section>
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                       {t('terms.philosophy')}
                     </h2>
                     {formatText(t('terms.philosophyText'))}
@@ -55,37 +48,44 @@ export default function TermsContent({ lang }: TermsContentProps) {
 
                   <section>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                      {t('terms.antiSpam')}
+                      {t('terms.serviceDescription')}
                     </h2>
-                    {formatText(t('terms.antiSpamText'))}
+                    {formatText(t('terms.serviceDescriptionText'))}
                   </section>
 
                   <section>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                      {t('terms.buttonVsSend')}
+                      {t('terms.ownershipRequirement')}
                     </h2>
-                    {formatText(t('terms.buttonVsSendText'))}
+                    {formatText(t('terms.ownershipRequirementText'))}
                   </section>
 
                   <section>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                      {t('terms.sendingLimits')}
+                      {t('terms.process')}
                     </h2>
-                    {formatText(t('terms.sendingLimitsText'))}
+                    {formatText(t('terms.processText'))}
                   </section>
 
                   <section>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                      {t('terms.accountSuspension')}
+                      {t('terms.noGuarantee')}
                     </h2>
-                    {formatText(t('terms.accountSuspensionText'))}
+                    {formatText(t('terms.noGuaranteeText'))}
                   </section>
 
                   <section>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                      {t('terms.subscriptions')}
+                      {t('terms.payments')}
                     </h2>
-                    {formatText(t('terms.subscriptionsText'))}
+                    {formatText(t('terms.paymentsText'))}
+                  </section>
+
+                  <section>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                      {t('terms.refunds')}
+                    </h2>
+                    {formatText(t('terms.refundsText'))}
                   </section>
 
                   <section>

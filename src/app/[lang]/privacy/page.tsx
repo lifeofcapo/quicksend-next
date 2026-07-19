@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
   
   const descriptions = {
-    ru: 'Политика конфиденциальности QuickSend - как мы защищаем ваши данные и обрабатываем информацию',
-    en: 'QuickSend Privacy Policy - how we protect your data and handle information'
+    ru: 'Политика конфиденциальности QuickSend - как мы собираем и защищаем данные при удалении треков с DSP-платформ',
+    en: 'QuickSend Privacy Policy - how we collect and protect your data when removing tracks from DSP platforms'
   };
   
   return {

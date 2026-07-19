@@ -43,7 +43,7 @@
     "youSave": "You save {amount}",
     "startCta": "Get Started",
     "whatsIncluded": "What's Included",
-    "typeBeats": "Beats",
+    "typeMusic": "Music",
     "typeCovers": "Covers",
     "typeVideos": "Videos",
     "feature1": "Takedown filed on Spotify, Apple Music, YouTube, SoundCloud, Tidal, Deezer, Amazon Music or other platforms.",
@@ -261,126 +261,132 @@
       "danger": "Danger Zone"
     }
   },
-  "terms": {
-    "title": "Quicksend Terms of Use and Anti-Spam Policy",
-    "lastUpdated": "Last Time Updated: February, 2025",
-    "intro": "Please note that your use of and access to our services (defined below) are subject to the following terms; if you do not agree to all of the following, you may not use or access the services in any manner.\n\nThese Terms of Use (the \"Terms\") are a binding contract between you and QuickSend, Inc. (\"QuickSend\", \"we\" and \"us\"). If you have any questions, comments, or concerns regarding these terms or the Services, please contact us at support@quicksend.zendesk.com.\n\nYou must agree to and accept all of the Terms, or you don't have the right to use the Services. Your using the Services in any way means that you agree to all of these Terms, and these Terms will remain in effect while you use the Services. These Terms include the provisions in this document, as well as those in the Privacy Policy.",
-    "termsChange": "Will these Terms ever change?",
-    "termsChangeText": "We are constantly improving our Services, so these Terms may need to change along with the Services. We reserve the right to change the Terms at any time, but if we do, we will bring it to your attention by placing a notice on the QuickSend website, and/or by sending you an email, and/or by some other means.\n\nIf you don't agree with the new Terms, you are free to reject them; unfortunately, that means you will no longer be able to use the Services. If you use the Services in any way after a change to the Terms is effective, that means you agree to all of the changes.",
+"terms": {
+    "title": "QuickSend Terms of Service",
+    "lastUpdated": "Last updated: July, 2026",
+    "intro": "Please note that your use of and access to our services (defined below) is governed by the following terms; if you do not agree to all of the terms below, you may not use or access the services in any manner.\n\nThese Terms of Service (\"Terms\") are a binding agreement between you and QuickSend, Inc. (\"QuickSend\", \"we\", \"us\"). QuickSend provides a service for removing music tracks, cover art, and videos from DSP platforms (Spotify, Apple Music, YouTube Music, and other music services) based on copyright infringement complaints (the \"Services\"). If you have any questions, comments, or concerns about these Terms or the Services, contact us at quicksendcontact@gmail.com.\n\nBy using the Services in any way, you confirm that you have read, understood, and agree to be bound by these Terms, including the Privacy Policy.",
     "philosophy": "General Philosophy",
-    "philosophyText": "We strive to make QuickSend as easy-to-use as possible and as ethical a business operation as possible. The terms will ensure a good experience for you, our user, and us, the creators of QuickSend. You must agree to these terms before using QuickSend.",
-    "antiSpam": "Anti-Spam Policy",
-    "antiSpamText": "You may not use QuickSend to send spam. Spam, by definition, is unsolicited email sent in bulk. There are several lines of defense in place in order to protect QuickSend from spammers. First, QuickSend personnel monitor outbound email flow 24 hours a day. Campaigns matching obvious spam and scam heuristics are terminated along with their associated accounts. Secondly, if you're sending natively through Gmail, Google's algorithms will likely catch you and terminate or suspect your Gmail or G Suite account. Thirdly, if you're sending via a third party SMTP service like SendGrid, each service provider has their own mechanisms of watching for spam and terminating spammers.",
-    "buttonVsSend": "QuickSend button versus Send button",
-    "buttonVsSendText": "QuickSend and its parent company, QuickSend, Inc. cannot be held responsible if you accidentally click the Gmail Send button instead of the QuickSend button. Clicking the Gmail Send button while working on an email campaign may send an email, exposing your email list to everyone in the To field. QuickSend and its parent company, QuickSend, Inc. also cannot be held responsible if you have other Chrome extensions installed that interfere with the function of the QuickSend buttons. For example, if you have a Chrome extension installed that overrides the QuickSend code and actually triggers the Gmail Send button click when the QuickSend button is clicked, we cannot be held responsible.",
-    "sendingLimits": "Sending Limits",
-    "sendingLimitsText": "The QuickSend software will attempt to send your email campaign to your email recipients, but we cannot guarantee that your emails will be delivered. Because we rely on Google's infrastructure from sending, you agree that we cannot be held responsible if your particular Gmail or G Suite account has reached its capacity, as determined by Google. We publish guidelines, based on Google's guidelines, of an account's maximum sending capacity, but they are just guidelines, and not hard rules.",
-    "accountSuspension": "Gmail and G Suite account suspensions or closures",
-    "accountSuspensionText": "QuickSend and its parent company, QuickSend, Inc., cannot be held responsible if Google suspends or terminates your Google or Gmail account because of QuickSend use. Ultimately, you are responsible for the email activity inside your Gmail account. You understand and agree that QuickSend is designed to automate the sending of mass emails through your Google account, and it is your responsibility to adhere to Google's own terms and conditions. QuickSend has no ability to reinstate a Google account should Google decide to suspend or terminate it.",
-    "subscriptions": "Subscriptions",
-    "subscriptionsText": "You understand that if you subscribe to a paid QuickSend account using a credit card or PayPal account, you will be charged a monthly or annual fee, based on the plan you choose, until you cancel your subscription.",
+    "philosophyText": "We aim to make copyright protection for musicians and rights holders as fast, reliable, and transparent as possible. These Terms are meant to ensure a good and fair experience for both you and us.",
+    "serviceDescription": "What QuickSend Does",
+    "serviceDescriptionText": "QuickSend accepts requests from users to remove specific tracks, cover art, or videos from DSP platforms, and manually prepares and submits the corresponding copyright infringement complaint on behalf of the rights holder. The status of each request is shown in your account dashboard. We are not a DSP platform and do not control the timeline or final decision on any complaint — the decision to remove content rests with the relevant platform.",
+    "ownershipRequirement": "Rights Holder Requirements",
+    "ownershipRequirementText": "By submitting a request through QuickSend, you confirm that you are the rights holder of the relevant work (author, performer, label, publisher, etc.) or are authorized to act on their behalf, and that the information and documents you provide are accurate. You are required to provide materials supporting your rights (contracts, split sheets, copyright registrations, correspondence with a distributor, or other documents) needed to prepare the complaint. Knowingly submitting a false claim of copyright infringement may result in legal liability to QuickSend and to third parties, and may be grounds for refusing service or suspending your account.",
+    "process": "How Removal Works",
+    "processText": "After payment and submission of your request, our team manually reviews the links and documents you provided, may request clarification if needed, and then prepares and submits a copyright infringement complaint to the relevant DSP platform. The status of your request (in review, submitted, removed, rejected by platform, etc.) is shown in your account dashboard. We notify you when the status changes.",
+    "noGuarantee": "No Guarantee of Outcome",
+    "noGuaranteeText": "We make reasonable efforts to submit complaints promptly and correctly, but we cannot guarantee that a DSP platform will grant the complaint, and we cannot guarantee any specific removal timeline, since the decision and review timing are entirely determined by the relevant platform's own policies and processes and are outside our control. If a platform rejects a complaint due to insufficient proof of rights, we may offer to resubmit it once additional supporting material is provided.",
+    "payments": "Payments",
+    "paymentsText": "QuickSend's services are pay-per-use; there is no subscription. A single takedown (removal of a track across all associated DSP platforms) costs $25 USD. Bundles are also available: 5 takedowns for $110 USD, and 10 takedowns for $190 USD. Payments are accepted via Stripe, PayPal, and YooKassa. Purchased takedowns (\"credits\") do not expire unless stated otherwise.",
+    "refunds": "Refunds",
+    "refundsText": "Once your request has been accepted and the complaint has been submitted to a DSP platform, the corresponding credit is considered used and is non-refundable, since the work has already been performed, regardless of the platform's final decision. Unused credits (for which a request has not yet been submitted) can be refunded upon request — email us at quicksendcontact@gmail.com.",
     "chargebacks": "Chargebacks",
-    "chargebacksText": "Sometimes, a subscribed user will choose to issue a chargeback via their credit card company in order to effect a cancellation. As a small business, we are sensitive to chargebacks and the costs we incur because of them, and as a result, we take the following action when a chargeback is issued against our merchant account:\n\n1. We investigate the incident to determine if we are at fault.\n2. If we find that we are not at fault, we submit evidence to the credit card company to defend our charges.\n3. We automatically cancel the subscription associated with the chargeback.\n4. We institute either a lifetime ban on that particular Google account, or a reinstatement fee on the account should the account decide to re-subscribe to QuickSend in the future.",
+    "chargebacksText": "Occasionally a user initiates a chargeback through their bank or payment provider instead of contacting us directly. As a small business, we take chargebacks and the costs they create seriously, and as a result:\n\n1. We investigate the incident to determine its cause.\n2. If we believe the chargeback is unwarranted, we submit evidence of completed work (the submitted complaint, correspondence with the platform) to the bank or payment provider.\n3. We may suspend the account associated with the chargeback until the dispute is resolved.\n\nWe recommend always contacting our support first — most issues are resolved faster this way than through a bank dispute.",
     "support": "Support",
-    "supportText": "QuickSend is a low-cost email service with limited support staff. Most answers to support questions can be found by searching our blog, located at http://www.QuickSend.co/blog. You may contact our support team by sending an email to support@QuickSend.zendesk.com. Here are some guidelines for getting support. Note that we do NOT answer all support requests. Emailing QuickSend staff directly may result in your request being ignored or delayed.\n\nTracking Domains\n\nIn order to use the QuickSend-provided tracking domain for paying users, ec2-52-26-194-35.us-west-2.compute.amazonaws.com, you must not send unsolicited email.",
-    "confidentiality": "Confidentiality and Feedback",
-    "confidentialityText": "You acknowledge that, in the course of your relationship with QuickSend, Inc. and in using the Services, you may obtain information relating to the Services and/or QuickSend (\"Proprietary Information\"). Such Proprietary Information shall belong solely to QuickSend and includes, but is not limited to, the features and mode of operation of the Services, trade secrets, know-how, inventions (whether or not patentable), techniques, processes, programs, ideas, algorithms, schematics, testing procedures, software design and architecture, computer code, internal documentation, design and function specifications, product requirements, problem reports, analysis and performance information, benchmarks, software documents, and other technical, business, product, marketing and financial information, plans and data. In regard to this Proprietary Information:\n\n(a) You shall not use (except as expressly authorized by this Agreement) or disclose Proprietary Information without the prior written consent of QuickSend unless such Proprietary Information becomes generally publicly available without your breach of this Agreement.\n\n(b) You agree to take reasonable measures to maintain the Proprietary Information and Services in confidence.\n\nYou may, at your discretion, provide feedback to QuickSend with respect to your testing of the Services (\"Feedback\"). Feedback may include, without limitation, errors or difficulties discovered in the Services and the characteristic conditions and symptoms of the errors and difficulties. QuickSend shall own all right, title, and interest in the Feedback and you shall and hereby do make all assignments necessary to accomplish the same.",
-    "privacy": "What about my privacy?",
-    "privacyText": "QuickSend takes the privacy of its users very seriously. For the current QuickSend Privacy Policy, please click here.\n\nThe Children's Online Privacy Protection Act (\"COPPA\") requires that online service providers obtain parental consent before they knowingly collect personally identifiable information online from children who are under 13. We do not knowingly collect or solicit personally identifiable information from children under 13; if you are a child under 13, please do not attempt to register for the Services or send any personal information about yourself to us. If we learn we have collected personal information from a child under 13, we will delete that information as quickly as possible. If you believe that a child under 13 may have provided us personal information, please contact us at support@QuickSend.zendesk.com.",
-    "warranty": "Warranty Disclaimer",
-    "warrantyText": "Neither QuickSend nor its licensors or suppliers makes any representations or warranties concerning any content contained in or accessed through the Services, and we will not be responsible or liable for the accuracy, copyright compliance, legality, or decency of material contained in or accessed through the Services. We (and our licensors and suppliers) make no representations or warranties regarding suggestions or recommendations of services or products offered or purchased through the Services. THE SERVICES AND CONTENT ARE PROVIDED BY QuickSend (AND ITS LICENSORS AND SUPPLIERS) ON AN \"AS-IS\" BASIS, WITHOUT WARRANTIES OR ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR THAT USE OF THE SERVICES WILL BE UNINTERRUPTED OR ERROR-FREE. SOME STATES DO NOT ALLOW LIMITATIONS ON HOW LONG AN IMPLIED WARRANTY LASTS, SO THE ABOVE LIMITATIONS MAY NOT APPLY TO YOU.",
+    "supportText": "You can reach our support team at quicksendcontact@gmail.com or through your account dashboard. We aim to respond to inquiries about request status, payments, and service operation within a reasonable time.",
+    "confidentiality": "Confidentiality of Documents and Feedback",
+    "confidentialityText": "Documents proving your rights to a work that you submit with a request are used by QuickSend solely to prepare and submit a copyright infringement complaint and to help resolve potential disputes (for example, if the uploader files a counter-notice). We do not publish or share these documents with third parties, except as necessary for the removal process itself (for example, submitting them to a DSP platform as an attachment to the complaint) or as required by law.\n\nYou may voluntarily provide feedback about the Services to QuickSend. QuickSend may use such feedback to improve the Services.",
+    "privacy": "What About My Privacy?",
+    "privacyText": "QuickSend takes the privacy of user data seriously, including documents proving rights to a work. Full details on what data we collect and how we use it are set out in our Privacy Policy.",
+    "warranty": "Disclaimer of Warranty",
+    "warrantyText": "THE SERVICES ARE PROVIDED BY QUICKSEND ON AN \"AS IS\" BASIS, WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR THAT ANY COMPLAINT WILL BE GRANTED BY A GIVEN PLATFORM. QUICKSEND DOES NOT GUARANTEE THAT ANY CONTENT WILL BE REMOVED, AS THE FINAL DECISION RESTS WITH THE RELEVANT DSP PLATFORM. SOME JURISDICTIONS DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES, SO THE ABOVE LIMITATIONS MAY NOT APPLY TO YOU.",
     "liability": "Limitation of Liability",
-    "liabilityText": "TO THE FULLEST EXTENT ALLOWED BY APPLICABLE LAW, UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY (INCLUDING, WITHOUT LIMITATION, TORT, CONTRACT, STRICT LIABILITY, OR OTHERWISE) SHALL QuickSend (OR ITS LICENSORS OR SUPPLIERS) BE LIABLE TO YOU OR TO ANY OTHER PERSON FOR (A) ANY INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY KIND, INCLUDING DAMAGES FOR LOST PROFITS, LOSS OF GOODWILL, WORK STOPPAGE, ACCURACY OF RESULTS, OR COMPUTER FAILURE OR MALFUNCTION, OR (B) ANY AMOUNT, IN THE AGGREGATE, IN EXCESS OF THE GREATER OF (I) $100 OR (II) THE AMOUNTS PAID BY YOU TO QuickSend IN CONNECTION WITH THE SERVICES IN THE TWELVE (12) MONTH PERIOD PRECEDING THIS APPLICABLE CLAIM, OR (III) ANY MATTER BEYOND OUR REASONABLE CONTROL. SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES, SO THE ABOVE LIMITATION AND EXCLUSIONS MAY NOT APPLY TO YOU.",
+    "liabilityText": "TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, QUICKSEND SHALL NOT BE LIABLE FOR (A) ANY INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS OR LOST STREAMING REVENUE ARISING FROM THE ACTIONS OR INACTION OF ANY DSP PLATFORM, OR (B) ANY AMOUNT EXCEEDING THE GREATER OF (I) $100 USD OR (II) THE AMOUNTS ACTUALLY PAID BY YOU TO QUICKSEND DURING THE TWELVE (12) MONTHS PRECEDING THE CLAIM. SOME JURISDICTIONS DO NOT ALLOW SUCH LIMITATIONS, SO THEY MAY NOT APPLY TO YOU.",
     "assignment": "Assignment",
-    "assignmentText": "You may not assign, delegate or transfer these Terms or your rights or obligations hereunder, or your Services account, in any way (by operation of law or otherwise) without QuickSend's prior written consent. We may transfer, assign, or delegate these Terms and our rights and obligations without consent.",
-    "arbitration": "Choice of Law; Arbitration",
-    "arbitrationText": "These Terms are governed by and will be construed under the laws of the State of Illinois, without regard to the conflicts of laws provisions thereof. Any dispute arising from or relating to the subject matter of these Terms, that is not solved via the dispute mechanisms above, shall be finally settled in Chicago, Illinois, in English, in accordance with the Streamlined Arbitration Rules and Procedures of Judicial Arbitration and Mediation Services, Inc. (\"JAMS\") then in effect, by one commercial arbitrator with substantial experience in resolving intellectual property and commercial contract disputes, who shall be selected from the appropriate list of JAMS arbitrators in accordance with such Rules. Judgment upon the award rendered by such arbitrator may be entered in any court of competent jurisdiction. Notwithstanding the foregoing obligation to arbitrate disputes, each party shall have the right to pursue injunctive or other equitable relief at any time, from any court of competent jurisdiction. For all purposes of this Agreement, the parties consent to exclusive jurisdiction and venue in the state or federal courts located in Chicago, Illinois. Any arbitration under these Terms will take place on an individual basis: class arbitrations and class actions are not permitted. YOU UNDERSTAND AND AGREE THAT BY ENTERING INTO THESE TERMS, YOU AND QuickSend ARE EACH WAIVING THE RIGHT TO TRIAL BY JURY OR TO PARTICIPATE IN A CLASS ACTION.",
+    "assignmentText": "You may not assign your rights or obligations under these Terms to any third party without QuickSend's prior written consent. QuickSend may assign its rights and obligations under these Terms in connection with a reorganization, sale of business, or similar transaction without restriction.",
+    "arbitration": "Governing Law; Arbitration",
+    "arbitrationText": "These Terms are governed by and construed in accordance with the laws of the State of Illinois, without regard to conflict of law principles. Any dispute arising out of or relating to these Terms that cannot be resolved through negotiation shall be finally settled in Chicago, Illinois by a single arbitrator under the then-current JAMS Streamlined Arbitration Rules. Either party may seek injunctive or other equitable relief in court at any time. Arbitration shall be conducted on an individual basis only; class arbitrations and class actions are not permitted.",
     "miscellaneous": "Miscellaneous",
-    "miscellaneousText": "You will be responsible for paying, withholding, filing, and reporting all taxes, duties, and other governmental assessments associated with your activity in connection with the Services, provided that QuickSend may, in its sole discretion, do any of the foregoing on your behalf or for itself as it sees fit. The failure of either you or us to exercise, in any way, any right herein shall not be deemed a waiver of any further rights hereunder. If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated, to the minimum extent necessary, so that these Terms shall otherwise remain in full force and effect and enforceable. You and QuickSend agree that these Terms are the complete and exclusive statement of the mutual understanding between you and QuickSend, and that it supersedes and cancels all previous written and oral agreements, communications and other understandings relating to the subject matter of these Terms. You hereby acknowledge and agree that you are not an employee, agent, partner, or joint venture of QuickSend, and you do not have any authority of any kind to bind QuickSend in any respect whatsoever. You and QuickSend agree there are no third party beneficiaries intended under these Terms."
+    "miscellaneousText": "You are responsible for paying all taxes and fees associated with your use of the Services. No failure by either party to exercise any right under these Terms constitutes a waiver of that right. If any provision of these Terms is found unenforceable, the remaining provisions remain in full force. These Terms constitute the entire agreement between you and QuickSend regarding their subject matter and supersede all prior agreements on that subject."
   },
   "privacy": {
-    "title": "QuickSend Privacy Information: What data does our server store?",
-    "lastUpdated": "Last Time Updated: February, 2025",
-    "intro": "Many users are concerned about the privacy of their email marketing lists and whether QuickSend stores their email addresses and the contents of email messages, and whether any of this data is shared with third parties. The information below is meant to address these concerns.",
-    "overview": "Overview of how QuickSend works",
-    "overviewText": "QuickSend works by transferring data to and from your email account. Most of this data transfer occurs via numeric identifiers specific to email and the API. In some cases, email addresses are transferred from the QuickSend server back to the interface, but in a secure manner over SSL. Email providers do not allow third-party integrations like QuickSend to connect to account data without the use of SSL.",
-    "emailLists": "How are your email lists used?",
-    "emailListsText": "In order to track opens, clicks, and provide unsubscribe functionality via the QuickSend unsubscribe link, our database does store the email addresses to which you are sending email. This data is stored in a database, secured by two layers of firewalls, and is never shared with any third parties. QuickSend is similar in this regard to well-known email marketing systems like MailChimp, where storage of email addresses is required to provide standard email marketing features.",
-    "contentStorage": "Does QuickSend store the content of your email message?",
-    "contentStorageText1": "No. Unlike a traditional email marketing service like MailChimp, the QuickSend database does not store the contents of your email marketing campaigns, except for the From Address used for each campaign.",
-    "contentStorageText2": "We store the From Address because multiple From Addresses can be authorized for use in a single email account, and by storing the From Address, we are better able to support users by being able to look up their QuickSend account when they tell us they sent a campaign from a certain address.",
-    "contentStorageText3": "We do not store the content (Subject / Message) of email campaigns, but the content does pass through our server ephemerally. This is required in order to add the mechanisms to an email message that allows QuickSend to track opens and clicks on individual email messages. This process happens in microseconds and the content of an email message does not live on our server beyond that.",
-    "thirdParty": "Does QuickSend share any of your email list information with third parties?",
-    "thirdPartyText": "We may share your email list information with third-party service providers, including advertising platforms, to assist in delivering targeted advertising campaigns. These third parties are required to use the information only for these purposes and in accordance with applicable data protection laws. We do not sell or trade your email information for any other purposes.",
+    "title": "QuickSend Privacy Policy",
+    "lastUpdated": "Last updated: July, 2026",
+    "intro": "QuickSend is a service for removing music tracks, cover art, and videos from DSP platforms based on copyright infringement complaints. Below we describe what data we collect when you submit a takedown request, how we use it, and who we share it with.",
+    "overview": "How QuickSend Works",
+    "overviewText": "To submit a copyright infringement complaint on your behalf, we need you to provide links to the content that needs to be removed, along with documents proving your rights to the work. We use this data strictly to prepare and submit the complaint to the relevant DSP platform and to track the status of your request.",
+    "dataCollected": "What Data We Collect",
+    "dataCollectedText": "When you register, we collect your email and basic Google profile information (if you sign in with Google). When you submit a takedown request, we collect: links to the track, cover art, or video to be removed; the platform where the content is hosted; and documents proving authorship or rights to the work (contracts, split sheets, copyright registration certificates, correspondence with a distributor, etc.). We do not collect or store payment details (card numbers, etc.) — these are processed directly by our payment providers (Stripe, PayPal, YooKassa).",
+    "howWeUse": "How We Use Your Data",
+    "howWeUseText": "We use the data you provide to verify the validity of your request, prepare and submit an official copyright infringement complaint to the relevant DSP platform, show request status in your account dashboard, communicate with you about your request, and process payments. We do not use your data for advertising or marketing outreach without your separate consent.",
+    "documentStorage": "Storage of Supporting Documents",
+    "documentStorageText1": "Documents proving your rights to a work are stored on QuickSend's secured servers for as long as needed to process your request, and for some time afterward in case the DSP platform initiates a counter-notice process or requires further proof of rights.",
+    "documentStorageText2": "We do not publish these documents or share them with third parties, except by submitting them directly to the relevant DSP platform as an attachment to the complaint, or where disclosure is required by law.",
+    "documentStorageText3": "You may request deletion of documents we hold at any time, provided they are no longer required for an active or potentially disputed request.",
+    "thirdParty": "Do We Share Data With Third Parties?",
+    "thirdPartyText": "We share content links and supporting documents with the relevant DSP platforms (such as Spotify, Apple Music, YouTube Music, and others) solely as part of submitting a copyright infringement complaint. Payment processing is handled by Stripe, PayPal, and YooKassa in accordance with their own privacy policies. Sign-in via Google is handled in accordance with Google's privacy policy. We do not sell or share your data with third parties for advertising purposes.",
     "dataDeletion": "Data Deletion Requests",
-    "dataDeletionText": "In compliance with GDPR, any user may request that their data be deleted from our servers. To make such a request, please send an email to",
-    "dataDeletionEmail": "privacy@quicksend.com",
-    "dataDeletionSuffix": "from the QuickSend account you wish to have deleted.",
-    "emailWarmup": "Email Warmup",
-    "emailWarmupText": "QuickSend does not provide email warming services for email accounts."
+    "dataDeletionText": "You may request deletion of your personal data and uploaded documents from our servers at any time, except where retention is required to meet legal obligations or to resolve an active dispute related to an already-submitted complaint. To make such a request, please email",
+    "dataDeletionEmail": "quicksendcontact@gmail.com",
+    "dataDeletionSuffix": "from the QuickSend account whose data you want removed.",
+    "security": "Data Security",
+    "securityText": "We use technical and organizational measures (encryption of data in transit, restricted internal access to documents) to protect the data you provide from unauthorized access."
   },
   "faq": {
-    "title": "FAQ",
-    "lastUpdated": "Last Time Updated: February, 2025",
-    "searchPlaceholder": "Search...",
-    "noResults": "No matching questions found",
+    "title": "Frequently Asked Questions",
+    "lastUpdated": "Last updated: July, 2026",
+    "searchPlaceholder": "Search questions...",
+    "noResults": "No results found",
     "topics": {
       "basics": "Basics",
-      "sending": "Sending",
-      "reports": "Reports",
-      "pricing": "Pricing",
+      "process": "How It Works",
+      "payment": "Payment",
+      "legal": "Rights & Legal",
       "support": "Support"
     },
     "questions": {
       "basics": {
-        "whatNeed": "What do I need in order to use QuickSend?",
-        "changes": "What changes will installing QuickSend make to my email account?",
-        "sendAsReplies": "What's the big deal about the 'Send as replies' feature?",
-        "createDrafts": "I noticed an option to 'Just create Drafts' instead of send a campaign. Why would I want to do this?",
-        "autoFollowups": "What are auto follow-ups?",
-        "replaceSystem": "Is QuickSend meant to replace my existing email marketing system like Constant Contact or MailChimp?"
+        "whatIsQuickSend": "What is QuickSend?",
+        "whatCanBeRemoved": "What can QuickSend remove?",
+        "whichPlatforms": "Which platforms do you remove content from?"
       },
-      "sending": {
-        "testEmail": "How do I send a simple test email with QuickSend?",
-        "attachments": "Can I send attachments? What about inline images?",
-        "server": "From what server are my emails sent?",
-        "limits": "How many emails can I send at a time?"
+      "process": {
+        "howItWorks": "How does the removal process work?",
+        "documentsNeeded": "What documents do I need to provide?",
+        "howLong": "How long does removal take?",
+        "trackStatus": "How can I track my request?"
       },
-      "reports": {
-        "access": "How do I access my reports?"
+      "payment": {
+        "howMuch": "How much does one takedown cost?",
+        "bundles": "Is there a discount for ordering multiple takedowns?",
+        "paymentMethods": "What payment methods do you accept?",
+        "refund": "Can I get a refund?"
       },
-      "pricing": {
-        "free": "Is QuickSend subscription for free?"
+      "legal": {
+        "mustOwnRights": "Do I need to be the rights holder to submit a request?",
+        "falseClaim": "What happens if I submit an inaccurate request?",
+        "counterNotice": "What if the uploader disputes the removal?",
+        "noGuarantee": "Do you guarantee 100% removal of content?"
       },
       "support": {
-        "otherProducts": "I noticed that QuickSend isn't the only product you offer. What are the other products?",
         "getSupport": "How do I get support?"
       }
     },
     "answers": {
       "basics": {
-        "whatNeed": "You need a Gmail or G Suite account and the Chrome browser.",
-        "changes": "QuickSend is lightweight and unobtrusive. After you install QuickSend, you will notice four extra buttons within your Gmail interface. Three of these buttons are small square buttons to the right of the search field: the 'Build Email List' button, the 'Google Sheets Connect' button and the 'Follow-up Campaigns' button.",
-        "sendAsReplies": "Most mass email campaigns are sent as new messages, and therefore new conversations, with each recipient. The ability to send a mass email and have each individual email sent as a reply to the last conversation with each recipient, creates a more familiar experience for the recipient.",
-        "createDrafts": "This option is useful if you want to test QuickSend's functionality but don't want to actually send anyone emails. For example, if you want to ensure personalization is working, this option comes in handy.",
-        "autoFollowups": "Auto follow-ups are the best thing to happen to email marketers since well...email marketing. Auto follow-ups allow you to send follow-up emails automatically to recipients of your email campaign that have not replied.",
-        "replaceSystem": "Maybe. It's up to you. Some users use QuickSend alongside their primary email marketing system, using QuickSend for lower-volume campaigns."
+        "whatIsQuickSend": "QuickSend helps rights holders remove their music, cover art, and videos from DSP platforms when they've been uploaded without permission. We manually prepare and submit official copyright infringement complaints on your behalf.",
+        "whatCanBeRemoved": "Tracks, beats, covers, album/single artwork, and music videos that have been uploaded to DSP platforms without your consent as the rights holder.",
+        "whichPlatforms": "We submit complaints to major DSP platforms, including Spotify, Apple Music, YouTube Music, and other major music services. A single order covers removal across every platform where infringing content is found."
       },
-      "sending": {
-        "testEmail": "Click Compose in Gmail. Enter a few email addresses in the To field. Put in a Subject and Message, and hit the QuickSend button.",
-        "attachments": "Yes. You compose your email just as you would any other email message in Gmail. Any feature of an email that Gmail supports you can assume that QuickSend also supports.",
-        "server": "With the standard setup, your emails are sent from Gmail's servers from your Gmail or G Suite account. You'll see all sent messages in your 'Sent Mail' folder.",
-        "limits": "Under the standard setup, Google imposes a limit of 2,000 sent emails/day for trusted G Suite users, and 500 emails/day for regular Gmail users."
+      "process": {
+        "howItWorks": "You submit a request through your account dashboard, providing links to the content and documents proving your rights. Our team manually reviews the materials, prepares an official copyright infringement complaint, and submits it to the relevant DSP platform. Your request status updates in your dashboard.",
+        "documentsNeeded": "Typically we need documents proving your authorship or rights to the work: a contract, split sheet, copyright registration certificate, correspondence with a distributor, or other material that clearly links you to the work.",
+        "howLong": "Timing depends on the specific DSP platform and its internal review process, so we can't guarantee an exact timeframe. We submit the complaint promptly once documents are verified — the further decision and timing are up to the platform.",
+        "trackStatus": "Each request's status (in review, submitted, removed, rejected) is shown in your account dashboard at quicksend.vercel.app."
       },
-      "reports": {
-        "access": "You can access your open-tracking, click-tracking, and unsubscribe reports by clicking on the QuickSend Reports Label on the left of the Gmail interface."
+      "payment": {
+        "howMuch": "A single takedown (removal of a track across all associated DSP platforms) costs $25 USD.",
+        "bundles": "Yes. A bundle of 5 takedowns costs $110 USD, and a bundle of 10 takedowns costs $190 USD.",
+        "paymentMethods": "We accept payment via Stripe, PayPal, and YooKassa.",
+        "refund": "Yes — if a request hasn't been submitted to a DSP platform yet, the corresponding unused credit can be refunded. Credits for requests that have already been submitted are non-refundable, since the work has already been performed."
       },
-      "pricing": {
-        "free": "QuickSend offers a free trial for 7 days, during which you can send 50 emails per day. After the 7 days, please subscribe to a paid plan."
+      "legal": {
+        "mustOwnRights": "Yes. By submitting a request, you confirm that you are the rights holder of the work or are authorized to act on their behalf, and you're required to provide supporting documentation.",
+        "falseClaim": "Knowingly submitting a false copyright infringement claim can result in legal liability to third parties and is grounds for refusing service or suspending your QuickSend account.",
+        "counterNotice": "If the uploader disputes the complaint through a counter-notice on the platform itself, the final decision rests with the DSP platform under its own policy. We may ask you for additional documents to strengthen your case.",
+        "noGuarantee": "No, we cannot guarantee a 100% outcome, since the decision to remove content rests with the relevant DSP platform, not QuickSend."
       },
       "support": {
-        "otherProducts": "The QuickSend Chrome extension is our main product, and is what adds the buttons to your Gmail account so you can send mass email campaigns.",
-        "getSupport": "Contact the support team: quicksendcontact@gmail.com"
+        "getSupport": "Contact us at quicksendcontact@gmail.com or through your account dashboard."
       }
     }
   },
