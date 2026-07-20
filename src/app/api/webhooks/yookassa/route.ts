@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { shouldGrantCredits } from '@/lib/paymentStatus';
 
 const YOOKASSA_SHOP_ID = process.env.YOOKASSA_SHOP_ID!;
 const YOOKASSA_SECRET_KEY = process.env.YOOKASSA_SECRET_KEY!;
@@ -31,7 +32,7 @@ export async function POST(req: Request) {
       .eq('provider_payment_id', paymentId)
       .single();
 
-    if (existing && existing.status !== 'succeeded') {
+    if (existing && shouldGrantCredits(existing.status, 'succeeded')) {
       await supabaseAdmin
         .from('payments')
         .update({ status: 'succeeded', raw_payload: payment })

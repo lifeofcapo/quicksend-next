@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import Stripe from 'stripe';
+import { shouldGrantCredits } from '@/lib/paymentStatus';
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
       .eq('provider_payment_id', checkoutSession.id)
       .single();
 
-    if (existing && existing.status !== 'succeeded') {
+    if (existing && shouldGrantCredits(existing.status, 'succeeded')) {
       await supabaseAdmin
         .from('payments')
         .update({ status: 'succeeded', raw_payload: checkoutSession })

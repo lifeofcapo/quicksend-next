@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { getPaypalAccessToken, PAYPAL_BASE_URL } from '@/lib/paypal';
+import { shouldGrantCredits } from '@/lib/paymentStatus';
 
 export async function POST(req: Request) {
   const rawBody = await req.text();
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
         .eq('provider_payment_id', orderId)
         .single();
 
-      if (existing && existing.status !== 'succeeded') {
+      if (existing && shouldGrantCredits(existing.status, 'succeeded')) {
         await supabaseAdmin
           .from('payments')
           .update({ status: 'succeeded', raw_payload: event })
