@@ -25,3 +25,21 @@ export const PRICING_PLANS: PricingPlan[] = [
 export function getPlan(id: string) {
   return PRICING_PLANS.find((p) => p.id === id);
 }
+
+export interface RubPricingPlan {
+  id: 'ru-1' | 'ru-5' | 'ru-10' | 'ru-20';
+  qty: number;
+  totalPrice: number; // RUB
+  label: string;
+}
+
+export const RUB_PRICING_PLANS: RubPricingPlan[] = [
+  { id: 'ru-1',  qty: 1,  totalPrice: 150, label: '1 Takedown' },
+  { id: 'ru-5',  qty: 5,  totalPrice: 400, label: '5 Takedowns' },
+  { id: 'ru-10', qty: 10, totalPrice: 600, label: '10 Takedowns' },
+  { id: 'ru-20', qty: 20, totalPrice: 800, label: '20 Takedowns' },
+];
+
+export function getRubPlan(id: string) {
+  return RUB_PRICING_PLANS.find((p) => p.id === id);
+}

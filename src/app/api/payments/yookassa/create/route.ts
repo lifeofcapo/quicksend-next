@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
-import { getPlan } from '@/lib/pricing';
+import { getRubPlan } from '@/lib/pricing';
 import { randomUUID } from 'crypto';
 
 const YOOKASSA_SHOP_ID = process.env.YOOKASSA_SHOP_ID!;
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   }
 
   const { planId } = await req.json();
-  const plan = getPlan(planId);
+  const plan = getRubPlan(planId);
   if (!plan) {
     return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
   }
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       Authorization: 'Basic ' + Buffer.from(`${YOOKASSA_SHOP_ID}:${YOOKASSA_SECRET_KEY}`).toString('base64'),
     },
     body: JSON.stringify({
-      amount: { value: plan.totalPrice.toFixed(2), currency: 'USD' }, // поменяйте на RUB, если валюта не разрешена
+      amount: { value: plan.totalPrice.toFixed(2), currency: 'RUB' },
       confirmation: {
         type: 'redirect',
         return_url: `${process.env.NEXTAUTH_URL}/profile?payment=pending`,
@@ -50,8 +50,8 @@ export async function POST(req: Request) {
     provider_payment_id: payment.id,
     status: 'pending',
     amount: plan.totalPrice,
-    currency: 'USD',
-    credits_purchased: plan.credits,
+    currency: 'RUB',
+    credits_purchased: plan.qty,
     raw_payload: payment,
   });
 
